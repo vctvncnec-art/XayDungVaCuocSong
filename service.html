@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dịch Vụ & Sản Phẩm - Xây Dựng & Cuộc Sống</title>
+  <meta name="description" content="Thiết kế thi công nhà phố trọn gói miền Nam, Dịch vụ tư vấn giám sát, quản lý thi công, lập dự toán và các tool bổ trợ xây dựng.">
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M22 85V40L42 25V85H22Z' fill='%23F59E0B'/><path d='M42 85V15L62 28V85H42Z' fill='%23D97706'/><path d='M35 85C35 60 52 40 82 32C82 58 70 85 35 85Z' stroke='%2310B981' stroke-width='8' fill='none'/><path d='M48 85C52 68 66 55 80 44' stroke='%2310B981' stroke-width='6' stroke-linecap='round'/></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .prose img { border-radius: 1rem; margin: 1.5rem auto; max-width: 100%; height: auto; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+    .prose iframe { width: 100%; height: 400px; border-radius: 1rem; margin: 1.5rem 0; }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-sans flex flex-col min-h-screen">
+
+  <!-- HEADER -->
+  <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-lg">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html#/" class="text-lg md:text-xl font-extrabold tracking-tight flex items-center gap-3 hover:opacity-90 transition">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 85V40L42 25V85H22Z" fill="#F59E0B"/>
+          <path d="M42 85V15L62 28V85H42Z" fill="#D97706"/>
+          <path d="M35 85C35 60 52 40 82 32C82 58 70 85 35 85Z" stroke="#10B981" stroke-width="8" stroke-linejoin="round" fill="none"/>
+          <path d="M48 85C52 68 66 55 80 44" stroke="#10B981" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span class="uppercase tracking-wide">
+          <span class="text-amber-500">XÂY DỰNG</span>
+          <span class="text-emerald-500 font-bold">&</span>
+          <span class="text-amber-500">CUỘC SỐNG</span>
+        </span>
+      </a>
+
+      <nav class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="index.html#/" class="hover:text-amber-400 transition py-1">Trang Chủ</a>
+        <a href="index.html#/projects" class="hover:text-amber-400 transition py-1">Công Trình</a>
+        <a href="index.html#/articles" class="hover:text-amber-400 transition py-1">Bài Viết & Góc Nhìn</a>
+        <a href="index.html#/resources" class="hover:text-amber-400 transition py-1">Thư Viện Tài Liệu</a>
+        <a href="service.html" class="text-amber-400 font-bold border-b-2 border-amber-400 py-1">Dịch Vụ & Sản Phẩm</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- BANNER -->
+  <section class="bg-slate-900 text-white py-12 px-6 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto text-center space-y-3">
+      <span class="text-amber-400 text-xs font-bold uppercase tracking-wider bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">Giải Pháp Xây Dựng Thực Chiến</span>
+      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Dịch Vụ & Sản Phẩm Kỹ Thuật</h1>
+      <p class="text-slate-400 text-sm md:text-base">Chuyên thiết kế & thi công nhà phố trọn gói miền Nam cùng các dịch vụ quản lý, giám sát và công cụ hỗ trợ xây dựng.</p>
+    </div>
+  </section>
+
+  <!-- 2 TAB CHÍNH LỚN -->
+  <div class="bg-white border-b border-slate-200 sticky top-[68px] z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 flex justify-center gap-4 text-sm font-bold overflow-x-auto">
+      <button onclick="switchMainTab('townhouse')" id="mainTabBtn-townhouse" class="py-4 px-6 border-b-2 border-amber-500 text-amber-600 transition flex items-center gap-2 whitespace-nowrap">
+        <span>🏡</span> TAB 1: Thi Công Nhà Phố Trọn Gói (Miền Nam)
+      </button>
+      <button onclick="switchMainTab('other_services')" id="mainTabBtn-other_services" class="py-4 px-6 border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+        <span>🛠️</span> TAB 2: Dịch Vụ Quản Lý & Tool Bổ Trợ
+      </button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-6 py-10 flex-grow w-full">
+
+    <!-- VIEW 1: DANH SÁCH DỊCH VỤ -->
+    <div id="serviceListView" class="space-y-8">
+      
+      <!-- SUB-TABS DÀNH RIÊNG CHO TAB 2 -->
+      <div id="subTabContainer" class="hidden flex flex-wrap gap-2 justify-center bg-slate-100 p-2 rounded-xl border border-slate-200 max-w-3xl mx-auto">
+        <button onclick="filterSubTab('ALL')" class="subtab-btn active bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold transition">Tất Cả</button>
+        <button onclick="filterSubTab('Tư vấn giám sát')" class="subtab-btn bg-white text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg text-xs font-bold transition">Tư Vấn Giám Sát</button>
+        <button onclick="filterSubTab('Quản lý thi công')" class="subtab-btn bg-white text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg text-xs font-bold transition">Quản Lý Thi Công</button>
+        <button onclick="filterSubTab('Lập dự toán & Hợp đồng')" class="subtab-btn bg-white text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg text-xs font-bold transition">Lập Dự Toán & Hợp Đồng</button>
+        <button onclick="filterSubTab('Tool & Sản phẩm bổ trợ')" class="subtab-btn bg-white text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg text-xs font-bold transition">Tool & Bổ Trợ</button>
+      </div>
+
+      <!-- LƯỚI DỊCH VỤ -->
+      <div id="servicesGrid" class="grid md:grid-cols-3 gap-8">
+        <p class="col-span-3 text-center text-slate-400 py-12">Đang tải danh sách dịch vụ...</p>
+      </div>
+    </div>
+
+    <!-- VIEW 2: CHI TIẾT DỊCH VỤ -->
+    <div id="serviceDetailView" class="hidden max-w-4xl mx-auto space-y-6">
+      <button onclick="backToList()" class="text-xs font-bold text-slate-600 hover:text-amber-600 flex items-center gap-2 bg-slate-200 px-4 py-2 rounded-lg transition">
+        ← Quay lại danh sách dịch vụ
+      </button>
+
+      <article class="bg-white p-6 md:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+        <div class="space-y-3 border-b pb-6">
+          <div class="flex items-center gap-3">
+            <span id="detailCat" class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full"></span>
+            <span id="detailPrice" class="text-emerald-600 font-extrabold text-sm"></span>
+          </div>
+          <h1 id="detailTitle" class="text-2xl md:text-4xl font-extrabold text-slate-900 leading-tight"></h1>
+          <p id="detailMeta" class="text-xs text-slate-500"></p>
+        </div>
+
+        <div id="detailSummary" class="text-slate-600 font-medium italic bg-slate-50 p-4 rounded-xl border-l-4 border-amber-500"></div>
+        <div id="detailContent" class="prose max-w-none text-slate-700 leading-relaxed space-y-4"></div>
+
+        <!-- KHUNG THÔNG TIN LIÊN HỆ CÓ NÚT GỬI YÊU CẦU TƯ VẤN -->
+        <div class="pt-6 border-t bg-slate-900 text-white p-6 md:p-8 rounded-2xl space-y-4">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+            <div class="space-y-1">
+              <h4 class="font-bold text-lg text-amber-400 flex items-center gap-2">
+                <span>📞</span> Cần tư vấn hoặc đăng ký gói dịch vụ này?
+              </h4>
+              <p class="text-xs text-slate-300">Quý khách vui lòng liên hệ trực tiếp hoặc gửi yêu cầu để kỹ sư gọi lại tư vấn:</p>
+            </div>
+            <!-- NÚT GỬI YÊU CẦU TƯ VẤN -->
+            <button onclick="openConsultModal()" class="bg-amber-500 hover:bg-amber-400 text-slate-900 font-extrabold px-5 py-2.5 rounded-xl text-xs md:text-sm transition shadow flex items-center gap-2 whitespace-nowrap">
+              <span>📝</span> Gửi Yêu Cầu Tư Vấn
+            </button>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
+            <!-- Nút Zalo -->
+            <a id="btnZaloContact" href="https://zalo.me/0395200897" target="_blank" class="bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-4 py-3 rounded-xl text-xs md:text-sm transition flex items-center justify-center gap-2 shadow">
+              <span>💬</span> Chat Zalo Ngay
+            </a>
+
+            <!-- Nút Hotline / Gọi Điện -->
+            <a id="btnPhoneContact" href="tel:0395200897" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-3 rounded-xl text-xs md:text-sm transition flex items-center justify-center gap-2 shadow">
+              <span>📞</span> Gọi: <span id="txtContactPhone">0395200897</span>
+            </a>
+
+            <!-- Nút Email / Gmail -->
+            <a id="btnEmailContact" href="mailto:contact@xaydung.vn" class="bg-slate-800 hover:bg-slate-700 text-amber-300 font-bold px-4 py-3 rounded-xl text-xs md:text-sm transition flex items-center justify-center gap-2 border border-slate-700 truncate">
+              <span>✉️</span> <span id="txtContactEmail" class="truncate">contact@xaydung.vn</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+  </main>
+
+  <!-- POPUP FORM ĐĂNG KÝ TƯ VẤN -->
+  <div id="consultModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-white rounded-2xl p-6 md:p-8 w-full max-w-lg shadow-2xl border border-slate-200">
+      <div class="flex justify-between items-center mb-4 border-b pb-3">
+        <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">
+          <span>📋</span> Form Đăng Ký Tư Vấn
+        </h3>
+        <button onclick="closeConsultModal()" class="text-slate-400 hover:text-slate-600 font-bold text-xl">&times;</button>
+      </div>
+
+      <form id="consultForm" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Dịch vụ quan tâm</label>
+          <input type="text" id="consultServiceTitle" readonly class="w-full p-2.5 text-sm border rounded-lg font-bold text-amber-600 bg-amber-50">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Họ và tên <span class="text-red-500">*</span></label>
+          <input type="text" id="consultName" placeholder="Nhập họ và tên..." required class="w-full p-2.5 text-sm border rounded-lg outline-none focus:ring-2 focus:ring-amber-500">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Số điện thoại <span class="text-red-500">*</span></label>
+            <input type="tel" id="consultPhone" placeholder="Nhập số điện thoại..." required class="w-full p-2.5 text-sm border rounded-lg outline-none focus:ring-2 focus:ring-amber-500 font-semibold">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Địa chỉ / Khu vực xây dựng</label>
+            <input type="text" id="consultAddress" placeholder="VD: Nhơn Trạch, Đồng Nai" class="w-full p-2.5 text-sm border rounded-lg outline-none focus:ring-2 focus:ring-amber-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Mô tả yêu cầu tư vấn</label>
+          <textarea id="consultNote" rows="3" placeholder="Quy mô nhà phố, số tầng, diện tích, ngân sách dự kiến..." class="w-full p-2.5 text-sm border rounded-lg outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeConsultModal()" class="px-4 py-2.5 bg-slate-200 text-slate-700 rounded-xl text-xs font-bold">Hủy</button>
+          <button type="submit" id="consultSubmitBtn" class="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-900 rounded-xl text-xs font-bold transition shadow">🚀 Gửi Yêu Cầu Tư Vấn</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-center text-sm mt-auto">
+    <div class="max-w-7xl mx-auto px-6">
+      <p>© 2026 Xây Dựng & Cuộc Sống - Liên hệ: xaydungvacuocsong28@gmail.com</p>
+    </div>
+  </footer>
+
+  <script>
+    let allServices = [];
+    let currentMainTab = 'townhouse';
+    let currentSubTab = 'ALL';
+    let currentServiceTitle = 'Tư vấn chung';
+
+    async function loadData() {
+      try {
+        const res = await fetch('data.json?v=' + Date.now());
+        const data = await res.json();
+        allServices = data.services || [];
+
+        // Áp dụng Thông tin liên hệ mặc định từ data.json
+        if (data.contact) {
+          applyContactInfo(data.contact);
+        }
+
+        renderServices();
+      } catch (err) {
+        document.getElementById('servicesGrid').innerHTML = `<p class="col-span-3 text-center text-red-500">Chưa có dữ liệu dịch vụ. Vui lòng thêm từ trang Admin!</p>`;
+      }
+    }
+
+    function applyContactInfo(contact) {
+      const phone = (contact && contact.phone) ? contact.phone : "0395200897";
+      let zalo = (contact && contact.zalo) ? contact.zalo : phone;
+      const email = (contact && contact.email) ? contact.email : "contact@xaydung.vn";
+
+      // Chuẩn hóa link Zalo: nếu nhập SĐT thì tự ghép https://zalo.me/
+      if (!zalo.startsWith("http")) {
+        zalo = "https://zalo.me/" + zalo.replace(/[^0-9]/g, '');
+      }
+
+      const btnZalo = document.getElementById("btnZaloContact");
+      const btnPhone = document.getElementById("btnPhoneContact");
+      const btnEmail = document.getElementById("btnEmailContact");
+      const txtPhone = document.getElementById("txtContactPhone");
+      const txtEmail = document.getElementById("txtContactEmail");
+
+      if (btnZalo) btnZalo.href = zalo;
+      if (btnPhone) btnPhone.href = "tel:" + phone;
+      if (txtPhone) txtPhone.innerText = phone;
+      if (btnEmail) btnEmail.href = "mailto:" + email;
+      if (txtEmail) txtEmail.innerText = email;
+    }
+
+    function switchMainTab(tabType) {
+      currentMainTab = tabType;
+      currentSubTab = 'ALL';
+
+      document.querySelectorAll("[id^='mainTabBtn-']").forEach(btn => {
+        btn.className = "py-4 px-6 border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition flex items-center gap-2 font-bold whitespace-nowrap";
+      });
+      document.getElementById(`mainTabBtn-${tabType}`).className = "py-4 px-6 border-b-2 border-amber-500 text-amber-600 transition flex items-center gap-2 font-bold whitespace-nowrap";
+
+      const subTabContainer = document.getElementById("subTabContainer");
+      if (tabType === 'other_services') {
+        subTabContainer.classList.remove("hidden");
+      } else {
+        subTabContainer.classList.add("hidden");
+      }
+
+      backToList();
+      renderServices();
+    }
+
+    function filterSubTab(subCat) {
+      currentSubTab = subCat;
+      document.querySelectorAll('.subtab-btn').forEach(btn => {
+        btn.className = 'subtab-btn bg-white text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg text-xs font-bold transition';
+      });
+      event.target.className = 'subtab-btn active bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold transition';
+      renderServices();
+    }
+
+    function renderServices() {
+      let filtered = allServices.filter(s => (s.type || 'townhouse') === currentMainTab);
+
+      if (currentMainTab === 'other_services' && currentSubTab !== 'ALL') {
+        filtered = filtered.filter(s => s.category === currentSubTab);
+      }
+
+      const grid = document.getElementById("servicesGrid");
+      if (!filtered.length) {
+        grid.innerHTML = `<div class="col-span-3 text-center py-12 text-slate-400 bg-white rounded-2xl border p-8">Chưa có dịch vụ nào trong mục này.</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(s => `
+        <div onclick="viewServiceDetail('${s.id}')" class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer flex flex-col group">
+          <div class="h-48 overflow-hidden relative">
+            <img src="${s.image || 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600'}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-sm text-amber-400 text-[11px] font-bold px-2.5 py-1 rounded-full border border-amber-400/20">
+              ${s.category || 'Dịch vụ'}
+            </span>
+          </div>
+          <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+            <div class="space-y-2">
+              <h3 class="text-lg font-bold text-slate-900 group-hover:text-amber-600 transition leading-snug">${s.title}</h3>
+              <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed">${s.summary || ''}</p>
+            </div>
+            <div class="pt-4 border-t flex justify-between items-center text-xs">
+              <span class="text-emerald-600 font-extrabold text-sm">${s.price || 'Liên hệ'}</span>
+              <span class="text-amber-600 font-bold group-hover:translate-x-1 transition flex items-center gap-1">Xem chi tiết →</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function viewServiceDetail(id) {
+      const s = allServices.find(item => String(item.id) === String(id));
+      if (!s) return;
+
+      currentServiceTitle = s.title || "Tư vấn chung";
+      document.getElementById("detailTitle").innerText = s.title;
+      document.getElementById("detailCat").innerText = s.category || "Dịch vụ";
+      document.getElementById("detailPrice").innerText = s.price || "Liên hệ";
+      document.getElementById("detailMeta").innerText = `Đơn vị thực hiện: ${s.author || 'Admin Xây Dựng'} • Ngày cập nhật: ${s.date || ''}`;
+      document.getElementById("detailSummary").innerText = s.summary || "";
+      document.getElementById("detailContent").innerHTML = s.content || "<p>Nội dung đang được cập nhật...</p>";
+
+      document.getElementById("serviceListView").classList.add("hidden");
+      document.getElementById("serviceDetailView").classList.remove("hidden");
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    function backToList() {
+      document.getElementById("serviceDetailView").classList.add("hidden");
+      document.getElementById("serviceListView").classList.remove("hidden");
+    }
+
+    function openConsultModal() {
+      document.getElementById("consultServiceTitle").value = currentServiceTitle;
+      document.getElementById("consultModal").classList.remove("hidden");
+    }
+
+    function closeConsultModal() {
+      document.getElementById("consultModal").classList.add("hidden");
+      document.getElementById("consultForm").reset();
+    }
+
+    document.getElementById("consultForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const submitBtn = document.getElementById("consultSubmitBtn");
+      submitBtn.innerText = "⏳ Đang gửi yêu cầu...";
+      submitBtn.disabled = true;
+
+      const payload = {
+        action: "submitConsultation",
+        serviceTitle: document.getElementById("consultServiceTitle").value,
+        name: document.getElementById("consultName").value.trim(),
+        phone: document.getElementById("consultPhone").value.trim(),
+        address: document.getElementById("consultAddress").value.trim(),
+        note: document.getElementById("consultNote").value.trim()
+      };
+
+      try {
+        const apiUrl = localStorage.getItem("API_URL") || "https://script.google.com/macros/s/AKfycbxtApV-FdQx0O1j-FJGvbDo0UEeyjC3NV9f2O-46M3iBEpDOt3K9IXI_yvSnrkGxsOBBQ/exec";
+        const res = await fetch(apiUrl, { method: "POST", body: JSON.stringify(payload) });
+        const data = await res.json();
+        alert(data.message || "Gửi yêu cầu tư vấn thành công!");
+        closeConsultModal();
+      } catch (err) {
+        alert("Lỗi khi gửi yêu cầu tư vấn! Vui lòng thử lại sau.");
+      } finally {
+        submitBtn.innerText = "🚀 Gửi Yêu Cầu Tư Vấn";
+        submitBtn.disabled = false;
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', loadData);
+  </script>
+</body>
+</html>

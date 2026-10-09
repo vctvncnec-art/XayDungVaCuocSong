@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang Quản Trị Admin - Xây Dựng & Cuộc Sống</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M22 85V40L42 25V85H22Z' fill='%23F59E0B'/><path d='M42 85V15L62 28V85H42Z' fill='%23D97706'/><path d='M35 85C35 60 52 40 82 32C82 58 70 85 35 85Z' stroke='%2310B981' stroke-width='8' fill='none'/><path d='M48 85C52 68 66 55 80 44' stroke='%2310B981' stroke-width='6' stroke-linecap='round'/></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Trình soạn thảo Quill -->
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+  <style>
+    .ql-editor { min-height: 250px; font-size: 15px; line-height: 1.6; }
+  </style>
+</head>
+
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen">
+
+  <!-- MÀN HÌNH ĐĂNG NHẬP -->
+  <div id="loginSection" class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md border border-slate-200">
+      <h2 class="text-2xl font-bold mb-2 text-slate-900 text-center">Đăng Nhập Quản Trị</h2>
+      <p class="text-sm text-slate-500 mb-6 text-center">Hệ thống CMS Xây dựng & Cuộc sống</p>
+      
+      <form id="loginForm" class="space-y-4">
+        <input type="hidden" id="apiUrlInput" value="https://script.google.com/macros/s/AKfycbxtApV-FdQx0O1j-FJGvbDo0UEeyjC3NV9f2O-46M3iBEpDOt3K9IXI_yvSnrkGxsOBBQ/exec">
+
+        <div>
+          <label class="block text-sm font-semibold mb-1 text-slate-700">Mật khẩu Admin</label>
+          <input type="password" id="adminPassword" required placeholder="Nhập mật khẩu quản trị..." class="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none text-sm">
+        </div>
+
+        <button type="submit" id="loginBtn" class="w-full bg-slate-900 hover:bg-slate-800 text-white py-2.5 rounded-lg font-medium transition text-sm">Đăng Nhập</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MÀN HÌNH QUẢN TRỊ CMS -->
+  <div id="adminPanel" class="hidden min-h-screen">
+    <!-- Header Admin -->
+    <header class="bg-slate-900 text-white py-4 px-6 flex justify-between items-center shadow-md sticky top-0 z-50">
+      <h1 class="text-lg font-bold flex items-center gap-3">
+        <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 85V40L42 25V85H22Z" fill="#F59E0B"/>
+          <path d="M42 85V15L62 28V85H42Z" fill="#D97706"/>
+          <path d="M35 85C35 60 52 40 82 32C82 58 70 85 35 85Z" stroke="#10B981" stroke-width="8" stroke-linejoin="round" fill="none"/>
+          <path d="M48 85C52 68 66 55 80 44" stroke="#10B981" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span>CMS Admin - <span class="text-amber-400">XÂY DỰNG</span> <span class="text-emerald-400">&</span> <span class="text-amber-400">CUỘC SỐNG</span></span>
+      </h1>
+      <div class="flex items-center gap-3">
+        <button onclick="openContactModal()" class="bg-amber-500 hover:bg-amber-400 text-slate-900 text-xs font-bold px-3 py-2 rounded-lg transition flex items-center gap-1 shadow">
+          <span>📞</span> Cấu Hình Liên Hệ & Mail
+        </button>
+        <button onclick="exportDataJson()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-2 rounded-lg transition flex items-center gap-1 shadow">
+          <span>📥</span> Tải file data.json
+        </button>
+        <a href="index.html" target="_blank" class="text-xs bg-slate-800 hover:bg-slate-700 text-amber-400 font-semibold px-3 py-2 rounded-lg transition">🌐 Xem Website</a>
+        <button onclick="logout()" class="text-xs bg-red-600/80 hover:bg-red-600 text-white font-medium px-3 py-2 rounded-lg transition">Đăng xuất</button>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="bg-white border-b border-slate-200 sticky top-[60px] z-40 shadow-sm">
+      <div class="max-w-7xl mx-auto px-6 flex gap-4 text-sm font-bold overflow-x-auto">
+        <button onclick="switchTab('articles')" id="tabBtn-articles" class="py-3 px-4 border-b-2 border-amber-500 text-amber-600 transition flex items-center gap-2 whitespace-nowrap">
+          <span>📝</span> Quản Lý Bài Viết
+        </button>
+        <button onclick="switchTab('projects')" id="tabBtn-projects" class="py-3 px-4 border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+          <span>🏢</span> Quản Lý Công Trình
+        </button>
+        <button onclick="switchTab('resources')" id="tabBtn-resources" class="py-3 px-4 border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+          <span>📚</span> Quản Lý Tài Liệu & Khóa Học
+        </button>
+        <button onclick="switchTab('services')" id="tabBtn-services" class="py-3 px-4 border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+          <span>🛠️</span> Quản Lý Dịch Vụ & Sản Phẩm
+        </button>
+        <button onclick="switchTab('consultations')" id="tabBtn-consultations" class="py-3 px-4 border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+          <span>📬</span> Quản Lý Yêu Cầu Tư Vấn
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINERS -->
+    <div class="max-w-7xl mx-auto p-6 space-y-10">
+
+      <!-- TAB 1: BÀI VIẾT -->
+      <div id="tabContent-articles" class="admin-tab-content space-y-8">
+        
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex justify-between items-center mb-6 border-b pb-3">
+            <h3 id="artFormTitle" class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span>✍️</span> Thêm Bài Viết Mới
+            </h3>
+            <button id="cancelArtEditBtn" onclick="resetArticleForm()" class="hidden text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 px-3 py-1.5 rounded-lg font-semibold">
+              ✕ Hủy Sửa (Về Thêm Mới)
+            </button>
+          </div>
+          
+          <form id="addArticleForm" class="space-y-4">
+            <input type="hidden" id="editingArticleId" value="">
+            
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="md:col-span-2">
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tiêu đề bài viết</label>
+                <input type="text" id="artTitle" placeholder="Nhập tiêu đề bài viết..." required class="w-full p-2.5 text-sm border rounded-lg font-semibold">
+              </div>
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <label class="block text-xs font-bold text-slate-700 uppercase">Danh mục</label>
+                  <button type="button" onclick="openCategoryModal('articles')" class="text-[11px] text-amber-600 hover:underline font-bold flex items-center gap-1">
+                    <span>⚙️</span> Quản lý
+                  </button>
+                </div>
+                <select id="artCategory" class="w-full p-2.5 text-sm border rounded-lg">
+                </select>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tên Tác Giả</label>
+                <input type="text" id="artAuthor" placeholder="VD: KS. Nguyễn Văn A" class="w-full p-2.5 text-sm border rounded-lg">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Link Ảnh Bìa Đại Diện (URL / Ctrl+V)</label>
+                <div class="flex gap-2">
+                  <input type="url" id="artImage" placeholder="Dán link hoặc Ctrl+V ảnh vào đây..." class="w-full p-2.5 text-sm border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none">
+                  <label class="cursor-pointer bg-slate-800 hover:bg-slate-700 text-white font-bold px-3 py-2.5 rounded-lg text-xs flex items-center gap-1 whitespace-nowrap shadow transition">
+                    <span>📤</span> Tải ảnh
+                    <input type="file" accept="image/*" class="hidden" onchange="uploadCoverImage(this, 'artImage')">
+                  </label>
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tóm tắt ngắn (Sa-pô)</label>
+                <input type="text" id="artSummary" placeholder="Đoạn dẫn dắt ngắn đầu bài..." class="w-full p-2.5 text-sm border rounded-lg italic">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nội dung bài viết (Tự động tải ảnh lên Google Drive)</label>
+              <div class="bg-slate-50 rounded-lg overflow-hidden border relative">
+                <div id="artEditor"></div>
+                <div id="uploadStatus" class="hidden absolute bottom-2 right-2 bg-slate-900/80 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-2 z-10">
+                  <span class="animate-spin">⏳</span> Đang tải ảnh lên Google Drive...
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" id="artSubmitBtn" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-2.5 rounded-lg text-sm transition">
+              🚀 Đăng Bài Viết Lên Website
+            </button>
+          </form>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <span>📋</span> Danh Sách Bài Viết Đã Đăng
+          </h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-slate-600 border-collapse">
+              <thead class="bg-slate-100 text-xs font-bold text-slate-700 uppercase">
+                <tr>
+                  <th class="p-3 border-b">Ảnh</th>
+                  <th class="p-3 border-b">Tiêu đề</th>
+                  <th class="p-3 border-b">Tác giả</th>
+                  <th class="p-3 border-b">Danh mục</th>
+                  <th class="p-3 border-b">Ngày đăng</th>
+                  <th class="p-3 border-b text-right">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="articlesTableBody">
+                <tr><td colspan="6" class="p-4 text-center text-slate-400">Đang tải danh sách bài viết...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 2: CÔNG TRÌNH -->
+      <div id="tabContent-projects" class="admin-tab-content space-y-8 hidden">
+        
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex justify-between items-center mb-6 border-b pb-3">
+            <h3 id="projFormTitle" class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span>🏗️</span> Thêm Công Trình / Dự Án Mới
+            </h3>
+            <button id="cancelProjEditBtn" onclick="resetProjectForm()" class="hidden text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 px-3 py-1.5 rounded-lg font-semibold">
+              ✕ Hủy Sửa (Về Thêm Mới)
+            </button>
+          </div>
+
+          <form id="addProjectForm" class="space-y-4">
+            <input type="hidden" id="editingProjectId" value="">
+            
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="md:col-span-2">
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tên công trình/dự án</label>
+                <input type="text" id="projTitle" placeholder="Nhập tên công trình..." required class="w-full p-2.5 text-sm border rounded-lg font-semibold">
+              </div>
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <label class="block text-xs font-bold text-slate-700 uppercase">Loại hình / Danh mục</label>
+                  <button type="button" onclick="openCategoryModal('projects')" class="text-[11px] text-amber-600 hover:underline font-bold flex items-center gap-1">
+                    <span>⚙️</span> Quản lý
+                  </button>
+                </div>
+                <select id="projCategory" class="w-full p-2.5 text-sm border rounded-lg">
+                </select>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Địa điểm</label>
+                <input type="text" id="projLocation" placeholder="VD: Đồng Nai, TPHCM..." class="w-full p-2.5 text-sm border rounded-lg">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Năm hoàn thành</label>
+                <input type="text" id="projYear" placeholder="VD: 2026" class="w-full p-2.5 text-sm border rounded-lg">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Link Ảnh Bìa Đại Diện (URL / Ctrl+V)</label>
+                <div class="flex gap-2">
+                  <input type="url" id="projImage" placeholder="Dán link hoặc Ctrl+V ảnh vào đây..." class="w-full p-2.5 text-sm border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none">
+                  <label class="cursor-pointer bg-slate-800 hover:bg-slate-700 text-white font-bold px-3 py-2.5 rounded-lg text-xs flex items-center gap-1 whitespace-nowrap shadow transition">
+                    <span>📤</span> Tải ảnh
+                    <input type="file" accept="image/*" class="hidden" onchange="uploadCoverImage(this, 'projImage')">
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Mô tả ngắn / Sa-pô dự án</label>
+              <input type="text" id="projSummary" placeholder="Tóm tắt quy mô, vị trí, đặc điểm nổi bật..." class="w-full p-2.5 text-sm border rounded-lg italic">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nội dung chi tiết hồ sơ công trình (Soạn thảo & Dán ảnh trực tiếp)</label>
+              <div class="bg-slate-50 rounded-lg overflow-hidden border relative">
+                <div id="projEditor"></div>
+              </div>
+            </div>
+
+            <button type="submit" id="projSubmitBtn" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-2.5 rounded-lg text-sm transition">
+              🚀 Đăng Công Trình Lên Website
+            </button>
+          </form>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <span>🏛️</span> Danh Sách Công Trình Đã Đăng
+          </h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-slate-600 border-collapse">
+              <thead class="bg-slate-100 text-xs font-bold text-slate-700 uppercase">
+                <tr>
+                  <th class="p-3 border-b">Ảnh</th>
+                  <th class="p-3 border-b">Tên công trình</th>
+                  <th class="p-3 border-b">Loại hình</th>
+                  <th class="p-3 border-b">Địa điểm</th>
+                  <th class="p-3 border-b">Năm</th>
+                  <th class="p-3 border-b text-right">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="projectsTableBody">
+                <tr><td colspan="6" class="p-4 text-center text-slate-400">Đang tải danh sách công trình...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 3: TÀI LIỆU & KHÓA HỌC (CẬP NHẬT ĐẦY ĐỦ) -->
+      <div id="tabContent-resources" class="admin-tab-content space-y-8 hidden">
+        
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex justify-between items-center mb-6 border-b pb-3">
+            <h3 id="resFormTitle" class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span>📚</span> Thêm Tài Liệu / Khóa Học Mới
+            </h3>
+            <button id="cancelResEditBtn" onclick="resetResourceForm()" class="hidden text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 px-3 py-1.5 rounded-lg font-semibold">
+              ✕ Hủy Sửa (Về Thêm Mới)
+            </button>
+          </div>
+
+          <form id="addResourceForm" class="space-y-4">
+            <input type="hidden" id="editingResourceId" value="">
+
+            <div class="grid md:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Loại bài đăng (Tab chính)</label>
+                <select id="resType" onchange="updateResourceCategoryOptions()" class="w-full p-2.5 text-sm border rounded-lg font-semibold bg-amber-50">
+                  <option value="resource">📄 Tab 1: Thư Viện Tài Liệu & Bản Vẽ</option>
+                  <option value="course">🎓 Tab 2: Khóa Học & Video Đào Tạo</option>
+                </select>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <label class="block text-xs font-bold text-slate-700 uppercase">Phân loại (Danh mục động)</label>
+                  <button type="button" onclick="openCategoryModalForRes()" class="text-[11px] text-amber-600 hover:underline font-bold flex items-center gap-1">
+                    <span>⚙️</span> Quản lý
+                  </button>
+                </div>
+                <select id="resCategory" class="w-full p-2.5 text-sm border rounded-lg font-semibold"></select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Định dạng / Dung lượng</label>
+                <div class="flex gap-2">
+                  <input type="text" id="resFileType" placeholder="Định dạng (DWG, PDF...)" class="w-full p-2.5 text-sm border rounded-lg font-semibold">
+                  <input type="text" id="resFileSize" placeholder="Dung lượng / Số bài" class="w-full p-2.5 text-sm border rounded-lg">
+                </div>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="md:col-span-2">
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tiêu đề Tài liệu / Khóa học</label>
+                <input type="text" id="resTitle" placeholder="Nhập tiêu đề..." required class="w-full p-2.5 text-sm border rounded-lg font-semibold">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tác giả / Giảng viên</label>
+                <input type="text" id="resAuthor" placeholder="VD: KS. Nguyễn Văn A" class="w-full p-2.5 text-sm border rounded-lg">
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Link Ảnh Bìa Đại Diện (URL / Ctrl+V)</label>
+                <div class="flex gap-2">
+                  <input type="url" id="resImage" placeholder="Dán link hoặc Ctrl+V ảnh vào đây..." class="w-full p-2.5 text-sm border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none">
+                  <label class="cursor-pointer bg-slate-800 hover:bg-slate-700 text-white font-bold px-3 py-2.5 rounded-lg text-xs flex items-center gap-1 whitespace-nowrap shadow transition">
+                    <span>📤</span> Tải ảnh
+                    <input type="file" accept="image/*" class="hidden" onchange="uploadCoverImage(this, 'resImage')">
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Link Tải File / Link Video Học</label>
+                <input type="url" id="resFileUrl" placeholder="Link Google Drive, YouTube, OneDrive..." class="w-full p-2.5 text-sm border rounded-lg font-semibold text-blue-600">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Mô tả tóm tắt (Sa-pô)</label>
+              <input type="text" id="resSummary" placeholder="Mô tả tóm tắt nội dung tài liệu hoặc khóa học..." class="w-full p-2.5 text-sm border rounded-lg italic">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nội dung chi tiết (Soạn thảo văn bản, chèn ảnh, video YouTube)</label>
+              <div class="bg-slate-50 rounded-lg overflow-hidden border relative">
+                <div id="resEditor"></div>
+              </div>
+            </div>
+
+            <button type="submit" id="resSubmitBtn" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-2.5 rounded-lg text-sm transition">
+              🚀 Đăng Bài Lên Website
+            </button>
+          </form>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <span>📚</span> Danh Sách Tài Liệu & Khóa Học
+          </h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-slate-600 border-collapse">
+              <thead class="bg-slate-100 text-xs font-bold text-slate-700 uppercase">
+                <tr>
+                  <th class="p-3 border-b">Loại</th>
+                  <th class="p-3 border-b">Tiêu đề</th>
+                  <th class="p-3 border-b">Danh mục</th>
+                  <th class="p-3 border-b">Tác giả</th>
+                  <th class="p-3 border-b text-right">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="resourcesTableBody">
+                <tr><td colspan="5" class="p-4 text-center text-slate-400">Đang tải danh sách tài liệu & khóa học...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 4: QUẢN LÝ DỊCH VỤ & SẢN PHẨM -->
+      <div id="tabContent-services" class="admin-tab-content space-y-8 hidden">
+        
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex justify-between items-center mb-6 border-b pb-3">
+            <h3 id="srvFormTitle" class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span>🛠️</span> Thêm Dịch Vụ / Sản Phẩm Mới
+            </h3>
+            <button id="cancelSrvEditBtn" onclick="resetServiceForm()" class="hidden text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 px-3 py-1.5 rounded-lg font-semibold">
+              ✕ Hủy Sửa (Về Thêm Mới)
+            </button>
+          </div>
+
+          <form id="addServiceForm" class="space-y-4">
+            <input type="hidden" id="editingServiceId" value="">
+
+            <div class="grid md:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nhóm Dịch Vụ (Tab chính)</label>
+                <select id="srvType" onchange="updateServiceCategoryOptions()" class="w-full p-2.5 text-sm border rounded-lg font-semibold bg-amber-50">
+                  <option value="townhouse">Tab 1: Thi Công Nhà Phố Trọn Gói (Miền Nam)</option>
+                  <option value="other_services">Tab 2: Dịch Vụ Quản Lý & Tool Bổ Trợ</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Phân loại chi tiết (Tab nhỏ)</label>
+                <select id="srvCategory" class="w-full p-2.5 text-sm border rounded-lg font-semibold">
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Đơn giá / Giá tham khảo</label>
+                <input type="text" id="srvPrice" placeholder="VD: 5.500.000 VNĐ/m² hoặc Liên hệ" class="w-full p-2.5 text-sm border rounded-lg font-semibold text-emerald-600">
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tên Dịch vụ / Sản phẩm</label>
+                <input type="text" id="srvTitle" placeholder="Nhập tên gói dịch vụ/sản phẩm..." required class="w-full p-2.5 text-sm border rounded-lg font-semibold">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Đơn vị thực hiện / Tác giả</label>
+                <input type="text" id="srvAuthor" placeholder="VD: BCH Xây Dựng & Cuộc Sống" class="w-full p-2.5 text-sm border rounded-lg">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Link Ảnh Bìa Đại Diện (URL / Ctrl+V)</label>
+                <div class="flex gap-2">
+                  <input type="url" id="srvImage" placeholder="Dán link hoặc Ctrl+V ảnh vào đây..." class="w-full p-2.5 text-sm border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none">
+                  <label class="cursor-pointer bg-slate-800 hover:bg-slate-700 text-white font-bold px-3 py-2.5 rounded-lg text-xs flex items-center gap-1 whitespace-nowrap shadow transition">
+                    <span>📤</span> Tải ảnh
+                    <input type="file" accept="image/*" class="hidden" onchange="uploadCoverImage(this, 'srvImage')">
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tóm tắt ngắn (Sa-pô)</label>
+              <input type="text" id="srvSummary" placeholder="Mô tả tóm tắt quy mô, khu vực áp dụng..." class="w-full p-2.5 text-sm border rounded-lg italic">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nội dung chi tiết (Soạn thảo & Dán ảnh trực tiếp)</label>
+              <div class="bg-slate-50 rounded-lg overflow-hidden border relative">
+                <div id="srvEditor"></div>
+              </div>
+            </div>
+
+            <button type="submit" id="srvSubmitBtn" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-2.5 rounded-lg text-sm transition">
+              🚀 Đăng Dịch Vụ Lên Website
+            </button>
+          </form>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <span>📋</span> Danh Sách Dịch Vụ & Sản Phẩm Đã Đăng
+          </h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-slate-600 border-collapse">
+              <thead class="bg-slate-100 text-xs font-bold text-slate-700 uppercase">
+                <tr>
+                  <th class="p-3 border-b">Ảnh</th>
+                  <th class="p-3 border-b">Tên dịch vụ</th>
+                  <th class="p-3 border-b">Nhóm Tab</th>
+                  <th class="p-3 border-b">Phân loại</th>
+                  <th class="p-3 border-b">Giá</th>
+                  <th class="p-3 border-b text-right">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="servicesTableBody">
+                <tr><td colspan="6" class="p-4 text-center text-slate-400">Đang tải danh sách dịch vụ...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 5: QUẢN LÝ YÊU CẦU TƯ VẤN -->
+      <div id="tabContent-consultations" class="admin-tab-content space-y-8 hidden">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex justify-between items-center mb-6 border-b pb-3">
+            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span>📬</span> Danh Sách Khách Hàng Đăng Ký Tư Vấn
+            </h3>
+            <button onclick="fetchAllAdminData()" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+              <span>🔄</span> Làm mới danh sách
+            </button>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-slate-600 border-collapse">
+              <thead class="bg-slate-100 text-xs font-bold text-slate-700 uppercase">
+                <tr>
+                  <th class="p-3 border-b">Họ & Tên</th>
+                  <th class="p-3 border-b">Số điện thoại</th>
+                  <th class="p-3 border-b">Địa chỉ</th>
+                  <th class="p-3 border-b">Dịch vụ quan tâm</th>
+                  <th class="p-3 border-b">Nội dung yêu cầu</th>
+                  <th class="p-3 border-b">Thời gian</th>
+                  <th class="p-3 border-b text-right">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="consultationsTableBody">
+                <tr><td colspan="7" class="p-4 text-center text-slate-400">Đang tải danh sách yêu cầu tư vấn...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL QUẢN LÝ DANH MỤC -->
+  <div id="categoryModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl border border-slate-200">
+      <div class="flex justify-between items-center mb-4 border-b pb-3">
+        <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+          <span>⚙️</span> Quản Lý Danh Mục <span id="catModalTypeTitle" class="text-amber-600 font-extrabold"></span>
+        </h3>
+        <button onclick="closeCategoryModal()" class="text-slate-400 hover:text-slate-600 font-bold text-xl">&times;</button>
+      </div>
+
+      <form id="addCategoryForm" class="flex gap-2 mb-6">
+        <input type="hidden" id="catModalType" value="articles">
+        <input type="text" id="newCatName" placeholder="Nhập tên danh mục mới..." required class="flex-grow p-2.5 text-sm border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none">
+        <button type="submit" id="addCatBtn" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-4 py-2.5 rounded-lg text-xs transition">➕ Thêm</button>
+      </form>
+
+      <h4 class="text-xs font-bold text-slate-500 uppercase mb-3">Danh mục hiện có</h4>
+      <div id="categoryListContainer" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CẤU HÌNH THÔNG TIN LIÊN HỆ & THỜI GIAN NHẮC MAIL -->
+  <div id="contactModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-lg shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4 border-b pb-3">
+        <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+          <span>⚙️</span> Cấu Hình Liên Hệ & Nhắc Mail Tự Động
+        </h3>
+        <button onclick="closeContactModal()" class="text-slate-400 hover:text-slate-600 font-bold text-xl">&times;</button>
+      </div>
+
+      <form id="contactForm" class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Số Điện Thoại / Hotline</label>
+            <input type="text" id="contactPhone" placeholder="VD: 0395200897" required class="w-full p-2.5 text-sm border rounded-lg font-semibold text-emerald-600">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Link Zalo (hoặc Số Zalo)</label>
+            <input type="text" id="contactZalo" placeholder="VD: https://zalo.me/0395200897" required class="w-full p-2.5 text-sm border rounded-lg font-semibold text-blue-600">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Địa chỉ Gmail / Email hiển thị Web</label>
+          <input type="email" id="contactEmail" placeholder="VD: contact@xaydung.vn" required class="w-full p-2.5 text-sm border rounded-lg font-semibold">
+        </div>
+
+        <div class="p-4 bg-amber-50/80 border border-amber-200 rounded-xl space-y-3">
+          <h4 class="text-xs font-bold text-amber-800 uppercase flex items-center gap-1">
+            <span>🔔</span> Cài Đặt Nhắc Email Khách Hàng Mới
+          </h4>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Gmail nhận thông báo khi có khách gửi Form</label>
+            <input type="email" id="notifyEmail" placeholder="Nhập email nhận thông báo..." required class="w-full p-2.5 text-sm border rounded-lg font-bold text-slate-800">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Tần suất gửi email thông báo (Chu kỳ số giờ)</label>
+            <select id="notifyHours" class="w-full p-2.5 text-sm border rounded-lg font-bold bg-white text-slate-800">
+              <option value="1">1 Giờ / 1 lần</option>
+              <option value="2">2 Giờ / 1 lần</option>
+              <option value="4">4 Giờ / 1 lần</option>
+              <option value="6">6 Giờ / 1 lần (Mặc định)</option>
+              <option value="8">8 Giờ / 1 lần</option>
+              <option value="12">12 Giờ / 1 lần</option>
+              <option value="24">24 Giờ / 1 lần (1 Ngày)</option>
+            </select>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-500 italic">💡 Thông tin liên hệ sẽ áp dụng trên website. Email nhận nhắc nhở sẽ tự động nhận danh sách khách hàng mới theo chu kỳ số giờ bạn cài đặt.</p>
+
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeContactModal()" class="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg text-xs font-bold">Hủy</button>
+          <button type="submit" id="saveContactBtn" class="px-6 py-2 bg-amber-500 hover:bg-amber-600 text-slate-900 rounded-lg text-xs font-bold transition">💾 Lưu Cấu Hình</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let authToken = sessionStorage.getItem("ADMIN_TOKEN") || "";
+    let quill, projQuill, srvQuill, resQuill;
+    let globalData = { contact: {}, categories: { articles: [], projects: [], resources: [], courses: [] }, articles: [], projects: [], resources: [], services: [], consultations: [] };
+
+    // HÀM UPLOAD ẢNH BÌA TỪ NÚT CHỌN FILE
+    async function uploadCoverImage(fileInput, targetInputId) {
+      const file = fileInput.files[0];
+      if (!file) return;
+
+      if (file.size > 5 * 1024 * 1024) {
+        alert("Dung lượng ảnh quá lớn (>5MB)!");
+        return;
+      }
+
+      const targetInput = document.getElementById(targetInputId);
+      const originalPlaceholder = targetInput.placeholder;
+      targetInput.value = "";
+      targetInput.placeholder = "⏳ Đang tải ảnh lên Google Drive...";
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = async () => {
+        const apiUrl = localStorage.getItem("API_URL");
+        try {
+          const res = await fetch(apiUrl, {
+            method: "POST",
+            body: JSON.stringify({
+              action: "uploadImage",
+              token: authToken,
+              base64Data: reader.result,
+              fileName: "cover_" + Date.now() + "_" + file.name
+            })
+          });
+          const data = await res.json();
+          if (!handleApiResponse(data)) return;
+
+          if (data.status === "success" && data.url) {
+            targetInput.value = data.url;
+          } else {
+            alert(data.message || "Lỗi tải ảnh!");
+          }
+        } catch (err) {
+          alert("Lỗi upload ảnh bìa!");
+        } finally {
+          targetInput.placeholder = originalPlaceholder;
+          fileInput.value = "";
+        }
+      };
+    }
+
+    // HÀM LẮNG NGHE SỰ KIỆN DÁN (CTRL+V) ẢNH VÀO Ô ẢNH BÌA
+    function enableImagePasteForInput(inputId) {
+      const inputEl = document.getElementById(inputId);
+      if (!inputEl) return;
+
+      inputEl.addEventListener('paste', async (e) => {
+        const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+        for (let item of items) {
+          if (item.type.indexOf('image') === 0) {
+            e.preventDefault();
+            const file = item.getAsFile();
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = async () => {
+              inputEl.value = "";
+              inputEl.placeholder = "⏳ Đang dán & tải ảnh lên Google Drive...";
+              const apiUrl = localStorage.getItem("API_URL");
+              try {
+                const res = await fetch(apiUrl, {
+                  method: "POST",
+                  body: JSON.stringify({
+                    action: "uploadImage",
+                    token: authToken,
+                    base64Data: reader.result,
+                    fileName: "pasted_cover_" + Date.now() + ".png"
+                  })
+                });
+                const data = await res.json();
+                if (!handleApiResponse(data)) return;
+                if (data.status === "success" && data.url) {
+                  inputEl.value = data.url;
+                }
+              } catch (err) {
+                alert("Lỗi tải ảnh dán!");
+              } finally {
+                inputEl.placeholder = "Dán link hoặc Ctrl+V ảnh vào đây...";
+              }
+            };
+            break;
+          }
+        }
+      });
+    }
+
+    async function exportDataJson() {
+      try {
+        let exportObj = null;
+
+        if (globalData && (globalData.articles?.length || globalData.projects?.length || globalData.resources?.length || globalData.services?.length || globalData.consultations?.length)) {
+          exportObj = {
+            contact: globalData.contact || {},
+            categories: globalData.categories || { articles: [], projects: [], resources: [], courses: [] },
+            articles: globalData.articles || [],
+            projects: globalData.projects || [],
+            resources: globalData.resources || [],
+            services: globalData.services || [],
+            consultations: globalData.consultations || []
+          };
+        } else {
+          const apiUrl = localStorage.getItem("API_URL");
+          if (!apiUrl) {
+            alert("Chưa cài đặt Web App URL!");
+            return;
+          }
+
+          const res = await fetch(apiUrl + "?action=getAllData");
+          const text = await res.text();
+
+          if (text.trim().startsWith("<")) {
+            alert("⚠️ Lỗi từ Google Apps Script: Backend trả về trang HTML báo lỗi thay vì JSON.");
+            return;
+          }
+
+          const freshData = JSON.parse(text);
+          exportObj = {
+            contact: freshData.contact || {},
+            categories: freshData.categories || { articles: [], projects: [], resources: [], courses: [] },
+            articles: freshData.articles || [],
+            projects: freshData.projects || [],
+            resources: freshData.resources || [],
+            services: freshData.services || [],
+            consultations: freshData.consultations || []
+          };
+        }
+
+        const blob = new Blob([JSON.stringify(exportObj, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "data.json";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        alert("✅ Đã xuất file data.json thành công!");
+      } catch (err) {
+        alert("Lỗi khi tải file data.json: " + err);
+      }
+    }
+
+    function handleApiResponse(data) {
+      if (data.status === "error" && data.message && (data.message.includes("Phiên đăng nhập") || data.message.includes("không có quyền"))) {
+        alert("⚠️ " + data.message);
+        logout();
+        return false;
+      }
+      return true;
+    }
+
+    async function processAndUploadInlineImages(htmlContent) {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(htmlContent, 'text/html');
+      const images = doc.querySelectorAll('img[src^="data:image"]');
+
+      if (images.length === 0) return htmlContent;
+
+      const apiUrl = localStorage.getItem("API_URL");
+      const statusEl = document.getElementById("uploadStatus");
+      if (statusEl) {
+        statusEl.innerHTML = `<span class="animate-spin">⏳</span> Đang tự động tải ${images.length} ảnh dán lên Google Drive...`;
+        statusEl.classList.remove("hidden");
+      }
+
+      for (let img of images) {
+        const base64Data = img.getAttribute('src');
+        try {
+          const res = await fetch(apiUrl, {
+            method: "POST",
+            body: JSON.stringify({
+              action: "uploadImage",
+              token: authToken,
+              base64Data: base64Data,
+              fileName: "pasted_img_" + Date.now() + ".png"
+            })
+          });
+          const data = await res.json();
+          if (!handleApiResponse(data)) return htmlContent;
+
+          if (data.status === "success" && data.url) {
+            img.setAttribute('src', data.url);
+          }
+        } catch (err) {
+          console.error("Lỗi tự động upload ảnh dán:", err);
+        }
+      }
+
+      if (statusEl) statusEl.classList.add("hidden");
+      return doc.body.innerHTML;
+    }
+
+    function convertToEmbedUrl(url) {
+      if (!url) return url;
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+      const match = url.match(regExp);
+      if (match && match[2].length === 11) {
+        return 'https://www.youtube.com/embed/' + match[2];
+      }
+      return url;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const toolbarOpts = [
+        [{ 'header': [2, 3, false] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'color': [] }, { 'background': [] }],
+        [{ 'align': [] }],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        ['blockquote', 'code-block'],
+        ['link', 'image', 'video'],
+        ['clean']
+      ];
+
+      quill = new Quill('#artEditor', { theme: 'snow', placeholder: 'Soạn thảo nội dung bài viết...', modules: { toolbar: toolbarOpts } });
+      projQuill = new Quill('#projEditor', { theme: 'snow', placeholder: 'Soạn thảo thông tin chi tiết công trình...', modules: { toolbar: toolbarOpts } });
+      srvQuill = new Quill('#srvEditor', { theme: 'snow', placeholder: 'Soạn thảo chi tiết dịch vụ/sản phẩm...', modules: { toolbar: toolbarOpts } });
+      resQuill = new Quill('#resEditor', { theme: 'snow', placeholder: 'Soạn thảo chi tiết tài liệu hoặc đề cương khóa học...', modules: { toolbar: toolbarOpts } });
+
+      quill.getModule('toolbar').addHandler('image', () => selectAndUploadImageForQuill(quill));
+      quill.getModule('toolbar').addHandler('video', () => insertVideoForQuill(quill));
+
+      projQuill.getModule('toolbar').addHandler('image', () => selectAndUploadImageForQuill(projQuill));
+      projQuill.getModule('toolbar').addHandler('video', () => insertVideoForQuill(projQuill));
+
+      srvQuill.getModule('toolbar').addHandler('image', () => selectAndUploadImageForQuill(srvQuill));
+      srvQuill.getModule('toolbar').addHandler('video', () => insertVideoForQuill(srvQuill));
+
+      resQuill.getModule('toolbar').addHandler('image', () => selectAndUploadImageForQuill(resQuill));
+      resQuill.getModule('toolbar').addHandler('video', () => insertVideoForQuill(resQuill));
+
+      enableImagePasteForInput('artImage');
+      enableImagePasteForInput('projImage');
+      enableImagePasteForInput('srvImage');
+      enableImagePasteForInput('resImage');
+
+      updateServiceCategoryOptions();
+      updateResourceCategoryOptions();
+
+      const savedApiUrl = localStorage.getItem("API_URL");
+      if (savedApiUrl) document.getElementById("apiUrlInput").value = savedApiUrl;
+
+      if (authToken && savedApiUrl) {
+        document.getElementById("loginSection").classList.add("hidden");
+        document.getElementById("adminPanel").classList.remove("hidden");
+        fetchAllAdminData();
+      }
+    });
+
+    function selectAndUploadImageForQuill(targetQuill) {
+      const input = document.createElement('input');
+      input.setAttribute('type', 'file');
+      input.setAttribute('accept', 'image/*');
+      input.click();
+
+      input.onchange = async () => {
+        const file = input.files[0];
+        if (!file) return;
+
+        if (file.size > 5 * 1024 * 1024) {
+          alert("Dung lượng ảnh quá lớn (>5MB)!");
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = async () => {
+          const apiUrl = localStorage.getItem("API_URL");
+          try {
+            const res = await fetch(apiUrl, {
+              method: "POST",
+              body: JSON.stringify({
+                action: "uploadImage",
+                token: authToken,
+                base64Data: reader.result,
+                fileName: file.name
+              })
+            });
+            const data = await res.json();
+            if (!handleApiResponse(data)) return;
+
+            if (data.status === "success") {
+              const range = targetQuill.getSelection(true);
+              targetQuill.insertEmbed(range.index, 'image', data.url);
+              targetQuill.setSelection(range.index + 1);
+            } else {
+              alert(data.message || "Lỗi tải ảnh!");
+            }
+          } catch (err) {
+            alert("Lỗi upload ảnh!");
+          }
+        };
+      };
+    }
+
+    function insertVideoForQuill(targetQuill) {
+      let url = prompt('Nhập đường link Video YouTube:');
+      if (url) {
+        const embedUrl = convertToEmbedUrl(url.trim());
+        const range = targetQuill.getSelection(true);
+        targetQuill.insertEmbed(range.index, 'video', embedUrl);
+        targetQuill.setSelection(range.index + 1);
+      }
+    }
+
+    function switchTab(tabName) {
+      document.querySelectorAll(".admin-tab-content").forEach(el => el.classList.add("hidden"));
+      document.querySelectorAll("[id^='tabBtn-']").forEach(btn => {
+        btn.className = "py-3 px-4 border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition flex items-center gap-2 whitespace-nowrap";
+      });
+
+      document.getElementById(`tabContent-${tabName}`).classList.remove("hidden");
+      const activeBtn = document.getElementById(`tabBtn-${tabName}`);
+      activeBtn.className = "py-3 px-4 border-b-2 border-amber-500 text-amber-600 transition flex items-center gap-2 font-bold whitespace-nowrap";
+    }
+
+    async function fetchAllAdminData() {
+      const apiUrl = localStorage.getItem("API_URL");
+      if (!apiUrl) return;
+
+      try {
+        const res = await fetch(apiUrl + "?action=getAllData");
+        globalData = await res.json();
+
+        if (globalData.contact) {
+          document.getElementById("contactPhone").value = globalData.contact.phone || "";
+          document.getElementById("contactZalo").value = globalData.contact.zalo || "";
+          document.getElementById("contactEmail").value = globalData.contact.email || "";
+          document.getElementById("notifyEmail").value = globalData.contact.notifyEmail || globalData.contact.email || "";
+          document.getElementById("notifyHours").value = globalData.contact.notifyHours || "6";
+        }
+
+        renderCategoryOptions();
+        renderArticlesTable(globalData.articles || []);
+        renderProjectsTable(globalData.projects || []);
+        renderResourcesTable(globalData.resources || []);
+        renderServicesTable(globalData.services || []);
+        renderConsultationsTable(globalData.consultations || []);
+      } catch (err) {
+        console.error("Lỗi khi tải dữ liệu Admin:", err);
+      }
+    }
+
+    function openContactModal() {
+      if (globalData && globalData.contact) {
+        document.getElementById("contactPhone").value = globalData.contact.phone || "";
+        document.getElementById("contactZalo").value = globalData.contact.zalo || "";
+        document.getElementById("contactEmail").value = globalData.contact.email || "";
+        document.getElementById("notifyEmail").value = globalData.contact.notifyEmail || globalData.contact.email || "";
+        document.getElementById("notifyHours").value = globalData.contact.notifyHours || "6";
+      }
+      document.getElementById("contactModal").classList.remove("hidden");
+    }
+
+    function closeContactModal() {
+      document.getElementById("contactModal").classList.add("hidden");
+    }
+
+    document.getElementById("contactForm")?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const apiUrl = localStorage.getItem("API_URL");
+      const saveBtn = document.getElementById("saveContactBtn");
+
+      saveBtn.innerText = "⏳ Đang lưu cấu hình & hẹn giờ...";
+      saveBtn.disabled = true;
+
+      const payload = {
+        action: "updateContact",
+        token: authToken,
+        phone: document.getElementById("contactPhone").value.trim(),
+        zalo: document.getElementById("contactZalo").value.trim(),
+        email: document.getElementById("contactEmail").value.trim(),
+        notifyEmail: document.getElementById("notifyEmail").value.trim(),
+        notifyHours: document.getElementById("notifyHours").value
+      };
+
+      try {
+        const res = await fetch(apiUrl, { method: "POST", body: JSON.stringify(payload) });
+        const data = await res.json();
+        if (!handleApiResponse(data)) return;
+
+        alert(data.message);
+        if (data.status === "success") {
+          closeContactModal();
+          fetchAllAdminData();
+        }
+      } catch (err) {
+        alert("Lỗi khi lưu cấu hình!");
+      } finally {
+        saveBtn.innerText = "💾 Lưu Cấu Hình";
+        saveBtn.disabled = false;
+      }
+    });
+
+    function renderConsultationsTable(consultations) {
+      const tbody = document.getElementById("consultationsTableBody");
+      if (!tbody) return;
+
+      if (!consultations || !consultations.length) {
+        tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-slate-400">Chưa có yêu cầu tư vấn nào từ khách hàng.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = consultations.map(c => `
+        <tr class="border-b hover:bg-slate-50">
+          <td class="p-3 font-bold text-slate-900">${c.name || 'Khách hàng'}</td>
+          <td class="p-3 text-xs font-semibold text-emerald-600"><a href="tel:${c.phone}">${c.phone}</a></td>
+          <td class="p-3 text-xs">${c.address || '-'}</td>
+          <td class="p-3 text-xs font-semibold text-amber-700"><span class="bg-amber-100 px-2 py-1 rounded">${c.serviceTitle || 'Tư vấn chung'}</span></td>
+          <td class="p-3 text-xs max-w-xs truncate" title="${c.note || ''}">${c.note || '-'}</td>
+          <td class="p-3 text-xs text-slate-500 whitespace-nowrap">${c.date || ''}</td>
+          <td class="p-3 text-right">
+            <button onclick="deleteItem('deleteConsultation', '${c.id}')" class="text-xs bg-red-50 text-red-600 hover:bg-red-100 font-bold px-3 py-1.5 rounded transition">Xóa</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderCategoryOptions() {
+      const artCats = (globalData.categories && globalData.categories.articles) ? globalData.categories.articles : ["Tư duy nghề", "Kỹ thuật thi công", "Trải nghiệm cuộc sống"];
+      const artSelect = document.getElementById("artCategory");
+      const currentArtVal = artSelect.value;
+      artSelect.innerHTML = artCats.map(c => `<option value="${c}">${c}</option>`).join('');
+      if (currentArtVal && artCats.includes(currentArtVal)) artSelect.value = currentArtVal;
+
+      const projCats = (globalData.categories && globalData.categories.projects) ? globalData.categories.projects : ["Nhà phố & Biệt thự", "Công trình công nghiệp", "Hạ tầng & Dự án"];
+      const projSelect = document.getElementById("projCategory");
+      const currentProjVal = projSelect.value;
+      projSelect.innerHTML = projCats.map(c => `<option value="${c}">${c}</option>`).join('');
+      if (currentProjVal && projCats.includes(currentProjVal)) projSelect.value = currentProjVal;
+
+      updateResourceCategoryOptions();
+    }
+
+    function updateResourceCategoryOptions() {
+      const resType = document.getElementById("resType").value;
+      const catSelect = document.getElementById("resCategory");
+      const catKey = resType === 'resource' ? 'resources' : 'courses';
+      const cats = (globalData.categories && globalData.categories[catKey]) ? globalData.categories[catKey] : [];
+      
+      if (!cats.length) {
+        catSelect.innerHTML = `<option value="Chung">Tất cả danh mục</option>`;
+        return;
+      }
+      catSelect.innerHTML = cats.map(c => `<option value="${c}">${c}</option>`).join('');
+    }
+
+    function openCategoryModalForRes() {
+      const resType = document.getElementById("resType").value;
+      openCategoryModal(resType === 'resource' ? 'resources' : 'courses');
+    }
+
+    function updateServiceCategoryOptions() {
+      const type = document.getElementById("srvType").value;
+      const catSelect = document.getElementById("srvCategory");
+
+      if (type === "townhouse") {
+        catSelect.innerHTML = `
+          <option value="Thiết kế nhà phố">Thiết kế kiến trúc & kết cấu nhà phố</option>
+          <option value="Thi công trọn gói">Thi công xây dựng trọn gói (Chìa khóa trao tay)</option>
+          <option value="Thi công phần thô">Thi công phần thô & Nhân công hoàn thiện</option>
+        `;
+      } else {
+        catSelect.innerHTML = `
+          <option value="Tư vấn giám sát">Tư vấn giám sát thi công</option>
+          <option value="Quản lý thi công">Quản lý thi công & Dự án</option>
+          <option value="Lập dự toán & Hợp đồng">Lập dự toán, Ngân sách & Hợp đồng</option>
+          <option value="Tool & Sản phẩm bổ trợ">Tool & Sản phẩm bổ trợ xây dựng</option>
+        `;
+      }
+    }
+
+    function openCategoryModal(type) {
+      document.getElementById("catModalType").value = type;
+      let title = "Bài Viết";
+      if (type === "projects") title = "Công Trình";
+      if (type === "resources") title = "Tài Liệu";
+      if (type === "courses") title = "Khóa Học";
+      document.getElementById("catModalTypeTitle").innerText = title;
+      document.getElementById("categoryModal").classList.remove("hidden");
+      renderCategoryModalList();
+    }
+
+    function closeCategoryModal() {
+      document.getElementById("categoryModal").classList.add("hidden");
+      document.getElementById("newCatName").value = "";
+    }
+
+    function renderCategoryModalList() {
+      const type = document.getElementById("catModalType").value;
+      const cats = (globalData.categories && globalData.categories[type]) ? globalData.categories[type] : [];
+      const container = document.getElementById("categoryListContainer");
+
+      if (!cats.length) {
+        container.innerHTML = `<p class="text-xs text-slate-400 italic">Chưa có danh mục nào.</p>`;
+        return;
+      }
+
+      container.innerHTML = cats.map(c => `
+        <div class="flex items-center justify-between p-2.5 bg-slate-50 border rounded-lg hover:bg-slate-100 transition">
+          <span class="text-sm font-semibold text-slate-800">${c}</span>
+          <button onclick="deleteCategory('${type}', '${c}')" class="text-xs text-red-600 hover:text-red-800 font-bold px-2 py-1 bg-red-50 hover:bg-red-100 rounded transition">
+            🗑️ Xóa
+          </button>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById("addCategoryForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const type = document.getElementById("catModalType").value;
+      const name = document.getElementById("newCatName").value.trim();
+      const apiUrl = localStorage.getItem("API_URL");
+
+      if (!name) return;
+
+      const addBtn = document.getElementById("addCatBtn");
+      addBtn.disabled = true;
+      addBtn.innerText = "⏳...";
+
+      try {
+        const res = await fetch(apiUrl, {
+          method: "POST",
+          body: JSON.stringify({ action: "addCategory", token: authToken, type: type, name: name })
+        });
+        const data = await res.json();
+        if (!handleApiResponse(data)) return;
+
+        document.getElementById("newCatName").value = "";
+        await fetchAllAdminData();
+        renderCategoryModalList();
+      } catch (err) {
+        alert("Lỗi khi thêm danh mục!");
+      } finally {
+        addBtn.disabled = false;
+        addBtn.innerText = "➕ Thêm";
+      }
+    });
+
+    async function deleteCategory(type, name) {
+      if (!confirm(`Bạn có chắc muốn xóa danh mục "${name}" không?`)) return;
+
+      const apiUrl = localStorage.getItem("API_URL");
+      try {
+        const res = await fetch(apiUrl, {
+          method: "POST",
+          body: JSON.stringify({ action: "deleteCategory", token: authToken, type: type, name: name })
+        });
+        const data = await res.json();
+        if (!handleApiResponse(data)) return;
+
+        await fetchAllAdminData();
+        renderCategoryModalList();
+      } catch (err) {
+        alert("Lỗi khi xóa danh mục!");
+      }
+    }
+
+    function renderArticlesTable(articles) {
+      const tbody = document.getElementById("articlesTableBody");
+      if (!articles.length) {
+        tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400">Chưa có bài viết nào.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = articles.map(a => `
+        <tr class="border-b hover:bg-slate-50">
+          <td class="p-3">
+            <img src="${a.image || 'https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?w=100'}" class="w-12 h-10 object-cover rounded border">
+          </td>
+          <td class="p-3 font-semibold text-slate-900 max-w-xs truncate">${a.title}</td>
+          <td class="p-3 text-xs text-slate-600 font-medium">${a.author || 'Admin Xây Dựng'}</td>
+          <td class="p-3"><span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded font-medium">${a.category || 'Tản mạn'}</span></td>
+          <td class="p-3 text-xs text-slate-500">${a.date || ''}</td>
+          <td class="p-3 text-right space-x-2">
+            <button onclick="editArticle('${a.id}')" class="text-xs bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold px-3 py-1.5 rounded transition">Sửa</button>
+            <button onclick="deleteItem('deleteArticle', '${a.id}')" class="text-xs bg-red-50 text-red-600 hover:bg-red-100 font-bold px-3 py-1.5 rounded transition">Xóa</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function editArticle(id) {
+      const a = globalData.articles.find(item => String(item.id) === String(id));
+      if (!a) return;
+
+      document.getElementById("editingArticleId").value = a.id;
+      document.getElementById("artTitle").value = a.title || "";
+      document.getElementById("artAuthor").value = a.author || "";
+      document.getElementById("artCategory").value = a.category || "";
+      document.getElementById("artImage").value = a.image || "";
+      document.getElementById("artSummary").value = a.summary || "";
+      quill.root.innerHTML = a.content || "";
+
+      document.getElementById("artFormTitle").innerHTML = `<span>✏️</span> Đang Sửa Bài Viết: <span class="text-amber-600">${a.title}</span>`;
+      document.getElementById("artSubmitBtn").innerText = "💾 Cập Nhật Bài Viết";
+      document.getElementById("cancelArtEditBtn").classList.remove("hidden");
+
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    function resetArticleForm() {
+      document.getElementById("editingArticleId").value = "";
+      document.getElementById("addArticleForm").reset();
+      quill.setContents([]);
+      document.getElementById("artFormTitle").innerHTML = `<span>✍️</span> Thêm Bài Viết Mới`;
+      document.getElementById("artSubmitBtn").innerText = "🚀 Đăng Bài Viết Lên Website";
+      document.getElementById("cancelArtEditBtn").classList.add("hidden");
+    }
+
+    function renderProjectsTable(projects) {
+      const tbody = document.getElementById("projectsTableBody");
+      if (!projects.length) {
+        tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400">Chưa có công trình nào.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = projects.map(p => `
+        <tr class="border-b hover:bg-slate-50">
+          <td class="p-3"><img src="${p.image || 'https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?w=100'}" class="w-12 h-10 object-cover rounded border"></td>
+          <td class="p-3 font-semibold text-slate-900">${p.title}</td>
+          <td class="p-3 text-xs"><span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded font-medium">${p.category || 'Công trình'}</span></td>
+          <td class="p-3 text-xs">${p.location || 'Việt Nam'}</td>
+          <td class="p-3 text-xs">${p.year || '2026'}</td>
+          <td class="p-3 text-right space-x-2">
+            <button onclick="editProject('${p.id}')" class="text-xs bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold px-3 py-1.5 rounded transition">Sửa</button>
+            <button onclick="deleteItem('deleteProject', '${p.id}')" class="text-xs bg-red-50 text-red-600 hover:bg-red-100 font-bold px-3 py-1.5 rounded transition">Xóa</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function editProject(id) {
+      const p = globalData.projects.find(item => String(item.id) === String(id));
+      if (!p) return;
+
+      document.getElementById("editingProjectId").value = p.id;
+      document.getElementById("projTitle").value = p.title || "";
+      document.getElementById("projCategory").value = p.category || "";
+      document.getElementById("projLocation").value = p.location || "";
+      document.getElementById("projYear").value = p.year || "";
+      document.getElementById("projImage").value = p.image || "";
+      document.getElementById("projSummary").value = p.summary || p.description || "";
+      projQuill.root.innerHTML = p.content || "";
+
+      document.getElementById("projFormTitle").innerHTML = `<span>✏️</span> Đang Sửa Công Trình: <span class="text-amber-600">${p.title}</span>`;
+      document.getElementById("projSubmitBtn").innerText = "💾 Cập Nhật Công Trình";
+      document.getElementById("cancelProjEditBtn").classList.remove("hidden");
+
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    function resetProjectForm() {
+      document.getElementById("editingProjectId").value = "";
+      document.getElementById("addProjectForm").reset();
+      projQuill.setContents([]);
+      document.getElementById("projFormTitle").innerHTML = `<span>🏗️</span> Thêm Công Trình / Dự Án Mới`;
+      document.getElementById("projSubmitBtn").innerText = "🚀 Đăng Công Trình Lên Website";
+      document.getElementById("cancelProjEditBtn").classList.add("hidden");
+    }
+
+    function renderResourcesTable(resources) {
+      const tbody = document.getElementById("resourcesTableBody");
+      if (!resources || !resources.length) {
+        tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400">Chưa có tài liệu hay khóa học nào.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = resources.map(r => `
+        <tr class="border-b hover:bg-slate-50">
+          <td class="p-3"><span class="bg-amber-100 text-amber-800 text-xs font-bold px-2 py-1 rounded">${r.type === 'course' ? '🎓 Khóa học' : '📄 Tài liệu'}</span></td>
+          <td class="p-3 font-semibold text-slate-900">${r.title}</td>
+          <td class="p-3 text-xs">${r.category || ''}</td>
+          <td class="p-3 text-xs">${r.author || 'Admin'}</td>
+          <td class="p-3 text-right space-x-2">
+            <button onclick="editResource('${r.id}')" class="text-xs bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold px-3 py-1.5 rounded transition">Sửa</button>
+            <button onclick="deleteItem('deleteResource', '${r.id}')" class="text-xs bg-red-50 text-red-600 hover:bg-red-100 font-bold px-3 py-1.5 rounded transition">Xóa</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function editResource(id) {
+      const r = globalData.resources.find(item => String(item.id) === String(id));
+      if (!r) return;
+
+      document.getElementById("editingResourceId").value = r.id;
+      document.getElementById("resTitle").value = r.title || "";
+      document.getElementById("resType").value = r.type || "resource";
+      updateResourceCategoryOptions();
+      document.getElementById("resCategory").value = r.category || "";
+      document.getElementById("resFileType").value = r.fileType || "";
+      document.getElementById("resFileSize").value = r.fileSize || "";
+      document.getElementById("resAuthor").value = r.author || "";
+      document.getElementById("resImage").value = r.image || "";
+      document.getElementById("resFileUrl").value = r.fileUrl || "";
+      document.getElementById("resSummary").value = r.summary || "";
+      resQuill.root.innerHTML = r.content || "";
+
+      document.getElementById("resFormTitle").innerHTML = `<span>✏️</span> Đang Sửa Bài Đăng: <span class="text-amber-600">${r.title}</span>`;
+      document.getElementById("resSubmitBtn").innerText = "💾 Cập Nhật Bài Đăng";
+      document.getElementById("cancelResEditBtn").classList.remove("hidden");
+
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    function resetResourceForm() {
+      document.getElementById("editingResourceId").value = "";
+      document.getElementById("addResourceForm").reset();
+      resQuill.setContents([]);
+      updateResourceCategoryOptions();
+      document.getElementById("resFormTitle").innerHTML = `<span>📚</span> Thêm Tài Liệu / Khóa Học Mới`;
+      document.getElementById("resSubmitBtn").innerText = "🚀 Đăng Bài Lên Website";
+      document.getElementById("cancelResEditBtn").classList.add("hidden");
+    }
+
+    function renderServicesTable(services) {
+      const tbody = document.getElementById("servicesTableBody");
+      if (!services || !services.length) {
+        tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400">Chưa có dịch vụ nào.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = services.map(s => `
+        <tr class="border-b hover:bg-slate-50">
+          <td class="p-3"><img src="${s.image || 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=100'}" class="w-12 h-10 object-cover rounded border"></td>
+          <td class="p-3 font-semibold text-slate-900">${s.title}</td>
+          <td class="p-3 text-xs"><span class="bg-amber-100 text-amber-800 px-2 py-1 rounded font-bold">${s.type === 'townhouse' ? 'Nhà phố' : 'Bổ trợ'}</span></td>
+          <td class="p-3 text-xs font-medium">${s.category || ''}</td>
+          <td class="p-3 text-xs font-bold text-emerald-600">${s.price || 'Liên hệ'}</td>
+          <td class="p-3 text-right space-x-2">
+            <button onclick="editService('${s.id}')" class="text-xs bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold px-3 py-1.5 rounded transition">Sửa</button>
+            <button onclick="deleteItem('deleteService', '${s.id}')" class="text-xs bg-red-50 text-red-600 hover:bg-red-100 font-bold px-3 py-1.5 rounded transition">Xóa</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function editService(id) {
+      const s = globalData.services.find(item => String(item.id) === String(id));
+      if (!s) return;
+
+      document.getElementById("editingServiceId").value = s.id;
+      document.getElementById("srvTitle").value = s.title || "";
+      document.getElementById("srvType").value = s.type || "townhouse";
+      updateServiceCategoryOptions();
+      document.getElementById("srvCategory").value = s.category || "";
+      document.getElementById("srvPrice").value = s.price || "";
+      document.getElementById("srvAuthor").value = s.author || "";
+      document.getElementById("srvImage").value = s.image || "";
+      document.getElementById("srvSummary").value = s.summary || "";
+      srvQuill.root.innerHTML = s.content || "";
+
+      document.getElementById("srvFormTitle").innerHTML = `<span>✏️</span> Đang Sửa Dịch Vụ: <span class="text-amber-600">${s.title}</span>`;
+      document.getElementById("srvSubmitBtn").innerText = "💾 Cập Nhật Dịch Vụ";
+      document.getElementById("cancelSrvEditBtn").classList.remove("hidden");
+
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    function resetServiceForm() {
+      document.getElementById("editingServiceId").value = "";
+      document.getElementById("addServiceForm").reset();
+      srvQuill.setContents([]);
+      updateServiceCategoryOptions();
+      document.getElementById("srvFormTitle").innerHTML = `<span>🛠️</span> Thêm Dịch Vụ / Sản Phẩm Mới`;
+      document.getElementById("srvSubmitBtn").innerText = "🚀 Đăng Dịch Vụ Lên Website";
+      document.getElementById("cancelSrvEditBtn").classList.add("hidden");
+    }
+
+    async function deleteItem(actionName, id) {
+      if (!confirm("Bạn có chắc chắn muốn XÓA mục này không? Thao tác này không thể hoàn tác!")) return;
+
+      const apiUrl = localStorage.getItem("API_URL");
+      try {
+        const res = await fetch(apiUrl, {
+          method: "POST",
+          body: JSON.stringify({ action: actionName, token: authToken, id: id })
+        });
+        const data = await res.json();
+        if (!handleApiResponse(data)) return;
+
+        alert(data.message);
+        fetchAllAdminData();
+      } catch (err) {
+        alert("Lỗi khi xóa!");
+      }
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const apiUrl = document.getElementById("apiUrlInput").value.trim();
+      const password = document.getElementById("adminPassword").value;
+      const loginBtn = document.getElementById("loginBtn");
+
+      loginBtn.innerText = "Đang kết nối...";
+      loginBtn.disabled = true;
+
+      try {
+        const res = await fetch(apiUrl, {
+          method: "POST",
+          body: JSON.stringify({ action: "login", password })
+        });
+        const data = await res.json();
+
+        if (data.status === "success") {
+          authToken = data.token;
+          sessionStorage.setItem("ADMIN_TOKEN", authToken);
+          localStorage.setItem("API_URL", apiUrl);
+
+          document.getElementById("loginSection").classList.add("hidden");
+          document.getElementById("adminPanel").classList.remove("hidden");
+          fetchAllAdminData();
+        } else {
+          alert(data.message || "Mật khẩu không đúng!");
+        }
+      } catch (err) {
+        alert("Lỗi kết nối API!");
+      } finally {
+        loginBtn.innerText = "Đăng Nhập";
+        loginBtn.disabled = false;
+      }
+    });
+
+    function logout() {
+      authToken = "";
+      sessionStorage.removeItem("ADMIN_TOKEN");
+      location.reload();
+    }
+
+    document.getElementById("addArticleForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const apiUrl = localStorage.getItem("API_URL");
+      const editId = document.getElementById("editingArticleId").value;
+      let htmlContent = quill.root.innerHTML;
+
+      if (!htmlContent || htmlContent === '<p><br></p>') {
+        alert("Vui lòng nhập nội dung!");
+        return;
+      }
+
+      const submitBtn = document.getElementById("artSubmitBtn");
+      submitBtn.disabled = true;
+      submitBtn.innerText = "⏳ Đang xử lý ảnh & lưu bài viết...";
+
+      try {
+        htmlContent = await processAndUploadInlineImages(htmlContent);
+
+        const payload = {
+          action: editId ? "updateArticle" : "addArticle",
+          token: authToken,
+          id: editId,
+          title: document.getElementById("artTitle").value,
+          author: document.getElementById("artAuthor").value,
+          category: document.getElementById("artCategory").value,
+          image: document.getElementById("artImage").value,
+          summary: document.getElementById("artSummary").value,
+          content: htmlContent
+        };
+
+        const res = await fetch(apiUrl, { method: "POST", body: JSON.stringify(payload) });
+        const data = await res.json();
+        if (!handleApiResponse(data)) return;
+
+        alert(data.message);
+        if (data.status === "success") {
+          resetArticleForm();
+          fetchAllAdminData();
+        }
+      } catch (err) {
+        alert("Lỗi khi lưu bài viết!");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "🚀 Đăng Bài Viết Lên Website";
+      }
+    });
+
+    document.getElementById("addProjectForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const apiUrl = localStorage.getItem("API_URL");
+      const editId = document.getElementById("editingProjectId").value;
+      let htmlContent = projQuill.root.innerHTML;
+
+      const submitBtn = document.getElementById("projSubmitBtn");
+      submitBtn.disabled = true;
+      submitBtn.innerText = "⏳ Đang xử lý ảnh & lưu công trình...";
+
+      try {
+        htmlContent = await processAndUploadInlineImages(htmlContent);
+
+        const payload = {
+          action: editId ? "updateProject" : "addProject",
+          token: authToken,
+          id: editId,
+          title: document.getElementById("projTitle").value,
+          category: document.getElementById("projCategory").value,
+          location: document.getElementById("projLocation").value,
+          year: document.getElementById("projYear").value,
+          image: document.getElementById("projImage").value,
+          summary: document.getElementById("projSummary").value,
+          content: htmlContent
+        };
+
+        const res = await fetch(apiUrl, { method: "POST", body: JSON.stringify(payload) });
+        const data = await res.json();
+        if (!handleApiResponse(data)) return;
+
+        alert(data.message);
+        if (data.status === "success") {
+          resetProjectForm();
+          fetchAllAdminData();
+        }
+      } catch (err) {
+        alert("Lỗi khi lưu công trình!");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "🚀 Đăng Công Trình Lên Website";
+      }
+    });
+
+    document.getElementById("addResourceForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const apiUrl = localStorage.getItem("API_URL");
+      const editId = document.getElementById("editingResourceId").value;
+      let htmlContent = resQuill.root.innerHTML;
+
+      const submitBtn = document.getElementById("resSubmitBtn");
+      submitBtn.disabled = true;
+      submitBtn.innerText = "⏳ Đang xử lý ảnh & lưu bài đăng...";
+
+      try {
+        htmlContent = await processAndUploadInlineImages(htmlContent);
+
+        const payload = {
+          action: editId ? "updateResource" : "addResource",
+          token: authToken,
+          id: editId,
+          title: document.getElementById("resTitle").value,
+          type: document.getElementById("resType").value,
+          category: document.getElementById("resCategory").value,
+          fileType: document.getElementById("resFileType").value,
+          fileSize: document.getElementById("resFileSize").value,
+          author: document.getElementById("resAuthor").value,
+          image: document.getElementById("resImage").value,
+          fileUrl: document.getElementById("resFileUrl").value,
+          summary: document.getElementById("resSummary").value,
+          content: htmlContent
+        };
+
+        const res = await fetch(apiUrl, { method: "POST", body: JSON.stringify(payload) });
+        const data = await res.json();
+        if (!handleApiResponse(data)) return;
+
+        alert(data.message);
+        if (data.status === "success") {
+          resetResourceForm();
+          fetchAllAdminData();
+        }
+      } catch (err) {
+        alert("Lỗi khi lưu bài đăng!");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "🚀 Đăng Bài Lên Website";
+      }
+    });
+
+    document.getElementById("addServiceForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const apiUrl = localStorage.getItem("API_URL");
+      const editId = document.getElementById("editingServiceId").value;
+      let htmlContent = srvQuill.root.innerHTML;
+
+      const submitBtn = document.getElementById("srvSubmitBtn");
+      submitBtn.disabled = true;
+      submitBtn.innerText = "⏳ Đang xử lý & lưu dịch vụ...";
+
+      try {
+        htmlContent = await processAndUploadInlineImages(htmlContent);
+
+        const payload = {
+          action: editId ? "updateService" : "addService",
+          token: authToken,
+          id: editId,
+          title: document.getElementById("srvTitle").value,
+          type: document.getElementById("srvType").value,
+          category: document.getElementById("srvCategory").value,
+          price: document.getElementById("srvPrice").value,
+          author: document.getElementById("srvAuthor").value,
+          image: document.getElementById("srvImage").value,
+          summary: document.getElementById("srvSummary").value,
+          content: htmlContent
+        };
+
+        const res = await fetch(apiUrl, { method: "POST", body: JSON.stringify(payload) });
+        const data = await res.json();
+        if (!handleApiResponse(data)) return;
+
+        alert(data.message);
+        if (data.status === "success") {
+          resetServiceForm();
+          fetchAllAdminData();
+        }
+      } catch (err) {
+        alert("Lỗi khi lưu dịch vụ!");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "🚀 Đăng Dịch Vụ Lên Website";
+      }
+    });
+  </script>
+</body>
+</html>

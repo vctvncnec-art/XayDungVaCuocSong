@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Xây Dựng & Cuộc Sống - Portal</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M22 85V40L42 25V85H22Z' fill='%23F59E0B'/><path d='M42 85V15L62 28V85H42Z' fill='%23D97706'/><path d='M35 85C35 60 52 40 82 32C82 58 70 85 35 85Z' stroke='%2310B981' stroke-width='8' fill='none'/><path d='M48 85C52 68 66 55 80 44' stroke='%2310B981' stroke-width='6' stroke-linecap='round'/></svg>">
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- CSS STYLE NỘI DUNG CHUẨN VNEXPRESS -->
@@ -72,18 +73,27 @@
   <!-- HEADER -->
   <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-lg">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#/" class="text-xl font-bold tracking-tight flex items-center gap-2 hover:text-amber-400 transition">
-        <span class="text-amber-500">🏗️</span> XÂY DỰNG & CUỘC SỐNG
+      <a href="#/" class="text-lg md:text-xl font-extrabold tracking-tight flex items-center gap-3 hover:opacity-90 transition">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 85V40L42 25V85H22Z" fill="#F59E0B"/>
+          <path d="M42 85V15L62 28V85H42Z" fill="#D97706"/>
+          <path d="M35 85C35 60 52 40 82 32C82 58 70 85 35 85Z" stroke="#10B981" stroke-width="8" stroke-linejoin="round" fill="none"/>
+          <path d="M48 85C52 68 66 55 80 44" stroke="#10B981" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span class="uppercase tracking-wide">
+          <span class="text-amber-500">XÂY DỰNG</span>
+          <span class="text-emerald-500 font-bold">&</span>
+          <span class="text-amber-500">CUỘC SỐNG</span>
+        </span>
       </a>
       
       <nav class="hidden md:flex gap-8 text-sm font-medium">
         <a href="#/" id="nav-home" class="hover:text-amber-400 transition py-1">Trang Chủ</a>
         <a href="#/projects" id="nav-projects" class="hover:text-amber-400 transition py-1">Công Trình</a>
         <a href="#/articles" id="nav-articles" class="hover:text-amber-400 transition py-1">Bài Viết & Góc Nhìn</a>
-        <a href="#/resources" id="nav-resources" class="hover:text-amber-400 transition py-1">Thư Viện Tài Liệu</a>
+        <a href="#/resources" id="nav-resources" class="hover:text-amber-400 transition py-1">Tài Liệu & Khóa Học</a>
+        <a href="service.html" class="hover:text-amber-400 text-amber-400 font-bold transition py-1">Dịch Vụ & Sản Phẩm</a>
       </nav>
-
-      
     </div>
   </header>
 
@@ -101,10 +111,10 @@
         <div class="max-w-4xl mx-auto text-center px-6">
           <span class="text-amber-400 text-xs font-bold uppercase tracking-widest bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">Kỹ Thuật & Trải Nghiệm</span>
           <h1 class="text-4xl md:text-5xl font-extrabold mt-4 mb-6 leading-tight">Góc Nhìn Thực Chiến Ngành Xây Dựng & Nhịp Sống Làm Nghề</h1>
-          <p class="text-slate-400 text-lg mb-8">Chia sẻ hồ sơ kỹ thuật, tài liệu CAD/Revit, Ebook chuyên ngành chọn lọc và những câu chuyện thực tế xung quanh công trường.</p>
+          <p class="text-slate-400 text-lg mb-8">Chia sẻ hồ sơ kỹ thuật, tài liệu CAD/Revit, Ebook chuyên ngành chọn lọc và những khóa học thực tế phục vụ kỹ sư, kiến trúc sư.</p>
           <div class="flex justify-center gap-4">
             <a href="#/articles" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-3 rounded-xl transition text-sm">Khám Phá Bài Viết</a>
-            <a href="#/resources" class="bg-slate-800 hover:bg-slate-700 text-white font-medium px-6 py-3 rounded-xl transition text-sm">Tải Tài Liệu</a>
+            <a href="#/resources" class="bg-slate-800 hover:bg-slate-700 text-white font-medium px-6 py-3 rounded-xl transition text-sm">Tài Liệu & Khóa Học</a>
           </div>
         </div>
       </section>
@@ -143,8 +153,7 @@
       <div class="mb-8 border-b border-slate-200 pb-6">
         <h1 class="text-3xl font-extrabold text-slate-900">Bài Viết & Góc Nhìn</h1>
         <p class="text-slate-500 text-sm mt-2">Tổng hợp các bài viết về kỹ thuật thi công, tư duy quản lý và trải nghiệm cuộc sống làm nghề.</p>
-        
-        <!-- TAB CÁC DANH MỤC ĐỘNG -->
+
         <div class="flex gap-2 mt-6 overflow-x-auto pb-2" id="articleCategoryTabs">
         </div>
       </div>
@@ -164,8 +173,7 @@
       <div class="mb-8 border-b border-slate-200 pb-6">
         <h1 class="text-3xl font-extrabold text-slate-900">Hồ Sơ Dự Án & Công Trình</h1>
         <p class="text-slate-500 text-sm mt-2">Hình ảnh thực tế các công trình dân dụng, biệt thự, nhà phố từ giai đoạn thiết kế đến hoàn thiện.</p>
-        
-        <!-- TAB CÁC DANH MỤC CÔNG TRÌNH ĐỘNG -->
+
         <div class="flex gap-2 mt-6 overflow-x-auto pb-2" id="projectCategoryTabs">
         </div>
       </div>
@@ -180,14 +188,32 @@
       </div>
     </div>
 
-    <!-- 6. VIEW: TÀI LIỆU (#/resources) -->
+    <!-- 6. VIEW: DANH SÁCH TÀI LIỆU & KHÓA HỌC (#/resources) -->
     <div id="view-resources" class="page-view hidden max-w-7xl mx-auto px-6 py-10">
       <div class="mb-8 border-b border-slate-200 pb-6">
-        <h1 class="text-3xl font-extrabold text-slate-900">Thư Viện Tài Liệu & Bản Vẽ</h1>
-        <p class="text-slate-500 text-sm mt-2">Chia sẻ miễn phí bản vẽ CAD, file mẫu Revit, bảng tính khối lượng Excel phục vụ công việc.</p>
+        <h1 class="text-3xl font-extrabold text-slate-900">Thư Viện Tài Liệu & Khóa Học Đào Tạo</h1>
+        <p class="text-slate-500 text-sm mt-2">Tổng hợp bản vẽ CAD, file mẫu Revit, bảng tính Excel chuyên ngành và các khóa học thực chiến.</p>
+        
+        <div class="flex border-b border-slate-200 mt-6 gap-6">
+          <button id="resTypeBtn-resource" onclick="switchResourceTypeTab('resource')" class="pb-3 text-sm font-bold border-b-2 border-amber-500 text-amber-600 flex items-center gap-2">
+            <span>📄</span> Thư Viện Tài Liệu & Bản Vẽ
+          </button>
+          <button id="resTypeBtn-course" onclick="switchResourceTypeTab('course')" class="pb-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center gap-2">
+            <span>🎓</span> Khóa Học & Video Đào Tạo
+          </button>
+        </div>
+
+        <div class="flex gap-2 mt-4 overflow-x-auto pb-2" id="resourceCategoryTabs">
+        </div>
       </div>
 
-      <div id="resourcesListContainer" class="space-y-4">
+      <div id="resourcesListContainer" class="grid md:grid-cols-3 gap-8">
+      </div>
+    </div>
+
+    <!-- 7. VIEW: CHI TIẾT TÀI LIỆU / KHÓA HỌC (#/resource/slug-id) -->
+    <div id="view-resource-detail" class="page-view hidden max-w-7xl mx-auto px-6 py-10">
+      <div id="resourceDetailContent">
       </div>
     </div>
 
@@ -195,13 +221,15 @@
 
   <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-center text-sm mt-12">
     <div class="max-w-7xl mx-auto px-6">
-      <p>© 2026 Xây Dựng & Cuộc Sống Portal - Liên hệ: vct.vncnec@gmail.com.</p>
+      <p>© 2026 Xây Dựng & Cuộc Sống Portal - Liên hệ: xaydungvacuocsong28@gmail.com</a></p>
     </div>
   </footer>
 
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbxtApV-FdQx0O1j-FJGvbDo0UEeyjC3NV9f2O-46M3iBEpDOt3K9IXI_yvSnrkGxsOBBQ/exec";
-    let globalData = { categories: { articles: [], projects: [] }, articles: [], projects: [], resources: [] };
+    
+    let globalData = { categories: { articles: [], projects: [], resources: [], courses: [] }, articles: [], projects: [], resources: [] };
+    let currentResourceType = 'resource';
+    let currentResourceCategory = 'all';
 
     function createSlug(text) {
       if (!text) return '';
@@ -220,12 +248,17 @@
 
     function getArticleUrl(article) {
       const slug = createSlug(article.title) || 'bai-viet';
-      return `#/article/${slug}-${article.id}`;
+      return '#/article/' + slug + '-' + article.id;
     }
 
     function getProjectUrl(project) {
       const slug = createSlug(project.title) || 'cong-trinh';
-      return `#/project/${slug}-${project.id}`;
+      return '#/project/' + slug + '-' + project.id;
+    }
+
+    function getResourceUrl(resource) {
+      const slug = createSlug(resource.title) || 'tai-lieu';
+      return '#/resource/' + slug + '-' + resource.id;
     }
 
     function fixYouTubeIframes(htmlContent) {
@@ -247,22 +280,15 @@
         const res = await fetch('./data.json?t=' + Date.now());
         if (res.ok) {
           const staticData = await res.json();
-          if (staticData && (staticData.articles || staticData.projects || staticData.resources)) {
+          if (staticData) {
             globalData = staticData;
             handleRouting();
             return;
           }
         }
+        console.error("Lỗi: Không tìm thấy hoặc dữ liệu data.json không hợp lệ.");
       } catch (e) {
-        console.log("Chưa tìm thấy file data.json tĩnh, chuyển sang gọi API dự phòng...", e);
-      }
-
-      try {
-        const res = await fetch(API_URL + "?action=getAllData");
-        globalData = await res.json();
-        handleRouting();
-      } catch (err) {
-        console.error("Lỗi kết nối API:", err);
+        console.error("Lỗi khi nạp file data.json:", e);
       }
     }
 
@@ -287,7 +313,7 @@
         document.getElementById("view-articles").classList.remove("hidden");
         document.getElementById("nav-articles")?.classList.add("text-amber-400", "font-bold");
         breadcrumbBar.classList.remove("hidden");
-        breadcrumbList.innerHTML = `<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> <span class="font-bold text-slate-800">Bài viết & Góc nhìn</span>`;
+        breadcrumbList.innerHTML = '<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> <span class="font-bold text-slate-800">Bài viết & Góc nhìn</span>';
         renderArticleCategoryTabs();
         renderArticlesList(globalData.articles || []);
       }
@@ -299,18 +325,16 @@
 
         breadcrumbBar.classList.remove("hidden");
         if (article) {
-          document.title = `${article.title} - Xây Dựng & Cuộc Sống`;
-          breadcrumbList.innerHTML = `
-            <a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span>
-            <a href="#/articles" class="hover:text-amber-600">Bài viết</a> <span>/</span>
-            <span class="text-amber-600 font-semibold">${article.category || 'Tản mạn'}</span> <span>/</span>
-            <span class="font-bold text-slate-800 truncate max-w-xs">${article.title}</span>
-          `;
+          document.title = article.title + " - Xây Dựng & Cuộc Sống";
+          breadcrumbList.innerHTML = '<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> ' +
+            '<a href="#/articles" class="hover:text-amber-600">Bài viết</a> <span>/</span> ' +
+            '<span class="text-amber-600 font-semibold">' + (article.category || 'Tản mạn') + '</span> <span>/</span> ' +
+            '<span class="font-bold text-slate-800 truncate max-w-xs">' + article.title + '</span>';
           renderArticleDetail(article);
         } else {
           document.title = "Bài viết không tồn tại - Xây Dựng & Cuộc Sống";
-          breadcrumbList.innerHTML = `<a href="#/">Trang chủ</a> <span>/</span> <span>Bài viết không tồn tại</span>`;
-          document.getElementById("articleDetailContent").innerHTML = `<div class="text-center py-20 text-slate-500">Bài viết không tồn tại. <a href="#/articles" class="text-amber-600 font-bold underline">Quay lại danh sách</a></div>`;
+          breadcrumbList.innerHTML = '<a href="#/">Trang chủ</a> <span>/</span> <span>Bài viết không tồn tại</span>';
+          document.getElementById("articleDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Bài viết không tồn tại. <a href="#/articles" class="text-amber-600 font-bold underline">Quay lại danh sách</a></div>';
         }
       }
       else if (hash.startsWith("#/projects")) {
@@ -318,7 +342,7 @@
         document.getElementById("view-projects").classList.remove("hidden");
         document.getElementById("nav-projects")?.classList.add("text-amber-400", "font-bold");
         breadcrumbBar.classList.remove("hidden");
-        breadcrumbList.innerHTML = `<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> <span class="font-bold text-slate-800">Công trình & Dự án</span>`;
+        breadcrumbList.innerHTML = '<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> <span class="font-bold text-slate-800">Công trình & Dự án</span>';
         renderProjectCategoryTabs();
         renderProjectsList(globalData.projects || []);
       }
@@ -330,85 +354,168 @@
 
         breadcrumbBar.classList.remove("hidden");
         if (project) {
-          document.title = `${project.title} - Xây Dựng & Cuộc Sống`;
-          breadcrumbList.innerHTML = `
-            <a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span>
-            <a href="#/projects" class="hover:text-amber-600">Công trình</a> <span>/</span>
-            <span class="text-amber-600 font-semibold">${project.category || 'Công trình'}</span> <span>/</span>
-            <span class="font-bold text-slate-800 truncate max-w-xs">${project.title}</span>
-          `;
+          document.title = project.title + " - Xây Dựng & Cuộc Sống";
+          breadcrumbList.innerHTML = '<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> ' +
+            '<a href="#/projects" class="hover:text-amber-600">Công trình</a> <span>/</span> ' +
+            '<span class="text-amber-600 font-semibold">' + (project.category || 'Công trình') + '</span> <span>/</span> ' +
+            '<span class="font-bold text-slate-800 truncate max-w-xs">' + project.title + '</span>';
           renderProjectDetail(project);
         } else {
           document.title = "Công trình không tồn tại - Xây Dựng & Cuộc Sống";
-          breadcrumbList.innerHTML = `<a href="#/">Trang chủ</a> <span>/</span> <span>Công trình không tồn tại</span>`;
-          document.getElementById("projectDetailContent").innerHTML = `<div class="text-center py-20 text-slate-500">Công trình không tồn tại. <a href="#/projects" class="text-amber-600 font-bold underline">Quay lại danh sách</a></div>`;
+          breadcrumbList.innerHTML = '<a href="#/">Trang chủ</a> <span>/</span> <span>Công trình không tồn tại</span>';
+          document.getElementById("projectDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Công trình không tồn tại. <a href="#/projects" class="text-amber-600 font-bold underline">Quay lại danh sách</a></div>';
         }
       }
       else if (hash.startsWith("#/resources")) {
-        document.title = "Thư Viện Tài Liệu & CAD - Xây Dựng & Cuộc Sống";
+        document.title = "Tài Liệu & Khóa Học - Xây Dựng & Cuộc Sống";
         document.getElementById("view-resources").classList.remove("hidden");
         document.getElementById("nav-resources")?.classList.add("text-amber-400", "font-bold");
         breadcrumbBar.classList.remove("hidden");
-        breadcrumbList.innerHTML = `<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> <span class="font-bold text-slate-800">Thư viện Tài liệu & CAD</span>`;
-        renderResourcesList(globalData.resources || []);
+        breadcrumbList.innerHTML = '<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> <span class="font-bold text-slate-800">Thư viện Tài liệu & Khóa học</span>';
+        
+        switchResourceTypeTab(currentResourceType);
+      }
+      else if (hash.startsWith("#/resource/") || hash.startsWith("#/resource?id=")) {
+        document.getElementById("view-resource-detail").classList.remove("hidden");
+        document.getElementById("nav-resources")?.classList.add("text-amber-400", "font-bold");
+
+        const resItem = (globalData.resources || []).find(r => hash.includes(r.id));
+
+        breadcrumbBar.classList.remove("hidden");
+        if (resItem) {
+          document.title = resItem.title + " - Xây Dựng & Cuộc Sống";
+          const typeName = resItem.type === 'course' ? 'Khóa học' : 'Tài liệu';
+          breadcrumbList.innerHTML = '<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> ' +
+            '<a href="#/resources" class="hover:text-amber-600">' + typeName + '</a> <span>/</span> ' +
+            '<span class="text-amber-600 font-semibold">' + (resItem.category || 'Chung') + '</span> <span>/</span> ' +
+            '<span class="font-bold text-slate-800 truncate max-w-xs">' + resItem.title + '</span>';
+          renderResourceDetail(resItem);
+        } else {
+          document.title = "Tài liệu không tồn tại - Xây Dựng & Cuộc Sống";
+          breadcrumbList.innerHTML = '<a href="#/">Trang chủ</a> <span>/</span> <span>Tài liệu không tồn tại</span>';
+          document.getElementById("resourceDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Bài đăng không tồn tại. <a href="#/resources" class="text-amber-600 font-bold underline">Quay lại thư viện</a></div>';
+        }
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // HÀM TẠO TAB DANH MỤC BÀI VIẾT (ĐÃ DÙNG NỐI CHUỖI AN TOÀN 100%)
     function renderArticleCategoryTabs() {
       const container = document.getElementById("articleCategoryTabs");
+      if (!container) return;
       let cats = (globalData.categories && globalData.categories.articles) ? globalData.categories.articles : [];
       if (!cats.length) {
         cats = [...new Set((globalData.articles || []).map(a => a.category).filter(Boolean))];
       }
 
-      container.innerHTML = `
-        <button onclick="filterArticles('all')" class="art-tab bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold">Tất cả</button>
-        ${cats.map(c => `
-          <button onclick="filterArticles('${c}')" class="art-tab bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-lg text-xs font-medium">${c}</button>
-        `).join('')}
-      `;
+      let html = '<button onclick="filterArticles(\'all\', this)" class="art-tab bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold">Tất cả</button>';
+      cats.forEach(c => {
+        html += '<button onclick="filterArticles(\'' + c + '\', this)" class="art-tab bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-lg text-xs font-medium">' + c + '</button>';
+      });
+      container.innerHTML = html;
     }
 
+    // HÀM TẠO TAB DANH MỤC CÔNG TRÌNH (ĐÃ DÙNG NỐI CHUỖI AN TOÀN 100%)
     function renderProjectCategoryTabs() {
       const container = document.getElementById("projectCategoryTabs");
+      if (!container) return;
       let cats = (globalData.categories && globalData.categories.projects) ? globalData.categories.projects : [];
       if (!cats.length) {
         cats = [...new Set((globalData.projects || []).map(p => p.category).filter(Boolean))];
       }
 
-      container.innerHTML = `
-        <button onclick="filterProjects('all')" class="proj-tab bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold">Tất cả</button>
-        ${cats.map(c => `
-          <button onclick="filterProjects('${c}')" class="proj-tab bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-lg text-xs font-medium">${c}</button>
-        `).join('')}
-      `;
+      let html = '<button onclick="filterProjects(\'all\', this)" class="proj-tab bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold">Tất cả</button>';
+      cats.forEach(c => {
+        html += '<button onclick="filterProjects(\'' + c + '\', this)" class="proj-tab bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-lg text-xs font-medium">' + c + '</button>';
+      });
+      container.innerHTML = html;
+    }
+
+    function switchResourceTypeTab(type) {
+      currentResourceType = type;
+      currentResourceCategory = 'all';
+
+      const btnRes = document.getElementById("resTypeBtn-resource");
+      const btnCourse = document.getElementById("resTypeBtn-course");
+
+      if (type === 'resource') {
+        btnRes.className = "pb-3 text-sm font-bold border-b-2 border-amber-500 text-amber-600 flex items-center gap-2";
+        btnCourse.className = "pb-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center gap-2";
+      } else {
+        btnCourse.className = "pb-3 text-sm font-bold border-b-2 border-amber-500 text-amber-600 flex items-center gap-2";
+        btnRes.className = "pb-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center gap-2";
+      }
+
+      renderResourceCategoryTabs(type);
+      filterResources('all');
+    }
+
+    // HÀM TẠO TAB DANH MỤC TÀI LIỆU/KHÓA HỌC (ĐÃ DÙNG NỐI CHUỖI AN TOÀN 100%)
+    function renderResourceCategoryTabs(type) {
+      const container = document.getElementById("resourceCategoryTabs");
+      if (!container) return;
+      const catKey = type === 'resource' ? 'resources' : 'courses';
+      let cats = (globalData.categories && globalData.categories[catKey]) ? globalData.categories[catKey] : [];
+
+      if (!cats.length) {
+        cats = [...new Set((globalData.resources || []).filter(r => (r.type || 'resource') === type).map(r => r.category).filter(Boolean))];
+      }
+
+      let html = '<button onclick="filterResources(\'all\', this)" class="res-cat-tab bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold">Tất cả</button>';
+      cats.forEach(c => {
+        html += '<button onclick="filterResources(\'' + c + '\', this)" class="res-cat-tab bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-lg text-xs font-medium">' + c + '</button>';
+      });
+      container.innerHTML = html;
+    }
+
+    function filterResources(category, btnElement) {
+      currentResourceCategory = category;
+      document.querySelectorAll(".res-cat-tab").forEach(tab => {
+        tab.className = "res-cat-tab bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-lg text-xs font-medium";
+      });
+      
+      if (btnElement) {
+        btnElement.className = "res-cat-tab bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold";
+      } else if (window.event && window.event.currentTarget && window.event.currentTarget.classList && window.event.currentTarget.classList.contains('res-cat-tab')) {
+        window.event.currentTarget.className = "res-cat-tab bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold";
+      }
+
+      let filtered = (globalData.resources || []).filter(r => {
+        const itemType = r.type || 'resource';
+        return itemType === currentResourceType;
+      });
+
+      if (category !== 'all') {
+        filtered = filtered.filter(r => r.category === category);
+      }
+
+      renderResourcesList(filtered);
     }
 
     function renderHomeData() {
       const homeArtContainer = document.getElementById("homeArticlesContainer");
       const latestArticles = (globalData.articles || []).slice(0, 3);
-      homeArtContainer.innerHTML = !latestArticles.length ? `<p class="text-slate-400 col-span-full text-center">Chưa có bài viết nào.</p>` : latestArticles.map(a => createArticleCardHTML(a)).join('');
+      homeArtContainer.innerHTML = !latestArticles.length ? '<p class="text-slate-400 col-span-full text-center">Chưa có bài viết nào.</p>' : latestArticles.map(a => createArticleCardHTML(a)).join('');
 
       const homeProjContainer = document.getElementById("homeProjectsContainer");
       const latestProjects = (globalData.projects || []).slice(0, 3);
-      homeProjContainer.innerHTML = !latestProjects.length ? `<p class="text-slate-400 col-span-full text-center">Chưa có công trình nào.</p>` : latestProjects.map(p => createProjectCardHTML(p)).join('');
+      homeProjContainer.innerHTML = !latestProjects.length ? '<p class="text-slate-400 col-span-full text-center">Chưa có công trình nào.</p>' : latestProjects.map(p => createProjectCardHTML(p)).join('');
     }
 
     function renderArticlesList(articles) {
       const container = document.getElementById("articlesListContainer");
       if (!articles || !articles.length) {
-        container.innerHTML = `<p class="text-slate-400 col-span-full text-center py-10">Chưa có bài viết nào trong mục này.</p>`;
+        container.innerHTML = '<p class="text-slate-400 col-span-full text-center py-10">Chưa có bài viết nào trong mục này.</p>';
         return;
       }
       container.innerHTML = articles.map(a => createArticleCardHTML(a)).join('');
     }
 
-    function filterArticles(category) {
+    function filterArticles(category, btnElement) {
       document.querySelectorAll(".art-tab").forEach(tab => tab.className = "art-tab bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-lg text-xs font-medium");
-      if (event && event.target) {
-        event.target.className = "art-tab bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold";
+      if (btnElement) {
+        btnElement.className = "art-tab bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold";
       }
 
       if (category === 'all') renderArticlesList(globalData.articles || []);
@@ -416,26 +523,20 @@
     }
 
     function createArticleCardHTML(a) {
-      return `
-        <a href="${getArticleUrl(a)}" class="bg-white rounded-xl border border-slate-200 shadow-sm hover:border-amber-500 hover:shadow-md transition overflow-hidden flex flex-col justify-between group">
-          <div>
-            ${a.image ? `
-              <div class="overflow-hidden h-48 bg-slate-100">
-                <img src="${a.image}" alt="${a.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.parentElement.style.display='none'">
-              </div>
-            ` : ''}
-            <div class="p-6">
-              <span class="text-xs font-semibold text-amber-600 uppercase tracking-wider">${a.category || 'Tản mạn'}</span>
-              <h3 class="font-bold text-lg text-slate-900 mt-2 mb-3 group-hover:text-amber-600 transition leading-snug">${a.title}</h3>
-              <p class="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-3">${a.summary || ''}</p>
-            </div>
-          </div>
-          <div class="px-6 pb-5 text-xs text-slate-400 border-t border-slate-100 pt-3 flex justify-between items-center">
-            <span>📅 ${a.date ? new Date(a.date).toLocaleDateString('vi-VN') : ''}</span>
-            <span class="text-amber-600 font-medium group-hover:underline flex items-center gap-1">Đọc tiếp →</span>
-          </div>
-        </a>
-      `;
+      return '<a href="' + getArticleUrl(a) + '" class="bg-white rounded-xl border border-slate-200 shadow-sm hover:border-amber-500 hover:shadow-md transition overflow-hidden flex flex-col justify-between group">' +
+        '<div>' +
+          (a.image ? '<div class="overflow-hidden h-48 bg-slate-100"><img src="' + a.image + '" alt="' + a.title + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.parentElement.style.display=\'none\'"></div>' : '') +
+          '<div class="p-6">' +
+            '<span class="text-xs font-semibold text-amber-600 uppercase tracking-wider">' + (a.category || 'Tản mạn') + '</span>' +
+            '<h3 class="font-bold text-lg text-slate-900 mt-2 mb-3 group-hover:text-amber-600 transition leading-snug">' + a.title + '</h3>' +
+            '<p class="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-3">' + (a.summary || '') + '</p>' +
+          '</div>' +
+        '</div>' +
+        '<div class="px-6 pb-5 text-xs text-slate-400 border-t border-slate-100 pt-3 flex justify-between items-center">' +
+          '<span>📅 ' + (a.date ? new Date(a.date).toLocaleDateString('vi-VN') : '') + '</span>' +
+          '<span class="text-amber-600 font-medium group-hover:underline flex items-center gap-1">Đọc tiếp →</span>' +
+        '</div>' +
+      '</a>';
     }
 
     function renderArticleDetail(article) {
@@ -445,88 +546,57 @@
         .filter(a => String(a.id) !== String(article.id))
         .slice(0, 5);
 
-      const relatedArticlesHTML = relatedArticles.map(a => `
-        <a href="${getArticleUrl(a)}" class="flex gap-3 group items-start border-b border-slate-100 pb-3">
-          ${a.image ? `
-            <img src="${a.image}" alt="${a.title}" class="w-20 h-16 object-cover rounded-lg flex-shrink-0 group-hover:opacity-90 transition">
-          ` : `
-            <div class="w-20 h-16 bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center text-slate-400 text-xs font-bold">📄</div>
-          `}
-          <div class="flex-grow">
-            <h4 class="text-xs font-bold text-slate-800 group-hover:text-amber-600 transition leading-snug line-clamp-2">${a.title}</h4>
-            <span class="text-[10px] text-slate-400 mt-1 block">📅 ${a.date ? new Date(a.date).toLocaleDateString('vi-VN') : '2026'}</span>
-          </div>
-        </a>
-      `).join('');
+      const relatedArticlesHTML = relatedArticles.map(a => '<a href="' + getArticleUrl(a) + '" class="flex gap-3 group items-start border-b border-slate-100 pb-3">' +
+        (a.image ? '<img src="' + a.image + '" alt="' + a.title + '" class="w-20 h-16 object-cover rounded-lg flex-shrink-0 group-hover:opacity-90 transition">' : '<div class="w-20 h-16 bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center text-slate-400 text-xs font-bold">📄</div>') +
+        '<div class="flex-grow">' +
+          '<h4 class="text-xs font-bold text-slate-800 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + a.title + '</h4>' +
+          '<span class="text-[10px] text-slate-400 mt-1 block">📅 ' + (a.date ? new Date(a.date).toLocaleDateString('vi-VN') : '2026') + '</span>' +
+        '</div>' +
+      '</a>').join('');
 
-      container.innerHTML = `
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          
-          <div class="lg:col-span-8">
-            <article class="bg-white p-6 md:p-10 rounded-2xl border border-slate-200 shadow-sm">
-              <div class="mb-4">
-                <span class="text-xs font-bold text-amber-600 uppercase tracking-wider bg-amber-50 px-3 py-1 rounded-md border border-amber-200">${article.category || 'Tản mạn'}</span>
-              </div>
-              
-              <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 leading-tight">${article.title}</h1>
-              
-              <div class="text-xs text-slate-400 mb-6 flex items-center gap-4 border-b border-slate-100 pb-4">
-                <span>📅 Ngày đăng: ${article.date ? new Date(article.date).toLocaleDateString('vi-VN') : '2026'}</span>
-                <span>•</span>
-                <span class="text-emerald-600 font-semibold">Tác giả: ${article.author || 'Admin Xây Dựng'}</span>
-              </div>
-
-              ${article.summary ? `
-                <div class="bg-amber-50/70 p-5 rounded-xl border-l-4 border-amber-500 italic text-slate-700 text-base mb-8 leading-relaxed font-semibold">
-                  ${article.summary}
-                </div>
-              ` : ''}
-
-              <div class="article-body border-t border-slate-100 pt-6">
-                ${fixYouTubeIframes(article.content) || '<p class="text-slate-400">Nội dung chi tiết bài viết đang được cập nhật.</p>'}
-              </div>
-
-              <div class="mt-12 pt-6 border-t border-slate-200 flex justify-between items-center">
-                <a href="#/articles" class="inline-flex items-center gap-2 text-sm font-bold text-slate-700 hover:text-amber-600 transition">
-                  ← Quay lại danh sách bài viết
-                </a>
-                <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="text-xs text-slate-400 hover:text-slate-600">▲ Lên đầu trang</button>
-              </div>
-            </article>
-          </div>
-
-          <div class="lg:col-span-4">
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm sticky top-24 space-y-4">
-              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
-                <h3 class="font-extrabold text-slate-900 text-base uppercase tracking-wider flex items-center gap-2">
-                  <span class="w-1.5 h-4 bg-amber-500 rounded-full inline-block"></span> Xem Nhiều
-                </h3>
-                <a href="#/articles" class="text-xs text-amber-600 hover:underline font-semibold">Xem tất cả</a>
-              </div>
-
-              <div class="space-y-4">
-                ${relatedArticlesHTML || '<p class="text-xs text-slate-400">Chưa có bài viết liên quan.</p>'}
-              </div>
-            </div>
-          </div>
-
-        </div>
-      `;
+      container.innerHTML = '<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">' +
+        '<div class="lg:col-span-8">' +
+          '<article class="bg-white p-6 md:p-10 rounded-2xl border border-slate-200 shadow-sm">' +
+            '<div class="mb-4"><span class="text-xs font-bold text-amber-600 uppercase tracking-wider bg-amber-50 px-3 py-1 rounded-md border border-amber-200">' + (article.category || 'Tản mạn') + '</span></div>' +
+            '<h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 leading-tight">' + article.title + '</h1>' +
+            '<div class="text-xs text-slate-400 mb-6 flex items-center gap-4 border-b border-slate-100 pb-4">' +
+              '<span>📅 Ngày đăng: ' + (article.date ? new Date(article.date).toLocaleDateString('vi-VN') : '2026') + '</span>' +
+              '<span>•</span>' +
+              '<span class="text-emerald-600 font-semibold">Tác giả: ' + (article.author || 'Admin Xây Dựng') + '</span>' +
+            '</div>' +
+            (article.summary ? '<div class="bg-amber-50/70 p-5 rounded-xl border-l-4 border-amber-500 italic text-slate-700 text-base mb-8 leading-relaxed font-semibold">' + article.summary + '</div>' : '') +
+            '<div class="article-body border-t border-slate-100 pt-6">' + (fixYouTubeIframes(article.content) || '<p class="text-slate-400">Nội dung chi tiết bài viết đang được cập nhật.</p>') + '</div>' +
+            '<div class="mt-12 pt-6 border-t border-slate-200 flex justify-between items-center">' +
+              '<a href="#/articles" class="inline-flex items-center gap-2 text-sm font-bold text-slate-700 hover:text-amber-600 transition">← Quay lại danh sách bài viết</a>' +
+              '<button onclick="window.scrollTo({top:0, behavior:\'smooth\'})" class="text-xs text-slate-400 hover:text-slate-600">▲ Lên đầu trang</button>' +
+            '</div>' +
+          '</article>' +
+        '</div>' +
+        '<div class="lg:col-span-4">' +
+          '<div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm sticky top-24 space-y-4">' +
+            '<div class="border-b border-slate-200 pb-3 flex items-center justify-between">' +
+              '<h3 class="font-extrabold text-slate-900 text-base uppercase tracking-wider flex items-center gap-2"><span class="w-1.5 h-4 bg-amber-500 rounded-full inline-block"></span> Xem Nhiều</h3>' +
+              '<a href="#/articles" class="text-xs text-amber-600 hover:underline font-semibold">Xem tất cả</a>' +
+            '</div>' +
+            '<div class="space-y-4">' + (relatedArticlesHTML || '<p class="text-xs text-slate-400">Chưa có bài viết liên quan.</p>') + '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
     }
 
     function renderProjectsList(projects) {
       const container = document.getElementById("projectsListContainer");
       if (!projects || !projects.length) {
-        container.innerHTML = `<p class="text-slate-400 col-span-full text-center py-10">Chưa có công trình nào trong mục này.</p>`;
+        container.innerHTML = '<p class="text-slate-400 col-span-full text-center py-10">Chưa có công trình nào trong mục này.</p>';
         return;
       }
       container.innerHTML = projects.map(p => createProjectCardHTML(p)).join('');
     }
 
-    function filterProjects(category) {
+    function filterProjects(category, btnElement) {
       document.querySelectorAll(".proj-tab").forEach(tab => tab.className = "proj-tab bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 px-4 py-2 rounded-lg text-xs font-medium");
-      if (event && event.target) {
-        event.target.className = "proj-tab bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold";
+      if (btnElement) {
+        btnElement.className = "proj-tab bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold";
       }
 
       if (category === 'all') renderProjectsList(globalData.projects || []);
@@ -534,26 +604,20 @@
     }
 
     function createProjectCardHTML(p) {
-      return `
-        <a href="${getProjectUrl(p)}" class="bg-white rounded-xl border border-slate-200 shadow-sm hover:border-amber-500 hover:shadow-md transition overflow-hidden flex flex-col justify-between group">
-          <div>
-            ${p.image ? `
-              <div class="overflow-hidden h-48 bg-slate-100">
-                <img src="${p.image}" alt="${p.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.parentElement.style.display='none'">
-              </div>
-            ` : ''}
-            <div class="p-6">
-              <span class="text-xs font-semibold text-amber-600 uppercase tracking-wider">${p.category || 'Công trình'}</span>
-              <h3 class="font-bold text-lg text-slate-900 mt-2 mb-3 group-hover:text-amber-600 transition leading-snug">${p.title}</h3>
-              <p class="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-3">${p.summary || p.description || ''}</p>
-            </div>
-          </div>
-          <div class="px-6 pb-5 text-xs text-slate-400 border-t border-slate-100 pt-3 flex justify-between items-center">
-            <span>📍 ${p.location || 'Việt Nam'} • 📅 ${p.year || '2026'}</span>
-            <span class="text-amber-600 font-medium group-hover:underline flex items-center gap-1">Xem chi tiết →</span>
-          </div>
-        </a>
-      `;
+      return '<a href="' + getProjectUrl(p) + '" class="bg-white rounded-xl border border-slate-200 shadow-sm hover:border-amber-500 hover:shadow-md transition overflow-hidden flex flex-col justify-between group">' +
+        '<div>' +
+          (p.image ? '<div class="overflow-hidden h-48 bg-slate-100"><img src="' + p.image + '" alt="' + p.title + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.parentElement.style.display=\'none\'"></div>' : '') +
+          '<div class="p-6">' +
+            '<span class="text-xs font-semibold text-amber-600 uppercase tracking-wider">' + (p.category || 'Công trình') + '</span>' +
+            '<h3 class="font-bold text-lg text-slate-900 mt-2 mb-3 group-hover:text-amber-600 transition leading-snug">' + p.title + '</h3>' +
+            '<p class="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-3">' + (p.summary || p.description || '') + '</p>' +
+          '</div>' +
+        '</div>' +
+        '<div class="px-6 pb-5 text-xs text-slate-400 border-t border-slate-100 pt-3 flex justify-between items-center">' +
+          '<span>📍 ' + (p.location || 'Việt Nam') + ' • 📅 ' + (p.year || '2026') + '</span>' +
+          '<span class="text-amber-600 font-medium group-hover:underline flex items-center gap-1">Xem chi tiết →</span>' +
+        '</div>' +
+      '</a>';
     }
 
     function renderProjectDetail(project) {
@@ -563,95 +627,132 @@
         .filter(p => String(p.id) !== String(project.id))
         .slice(0, 5);
 
-      const relatedProjectsHTML = relatedProjects.map(p => `
-        <a href="${getProjectUrl(p)}" class="flex gap-3 group items-start border-b border-slate-100 pb-3">
-          ${p.image ? `
-            <img src="${p.image}" alt="${p.title}" class="w-20 h-16 object-cover rounded-lg flex-shrink-0 group-hover:opacity-90 transition">
-          ` : `
-            <div class="w-20 h-16 bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center text-slate-400 text-xs font-bold">🏢</div>
-          `}
-          <div class="flex-grow">
-            <h4 class="text-xs font-bold text-slate-800 group-hover:text-amber-600 transition leading-snug line-clamp-2">${p.title}</h4>
-            <span class="text-[10px] text-slate-400 mt-1 block">📍 ${p.location || 'Việt Nam'}</span>
-          </div>
-        </a>
-      `).join('');
+      const relatedProjectsHTML = relatedProjects.map(p => '<a href="' + getProjectUrl(p) + '" class="flex gap-3 group items-start border-b border-slate-100 pb-3">' +
+        (p.image ? '<img src="' + p.image + '" alt="' + p.title + '" class="w-20 h-16 object-cover rounded-lg flex-shrink-0 group-hover:opacity-90 transition">' : '<div class="w-20 h-16 bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center text-slate-400 text-xs font-bold">🏢</div>') +
+        '<div class="flex-grow">' +
+          '<h4 class="text-xs font-bold text-slate-800 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + p.title + '</h4>' +
+          '<span class="text-[10px] text-slate-400 mt-1 block">📍 ' + (p.location || 'Việt Nam') + '</span>' +
+        '</div>' +
+      '</a>').join('');
 
-      container.innerHTML = `
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          
-          <div class="lg:col-span-8">
-            <article class="bg-white p-6 md:p-10 rounded-2xl border border-slate-200 shadow-sm">
-              <div class="mb-4 flex flex-wrap gap-2">
-                <span class="text-xs font-bold text-amber-600 uppercase tracking-wider bg-amber-50 px-3 py-1 rounded-md border border-amber-200">${project.category || 'Công trình'}</span>
-                <span class="text-xs font-bold text-slate-600 uppercase tracking-wider bg-slate-100 px-3 py-1 rounded-md">📍 ${project.location || 'Việt Nam'}</span>
-                <span class="text-xs font-bold text-slate-600 uppercase tracking-wider bg-slate-100 px-3 py-1 rounded-md">📅 ${project.year || '2026'}</span>
-              </div>
-              
-              <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 leading-tight">${project.title}</h1>
-              
-              <div class="text-xs text-slate-400 mb-6 flex items-center gap-4 border-b border-slate-100 pb-4">
-                <span>Đơn vị thực hiện: Xây Dựng & Cuộc Sống Portal</span>
-              </div>
-
-              ${(project.summary || project.description) ? `
-                <div class="bg-amber-50/70 p-5 rounded-xl border-l-4 border-amber-500 italic text-slate-700 text-base mb-8 leading-relaxed font-semibold">
-                  ${project.summary || project.description}
-                </div>
-              ` : ''}
-
-              <div class="article-body border-t border-slate-100 pt-6">
-                ${fixYouTubeIframes(project.content) || '<p class="text-slate-400">Nội dung chi tiết hồ sơ công trình đang được cập nhật.</p>'}
-              </div>
-
-              <div class="mt-12 pt-6 border-t border-slate-200 flex justify-between items-center">
-                <a href="#/projects" class="inline-flex items-center gap-2 text-sm font-bold text-slate-700 hover:text-amber-600 transition">
-                  ← Quay lại danh sách công trình
-                </a>
-                <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="text-xs text-slate-400 hover:text-slate-600">▲ Lên đầu trang</button>
-              </div>
-            </article>
-          </div>
-
-          <div class="lg:col-span-4">
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm sticky top-24 space-y-4">
-              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
-                <h3 class="font-extrabold text-slate-900 text-base uppercase tracking-wider flex items-center gap-2">
-                  <span class="w-1.5 h-4 bg-amber-500 rounded-full inline-block"></span> Công Trình Khác
-                </h3>
-                <a href="#/projects" class="text-xs text-amber-600 hover:underline font-semibold">Xem tất cả</a>
-              </div>
-
-              <div class="space-y-4">
-                ${relatedProjectsHTML || '<p class="text-xs text-slate-400">Chưa có công trình liên quan.</p>'}
-              </div>
-            </div>
-          </div>
-
-        </div>
-      `;
+      container.innerHTML = '<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">' +
+        '<div class="lg:col-span-8">' +
+          '<article class="bg-white p-6 md:p-10 rounded-2xl border border-slate-200 shadow-sm">' +
+            '<div class="mb-4 flex flex-wrap gap-2">' +
+              '<span class="text-xs font-bold text-amber-600 uppercase tracking-wider bg-amber-50 px-3 py-1 rounded-md border border-amber-200">' + (project.category || 'Công trình') + '</span>' +
+              '<span class="text-xs font-bold text-slate-600 uppercase tracking-wider bg-slate-100 px-3 py-1 rounded-md">📍 ' + (project.location || 'Việt Nam') + '</span>' +
+              '<span class="text-xs font-bold text-slate-600 uppercase tracking-wider bg-slate-100 px-3 py-1 rounded-md">📅 ' + (project.year || '2026') + '</span>' +
+            '</div>' +
+            '<h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 leading-tight">' + project.title + '</h1>' +
+            '<div class="text-xs text-slate-400 mb-6 flex items-center gap-4 border-b border-slate-100 pb-4"><span>Đơn vị thực hiện: Xây Dựng & Cuộc Sống Portal</span></div>' +
+            ((project.summary || project.description) ? '<div class="bg-amber-50/70 p-5 rounded-xl border-l-4 border-amber-500 italic text-slate-700 text-base mb-8 leading-relaxed font-semibold">' + (project.summary || project.description) + '</div>' : '') +
+            '<div class="article-body border-t border-slate-100 pt-6">' + (fixYouTubeIframes(project.content) || '<p class="text-slate-400">Nội dung chi tiết hồ sơ công trình đang được cập nhật.</p>') + '</div>' +
+            '<div class="mt-12 pt-6 border-t border-slate-200 flex justify-between items-center">' +
+              '<a href="#/projects" class="inline-flex items-center gap-2 text-sm font-bold text-slate-700 hover:text-amber-600 transition">← Quay lại danh sách công trình</a>' +
+              '<button onclick="window.scrollTo({top:0, behavior:\'smooth\'})" class="text-xs text-slate-400 hover:text-slate-600">▲ Lên đầu trang</button>' +
+            '</div>' +
+          '</article>' +
+        '</div>' +
+        '<div class="lg:col-span-4">' +
+          '<div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm sticky top-24 space-y-4">' +
+            '<div class="border-b border-slate-200 pb-3 flex items-center justify-between">' +
+              '<h3 class="font-extrabold text-slate-900 text-base uppercase tracking-wider flex items-center gap-2"><span class="w-1.5 h-4 bg-amber-500 rounded-full inline-block"></span> Công Trình Khác</h3>' +
+              '<a href="#/projects" class="text-xs text-amber-600 hover:underline font-semibold">Xem tất cả</a>' +
+            '</div>' +
+            '<div class="space-y-4">' + (relatedProjectsHTML || '<p class="text-xs text-slate-400">Chưa có công trình liên quan.</p>') + '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
     }
 
     function renderResourcesList(resources) {
       const container = document.getElementById("resourcesListContainer");
       if (!resources || !resources.length) {
-        container.innerHTML = `<p class="text-slate-400 text-center py-10">Chưa có tài liệu nào.</p>`;
+        container.innerHTML = '<p class="text-slate-400 col-span-full text-center py-10">Chưa có bài đăng nào trong mục này.</p>';
         return;
       }
-      container.innerHTML = resources.map(r => `
-        <div class="bg-white p-5 rounded-xl border border-slate-200 flex items-center justify-between shadow-sm hover:border-amber-400 transition">
-          <div class="flex items-center gap-4">
-            <span class="p-3.5 bg-amber-50 text-amber-600 font-extrabold rounded-xl text-xs uppercase border border-amber-200">${r.fileType || 'FILE'}</span>
-            <div>
-              <h4 class="font-bold text-slate-900 text-base">${r.title}</h4>
-              <p class="text-xs text-slate-500 mt-0.5">${r.description || ''} • <span class="font-semibold text-slate-700">${r.fileSize || ''}</span></p>
-            </div>
-          </div>
-          <a href="${r.fileUrl}" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold px-4 py-2.5 rounded-lg transition flex items-center gap-1">
-            <span>Tải Xuống</span> ⬇
-          </a>
-        </div>
-      `).join('');
+
+      container.innerHTML = resources.map(r => '<a href="' + getResourceUrl(r) + '" class="bg-white rounded-xl border border-slate-200 shadow-sm hover:border-amber-500 hover:shadow-md transition overflow-hidden flex flex-col justify-between group">' +
+        '<div>' +
+          (r.image ? '<div class="overflow-hidden h-48 bg-slate-100"><img src="' + r.image + '" alt="' + r.title + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.parentElement.style.display=\'none\'"></div>' : '') +
+          '<div class="p-6">' +
+            '<div class="flex justify-between items-center mb-2">' +
+              '<span class="text-xs font-bold text-amber-600 uppercase tracking-wider bg-amber-50 px-2.5 py-1 rounded border border-amber-200">' + (r.category || 'Chung') + '</span>' +
+              '<span class="text-xs font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded">' + (r.fileType || (r.type === 'course' ? 'COURSE' : 'FILE')) + '</span>' +
+            '</div>' +
+            '<h3 class="font-bold text-lg text-slate-900 mt-2 mb-3 group-hover:text-amber-600 transition leading-snug">' + r.title + '</h3>' +
+            '<p class="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-3">' + (r.summary || r.description || '') + '</p>' +
+          '</div>' +
+        '</div>' +
+        '<div class="px-6 pb-5 text-xs text-slate-400 border-t border-slate-100 pt-3 flex justify-between items-center">' +
+          '<span>👤 ' + (r.author || 'Admin') + (r.fileSize ? ' • 💾 ' + r.fileSize : '') + '</span>' +
+          '<span class="text-amber-600 font-bold group-hover:underline flex items-center gap-1">Xem Chi Tiết →</span>' +
+        '</div>' +
+      '</a>').join('');
+    }
+
+    function renderResourceDetail(r) {
+      const container = document.getElementById("resourceDetailContent");
+      if (!container || !r) return;
+
+      const relatedResources = (globalData.resources || [])
+        .filter(item => String(item.id) !== String(r.id) && (item.type || 'resource') === (r.type || 'resource'))
+        .slice(0, 5);
+
+      const relatedHTML = relatedResources.map(item => '<a href="' + getResourceUrl(item) + '" class="flex gap-3 group items-start border-b border-slate-100 pb-3">' +
+        (item.image ? '<img src="' + item.image + '" alt="' + item.title + '" class="w-20 h-16 object-cover rounded-lg flex-shrink-0 group-hover:opacity-90 transition">' : '<div class="w-20 h-16 bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center text-slate-400 text-xs font-bold">' + (item.type === 'course' ? '🎓' : '📄') + '</div>') +
+        '<div class="flex-grow">' +
+          '<h4 class="text-xs font-bold text-slate-800 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + item.title + '</h4>' +
+          '<span class="text-[10px] text-slate-400 mt-1 block">👤 ' + (item.author || 'Admin') + '</span>' +
+        '</div>' +
+      '</a>').join('');
+
+      const btnText = r.type === 'course' ? '🎓 Đến Trang Video Học / Khóa Học' : '📥 Tải File Ngay Qua Link Drive';
+      const fileTypeTag = r.fileType ? '<span class="text-xs font-bold text-blue-600 uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-md border border-blue-200">' + r.fileType + '</span>' : '';
+      const fileSizeText = r.fileSize ? '<span>•</span> <span>💾 Dung lượng: <strong class="text-slate-700">' + r.fileSize + '</strong></span>' : '';
+      
+      const summaryBox = r.summary ? '<div class="bg-amber-50/70 p-5 rounded-xl border-l-4 border-amber-500 italic text-slate-700 text-base mb-8 leading-relaxed font-semibold">' + r.summary + '</div>' : '';
+
+      const downloadBox = r.fileUrl ? '<div class="p-5 bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl text-white mb-8 flex flex-col md:flex-row items-center justify-between gap-4 shadow-md">' +
+        '<div>' +
+          '<h4 class="font-bold text-amber-400 text-sm">Liên kết Download & Học tập</h4>' +
+          '<p class="text-xs text-slate-300 mt-1">Truy cập dữ liệu gốc đầy đủ được chia sẻ an toàn.</p>' +
+        '</div>' +
+        '<a href="' + r.fileUrl + '" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto bg-amber-500 hover:bg-amber-400 text-slate-900 font-extrabold px-6 py-3 rounded-xl text-xs transition text-center shadow">' + btnText + '</a>' +
+      '</div>' : '';
+
+      container.innerHTML = '<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">' +
+        '<div class="lg:col-span-8">' +
+          '<article class="bg-white p-6 md:p-10 rounded-2xl border border-slate-200 shadow-sm">' +
+            '<div class="mb-4 flex flex-wrap gap-2">' +
+              '<span class="text-xs font-bold text-amber-600 uppercase tracking-wider bg-amber-50 px-3 py-1 rounded-md border border-amber-200">' + (r.category || 'Chung') + '</span>' +
+              '<span class="text-xs font-bold text-slate-600 uppercase tracking-wider bg-slate-100 px-3 py-1 rounded-md">' + (r.type === 'course' ? '🎓 Khóa học' : '📄 Tài liệu / Bản vẽ') + '</span>' +
+              fileTypeTag +
+            '</div>' +
+            '<h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 leading-tight">' + r.title + '</h1>' +
+            '<div class="text-xs text-slate-400 mb-6 flex items-center gap-4 border-b border-slate-100 pb-4">' +
+              '<span>👤 Tác giả / Giảng viên: <strong class="text-slate-700">' + (r.author || 'Admin Xây Dựng') + '</strong></span>' +
+              fileSizeText +
+            '</div>' +
+            downloadBox +
+            summaryBox +
+            '<div class="article-body border-t border-slate-100 pt-6">' + (fixYouTubeIframes(r.content) || '<p class="text-slate-400">Nội dung đề cương và chi tiết đang được cập nhật thêm.</p>') + '</div>' +
+            '<div class="mt-12 pt-6 border-t border-slate-200 flex justify-between items-center">' +
+              '<a href="#/resources" class="inline-flex items-center gap-2 text-sm font-bold text-slate-700 hover:text-amber-600 transition">← Quay lại Thư viện</a>' +
+              '<button onclick="window.scrollTo({top:0, behavior:\'smooth\'})" class="text-xs text-slate-400 hover:text-slate-600">▲ Lên đầu trang</button>' +
+            '</div>' +
+          '</article>' +
+        '</div>' +
+        '<div class="lg:col-span-4">' +
+          '<div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm sticky top-24 space-y-4">' +
+            '<div class="border-b border-slate-200 pb-3 flex items-center justify-between">' +
+              '<h3 class="font-extrabold text-slate-900 text-base uppercase tracking-wider flex items-center gap-2"><span class="w-1.5 h-4 bg-amber-500 rounded-full inline-block"></span> Nội Dung Cùng Loại</h3>' +
+              '<a href="#/resources" class="text-xs text-amber-600 hover:underline font-semibold">Xem tất cả</a>' +
+            '</div>' +
+            '<div class="space-y-4">' + (relatedHTML || '<p class="text-xs text-slate-400">Chưa có bài đăng cùng loại khác.</p>') + '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
     }
 
     window.addEventListener("hashchange", handleRouting);

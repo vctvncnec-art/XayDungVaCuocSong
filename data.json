@@ -1,4 +1,11 @@
 {
+  "contact": {
+    "phone": "000",
+    "zalo": "https://zalo.me/000",
+    "email": "xaydungvacuocsong28@gmail.com",
+    "notifyEmail": "vucongthang.gts@gmail.com",
+    "notifyHours": "1"
+  },
   "categories": {
     "articles": [
       "Tư duy nghề",
@@ -10,7 +17,11 @@
       "Nhà phố & Biệt thự",
       "Công trình công nghiệp",
       "Hạ tầng & Dự án"
-    ]
+    ],
+    "resources": [
+      "bản vẽ cad"
+    ],
+    "courses": []
   },
   "articles": [
     {
@@ -20,7 +31,7 @@
       "summary": "",
       "content": "<p>Giảm thời lượng giấc ngủ sâu, gây bệnh mạn tính\nGiấc ngủ sâu, còn gọi là giấc ngủ sóng chậm, là giai đoạn phục hồi thể chất quan trọng của chu kỳ giấc ngủ. Đáng chú ý, giấc ngủ sâu tập trung chủ yếu vào nửa đầu của đêm, nghĩa là bạn càng đi ngủ muộn thì thời lượng giấc ngủ sâu càng ít.\n•        \n \nThời điểm tồi tệ nhất cho giấc ngủ là mấy giờ?© BÌNH MINH\n\nNgủ đủ giấc nhưng thức dậy vẫn đau đầu: Vì sao?ĐỌC NGAY\nNhững người thường xuyên không có đủ giấc ngủ sâu dễ thức dậy với cảm giác chưa được nghỉ ngơi đầy đủ, bất kể họ đã ngủ bao lâu. \nTheo thời gian, sự thiếu hụt này có thể liên quan đến suy giảm chức năng nhận thức và khả năng phục hồi thể chất kém hơn.\nNghiên cứu cho thấy tình trạng lệch nhịp sinh học mạn tính có thể dẫn đến nguy cơ cao hơn mắc các bệnh lý lâu dài. \n\nNhững người thức hoặc ngủ vào những giờ bất thường có nguy cơ cao hơn mắc nhiều bệnh lý mạn tính, chẳng hạn như bệnh tim mạch, tiểu đường type 2, béo phì, sa sút trí tuệ và trầm cảm. Việc thường xuyên đi ngủ muộn cũng có thể dẫn đến sự phát triển của các rối loạn giấc ngủ mạn tính.\n<img src=\"https://lh3.googleusercontent.com/d/1aGGfF5G0pxLsBdtGqKruprvvwxuBdTc6\">\n5 cách mang lại giấc ngủ ngon\nĐể giúp duy trì chất lượng giấc ngủ và sức khỏe lâu dài, có thể cân nhắc những thói quen sau:\n\n- Duy trì lịch ngủ và thức nhất quán: Đi ngủ và thức dậy vào cùng một thời điểm mỗi ngày, kể cả cuối tuần.\n\n- Giảm độ sáng của đèn và tránh sử dụng màn hình ít nhất một đến hai giờ trước khi đi ngủ: Giảm tiếp xúc với ánh sáng vào buổi tối báo hiệu cho não rằng đã đến lúc thư giãn và hỗ trợ quá trình sản xuất melatonin.\n\n- Tiếp xúc với ánh sáng tự nhiên vào ban ngày, đặc biệt là vào buổi sáng: Ánh sáng buổi sáng là một trong những tín hiệu mạnh nhất mà nhịp sinh học tiếp nhận, đồng thời giúp tạo nền tảng cho giấc ngủ tốt hơn vào đêm hôm đó.\n\n- Tránh caffeine sau 3h chiều và không sử dụng rượu để hỗ trợ giấc ngủ: Caffeine có thời gian bán thải từ 5 - 6 giờ. Rượu có thể giúp bạn đi vào giấc ngủ nhanh hơn nhưng lại làm giảm chất lượng giấc ngủ khi được chuyển hóa trong suốt đêm.\n\n- Giữ phòng ngủ mát: Môi trường ngủ mát hơn hỗ trợ quá trình hạ nhiệt độ cơ thể, giúp dễ đi vào giấc ngủ hơn.</p>",
       "image": "https://lh3.googleusercontent.com/d/18P0Iqs6oYGqrJNwhOMo0n_hhCnXaAiK7",
-      "date": "2026-10-06",
+      "date": "2026-10-06 00:00:00",
       "status": "published"
     },
     {
@@ -30,7 +41,7 @@
       "summary": "",
       "content": "<p>123213</p>",
       "image": "",
-      "date": "2026-10-06",
+      "date": "2026-10-06 00:00:00",
       "status": "published"
     },
     {
@@ -40,7 +51,7 @@
       "summary": "",
       "content": "<p>tesst</p><p><img src=\"https://lh3.googleusercontent.com/d/1xkhN18ub8AP49BgxTjBdMuqgbrg_Xm73\"></p><p>video</p><iframe class=\"ql-video\" frameborder=\"0\" allowfullscreen=\"true\" src=\"https://www.youtube.com/embed/bs1OImcnokc\"></iframe><p><br></p>",
       "image": "",
-      "date": "2026-10-06",
+      "date": "2026-10-06 00:00:00",
       "status": "published"
     },
     {
@@ -50,7 +61,7 @@
       "summary": "",
       "content": "<p><img src=\"https://lh3.googleusercontent.com/d/1qzjydHVgQxT9IJEDfgjUUbvaw2oB3Jlc\"></p><p>gdfgdfgdfgdfg</p>",
       "image": "",
-      "date": "2026-10-06",
+      "date": "2026-10-06 00:00:00",
       "status": "published"
     },
     {
@@ -60,7 +71,7 @@
       "summary": "",
       "content": "<p>ádsadasdasd</p>",
       "image": "",
-      "date": "2026-10-06",
+      "date": "2026-10-06 00:00:00",
       "status": "published"
     }
   ],
@@ -74,20 +85,72 @@
       "image": "",
       "location": "dong nai",
       "year": "2026",
-      "date": "2026-10-06",
+      "date": "2026-10-06 00:00:00",
       "status": "published"
     }
   ],
   "resources": [
     {
-      "id": "RES_1791280647271",
-      "title": "bản vẽ 1",
-      "category": "kết cấu",
-      "fileType": "DWG",
-      "fileUrl": "https://drive.google.com/file/d/12WM1IiCnqwwhD5sH-EGmI4czFcakYGpJ/view?usp=sharing",
-      "fileSize": "10mb",
-      "description": "",
-      "date": "2026-10-06"
+      "id": "RES_1791520695176",
+      "title": "ban ve 2",
+      "type": "resource",
+      "category": "bản vẽ cad",
+      "author": "Admin Xây Dựng",
+      "image": "https://lh3.googleusercontent.com/d/1uzyD4YIV54CXxWR5S65y-4zHNwjuX8HE",
+      "summary": "",
+      "content": "<p>tài liệu 1</p>",
+      "fileUrl": "https://drive.google.com/file/d/12WM1IiCnqwwhD5sH-EGmI4czFcakYGpJ/view?usp=drive_link",
+      "fileType": "cad",
+      "fileSize": "15mb",
+      "date": "2026-10-09 00:00:00"
+    }
+  ],
+  "services": [
+    {
+      "id": "SRV_1791512881864",
+      "title": "Thi công nhà phố Nhơn Trạch - Đồng Nai",
+      "type": "townhouse",
+      "category": "Thiết kế nhà phố",
+      "price": "Liên hệ 0908552125",
+      "author": "Xây dựng và cuộc sống",
+      "image": "https://lh3.googleusercontent.com/d/1Rx6VPg2K0xZS5LK6zzSwSjSz-ADIa2st",
+      "summary": "",
+      "content": "<p>sản phẩm 1</p><p>https://lh3.googleusercontent.com/d/1Rx6VPg2K0xZS5LK6zzSwSjSz-ADIa2st</p>",
+      "date": "2026-10-09 00:00:00"
+    },
+    {
+      "id": "SRV_1791514095527",
+      "title": "123",
+      "type": "townhouse",
+      "category": "Thiết kế nhà phố",
+      "price": "Liên hệ",
+      "author": "Admin Xây Dựng",
+      "image": "",
+      "summary": "",
+      "content": "<p>123</p>",
+      "date": "2026-10-09 00:00:00"
+    }
+  ],
+  "consultations": [
+    {
+      "id": "LEAD_1791516540043",
+      "name": "anh A",
+      "phone": "123",
+      "address": "nhơn trạch",
+      "serviceTitle": "123",
+      "note": "1 tầng",
+      "date": "2026-10-09 10:29:00",
+      "status": "Notified"
+    },
+    {
+      "id": "LEAD_1791517282758",
+      "name": "khach 2",
+      "phone": "2222",
+      "address": "bà rịa",
+      "serviceTitle": "Thi công nhà phố Nhơn Trạch - Đồng Nai",
+      "note": "",
+      "date": "2026-10-09 10:41:22",
+      "status": "Notified"
     }
   ]
 }
