@@ -9,7 +9,6 @@
 
   <!-- CSS STYLE NỘI DUNG CHUẨN BÁO CHÍ VNEXPRESS -->
   <style>
-    /* Tránh hiển thị thanh cuộn xấu trên Mobile */
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -133,7 +132,6 @@
           <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold mt-3 mb-3 md:mb-5 leading-tight">Góc Nhìn Thực Chiến Ngành Xây Dựng & Nhịp Sống Làm Nghề</h1>
           <p class="text-slate-300 text-xs sm:text-base mb-6 max-w-2xl mx-auto line-clamp-3 md:line-clamp-none">Chia sẻ hồ sơ kỹ thuật, tài liệu CAD/Revit, Ebook chuyên ngành chọn lọc và những khóa học thực tế phục vụ kỹ sư, kiến trúc sư.</p>
           
-          <!-- PHẦN 1: Bổ sung đầy đủ 4 nút bấm điều hướng -->
           <div class="flex flex-wrap justify-center gap-2.5 sm:gap-3 max-w-2xl mx-auto">
             <a href="#/articles" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition shadow">Khám Phá Bài Viết</a>
             <a href="#/projects" class="bg-slate-800 hover:bg-slate-700 text-white font-medium px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition border border-slate-700">Hồ Sơ Công Trình</a>
@@ -143,9 +141,7 @@
         </div>
       </section>
 
-      <!-- PHẦN 2: TƯỜNG TRANG CHỦ HIỂN THỊ ĐẦY ĐỦ 4 LUỒNG BÀI ĐĂNG -->
-
-      <!-- 1. BÀI VIẾT MỚI NHẤT -->
+      <!-- TƯỜNG TRANG CHỦ HIỂN THỊ ĐẦY ĐỦ 4 LUỒNG BÀI ĐĂNG -->
       <section class="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12">
         <div class="flex justify-between items-center mb-6 border-b border-slate-200 pb-3">
           <div class="flex items-center gap-2">
@@ -159,7 +155,6 @@
         </div>
       </section>
 
-      <!-- 2. CÔNG TRÌNH NỔI BẬT -->
       <section class="bg-white py-8 md:py-12 border-y border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
           <div class="flex justify-between items-center mb-6 border-b border-slate-200 pb-3">
@@ -175,7 +170,6 @@
         </div>
       </section>
 
-      <!-- 3. TÀI LIỆU & KHÓA HỌC MỚI NHẤT (MỚI THÊM VÀO TƯỜNG) -->
       <section class="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12">
         <div class="flex justify-between items-center mb-6 border-b border-slate-200 pb-3">
           <div class="flex items-center gap-2">
@@ -189,7 +183,6 @@
         </div>
       </section>
 
-      <!-- 4. DỊCH VỤ & SẢN PHẨM NỔI BẬT (MỚI THÊM VÀO TƯỜNG) -->
       <section class="bg-white py-8 md:py-12 border-y border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
           <div class="flex justify-between items-center mb-6 border-b border-slate-200 pb-3">
@@ -278,9 +271,21 @@
 
   </main>
 
-  <footer class="bg-slate-900 text-slate-400 py-6 border-t border-slate-800 text-center text-xs sm:text-sm mt-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <p>© 2026 Xây Dựng & Cuộc Sống Portal - Liên hệ: <a href="mailto:xaydungvacuocsong28@gmail.com" class="text-amber-400 hover:underline">xaydungvacuocsong28@gmail.com</a></p>
+  <!-- FOOTER TÍCH HỢP LOGO GÓC TRÁI -->
+  <footer class="bg-slate-900 text-slate-400 py-6 md:py-8 border-t border-slate-800 mt-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-xs sm:text-sm">
+      <!-- Góc trái: Logo & Tên Portal -->
+      <a href="#/" class="flex items-center gap-3 hover:opacity-90 transition">
+        <img src="logo.jpg" alt="Logo Xây Dựng & Cuộc Sống" class="h-24 sm:h-26 w-auto object-contain rounded bg-white p-1 shadow">
+        <span class="font-extrabold text-white uppercase tracking-wide text-xs sm:text-sm hidden sm:inline-block">
+          <span class="text-amber-500">XÂY DỰNG</span> <span class="text-emerald-500 font-bold">&</span> <span class="text-amber-500">CUỘC SỐNG</span>
+        </span>
+      </a>
+      <!-- Góc phải: Bản quyền & Liên hệ -->
+      <div class="text-slate-400">
+        <p>© 2026 Xây Dựng & Cuộc Sống Portal</p>
+        <p class="mt-0.5">Liên hệ: <a href="mailto:xaydungvacuocsong28@gmail.com" class="text-amber-400 hover:underline">xaydungvacuocsong28@gmail.com</a></p>
+      </div>
     </div>
   </footer>
 
@@ -569,7 +574,6 @@
       renderResourcesList(filtered);
     }
 
-    // RENDER THẺ BÀI VIẾT (BẤM VÀO VỊ TRÍ NÀO CŨNG CHUYỂN TRANG)
     function createArticleCardHTML(a, isHero = false) {
       if (isHero) {
         return '<a href="' + getArticleUrl(a) + '" class="block pb-5 border-b border-slate-200 md:border-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group mb-4 md:mb-0 cursor-pointer">' +
@@ -606,7 +610,6 @@
       '</a>';
     }
 
-    // RENDER THẺ CÔNG TRÌNH
     function createProjectCardHTML(p, isHero = false) {
       if (isHero) {
         return '<a href="' + getProjectUrl(p) + '" class="block pb-5 border-b border-slate-200 md:border-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group mb-4 md:mb-0 cursor-pointer">' +
@@ -643,7 +646,6 @@
       '</a>';
     }
 
-    // RENDER THẺ TÀI LIỆU & KHÓA HỌC
     function createResourceCardHTML(r, isHero = false) {
       const url = getResourceUrl(r);
       if (isHero) {
@@ -690,7 +692,6 @@
       '</a>';
     }
 
-    // RENDER THẺ DỊCH VỤ DÙNG RIÊNG TRÊN TRANG CHỦ
     function createHomeServiceCardHTML(s, isHero = false) {
       const slug = createSlug(s.title) || 'dich-vu';
       const url = 'service.html#/service/' + slug + '-' + s.id;
@@ -738,9 +739,7 @@
       '</a>';
     }
 
-    // HÀM NẠP TẤT CẢ DỮ LIỆU LÊN TRANG CHỦ (ĐẦY ĐỦ 4 PHẦN TƯỜNG)
     function renderHomeData() {
-      // 1. Bài viết
       const homeArtContainer = document.getElementById("homeArticlesContainer");
       const articles = globalData.articles || [];
       if (!articles.length) {
@@ -753,7 +752,6 @@
         homeArtContainer.innerHTML = html;
       }
 
-      // 2. Công trình
       const homeProjContainer = document.getElementById("homeProjectsContainer");
       const projects = globalData.projects || [];
       if (!projects.length) {
@@ -766,7 +764,6 @@
         homeProjContainer.innerHTML = html;
       }
 
-      // 3. Tài liệu & Khóa học (Mới nạp vào tường)
       const homeResContainer = document.getElementById("homeResourcesContainer");
       if (homeResContainer) {
         const resources = globalData.resources || [];
@@ -781,7 +778,6 @@
         }
       }
 
-      // 4. Dịch vụ & Sản phẩm (Mới nạp vào tường)
       const homeSrvContainer = document.getElementById("homeServicesContainer");
       if (homeSrvContainer) {
         const services = globalData.services || [];
