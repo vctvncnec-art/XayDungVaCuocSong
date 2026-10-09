@@ -76,7 +76,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between antialiased">
 
-  <!-- HEADER HEADER TỔNG CHUẨN VNEXPRESS -->
+  <!-- HEADER TỔNG CHUẨN VNEXPRESS -->
   <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 md:py-4 flex justify-between items-center">
       <a href="#/" class="text-base sm:text-lg md:text-xl font-extrabold tracking-tight flex items-center gap-2 sm:gap-3 hover:opacity-90 transition">
@@ -99,18 +99,18 @@
         <a href="#/projects" id="nav-projects" class="hover:text-amber-400 transition py-1">Công Trình</a>
         <a href="#/articles" id="nav-articles" class="hover:text-amber-400 transition py-1">Bài Viết & Góc Nhìn</a>
         <a href="#/resources" id="nav-resources" class="hover:text-amber-400 transition py-1">Tài Liệu & Khóa Học</a>
-        <a href="service.html" class="hover:text-amber-400 text-amber-400 font-bold transition py-1">Dịch Vụ & Sản Phẩm</a>
+        <a href="service.html" class="hover:text-amber-400 transition py-1">Dịch Vụ & Sản Phẩm</a>
       </nav>
     </div>
 
-    <!-- SUB-NAV CUỘN NGANG DÀNH RIÊNG CHO MOBILE & TABLET (KIỂU VNEXPRESS) -->
+    <!-- SUB-NAV CUỘN NGANG DÀNH RIÊNG CHO MOBILE & TABLET -->
     <div class="bg-slate-800 border-t border-slate-700/60 md:hidden overflow-x-auto no-scrollbar py-2 px-3">
       <div class="flex items-center gap-4 text-xs font-semibold whitespace-nowrap min-w-max">
         <a href="#/" id="mob-nav-home" class="text-amber-400 py-1 border-b-2 border-amber-400">Trang Chủ</a>
         <a href="#/articles" id="mob-nav-articles" class="text-slate-300 hover:text-white py-1">Bài Viết & Góc Nhìn</a>
         <a href="#/projects" id="mob-nav-projects" class="text-slate-300 hover:text-white py-1">Công Trình</a>
         <a href="#/resources" id="mob-nav-resources" class="text-slate-300 hover:text-white py-1">Tài Liệu & Khóa Học</a>
-        <a href="service.html" class="text-amber-400 font-bold py-1">Dịch Vụ & Sản Phẩm</a>
+        <a href="service.html" id="mob-nav-service" class="text-slate-300 hover:text-white py-1">Dịch Vụ & Sản Phẩm</a>
       </div>
     </div>
   </header>
@@ -125,20 +125,27 @@
 
     <!-- 1. VIEW: TRANG CHỦ (#/) -->
     <div id="view-home" class="page-view">
-      <!-- Banner giới thiệu tối ưu nhỏ gọn hơn trên Mobile -->
+      
+      <!-- HERO BANNER TỔNG HỢP VỚI ĐẦY ĐỦ 4 NÚT ĐIỀU HƯỚNG -->
       <section class="bg-slate-900 text-white py-8 md:py-16 border-b border-slate-800">
         <div class="max-w-4xl mx-auto text-center px-4 sm:px-6">
           <span class="text-amber-400 text-[11px] sm:text-xs font-bold uppercase tracking-widest bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">Kỹ Thuật & Trải Nghiệm</span>
           <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold mt-3 mb-3 md:mb-5 leading-tight">Góc Nhìn Thực Chiến Ngành Xây Dựng & Nhịp Sống Làm Nghề</h1>
           <p class="text-slate-300 text-xs sm:text-base mb-6 max-w-2xl mx-auto line-clamp-3 md:line-clamp-none">Chia sẻ hồ sơ kỹ thuật, tài liệu CAD/Revit, Ebook chuyên ngành chọn lọc và những khóa học thực tế phục vụ kỹ sư, kiến trúc sư.</p>
-          <div class="flex justify-center gap-3">
-            <a href="#/articles" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-4 py-2.5 sm:px-6 sm:py-3 rounded-lg text-xs sm:text-sm transition">Khám Phá Bài Viết</a>
-            <a href="#/resources" class="bg-slate-800 hover:bg-slate-700 text-white font-medium px-4 py-2.5 sm:px-6 sm:py-3 rounded-lg text-xs sm:text-sm transition">Tài Liệu & Khóa Học</a>
+          
+          <!-- PHẦN 1: Bổ sung đầy đủ 4 nút bấm điều hướng -->
+          <div class="flex flex-wrap justify-center gap-2.5 sm:gap-3 max-w-2xl mx-auto">
+            <a href="#/articles" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition shadow">Khám Phá Bài Viết</a>
+            <a href="#/projects" class="bg-slate-800 hover:bg-slate-700 text-white font-medium px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition border border-slate-700">Hồ Sơ Công Trình</a>
+            <a href="#/resources" class="bg-slate-800 hover:bg-slate-700 text-white font-medium px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition border border-slate-700">Tài Liệu & Khóa Học</a>
+            <a href="service.html" class="bg-amber-400/20 hover:bg-amber-400/30 text-amber-300 font-bold px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition border border-amber-400/30">Dịch Vụ & Sản Phẩm</a>
           </div>
         </div>
       </section>
 
-      <!-- BÀI VIẾT MỚI NHẤT CHUẨN VNEXPRESS STREAM -->
+      <!-- PHẦN 2: TƯỜNG TRANG CHỦ HIỂN THỊ ĐẦY ĐỦ 4 LUỒNG BÀI ĐĂNG -->
+
+      <!-- 1. BÀI VIẾT MỚI NHẤT -->
       <section class="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12">
         <div class="flex justify-between items-center mb-6 border-b border-slate-200 pb-3">
           <div class="flex items-center gap-2">
@@ -152,7 +159,7 @@
         </div>
       </section>
 
-      <!-- CÔNG TRÌNH MỚI NHẤT -->
+      <!-- 2. CÔNG TRÌNH NỔI BẬT -->
       <section class="bg-white py-8 md:py-12 border-y border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
           <div class="flex justify-between items-center mb-6 border-b border-slate-200 pb-3">
@@ -167,6 +174,37 @@
           </div>
         </div>
       </section>
+
+      <!-- 3. TÀI LIỆU & KHÓA HỌC MỚI NHẤT (MỚI THÊM VÀO TƯỜNG) -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+        <div class="flex justify-between items-center mb-6 border-b border-slate-200 pb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-1.5 h-5 bg-amber-500 rounded-full inline-block"></span>
+            <h2 class="text-lg sm:text-2xl font-bold text-slate-900">Tài Liệu & Khóa Học Mới Nhất</h2>
+          </div>
+          <a href="#/resources" class="text-amber-600 hover:underline text-xs sm:text-sm font-semibold">Xem tất cả thư viện →</a>
+        </div>
+        <div id="homeResourcesContainer" class="space-y-4 md:space-y-0 md:grid md:grid-cols-3 md:gap-8">
+          <div class="col-span-full text-center py-8 text-slate-400 text-sm">Đang tải tài liệu & khóa học...</div>
+        </div>
+      </section>
+
+      <!-- 4. DỊCH VỤ & SẢN PHẨM NỔI BẬT (MỚI THÊM VÀO TƯỜNG) -->
+      <section class="bg-white py-8 md:py-12 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+          <div class="flex justify-between items-center mb-6 border-b border-slate-200 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-5 bg-amber-500 rounded-full inline-block"></span>
+              <h2 class="text-lg sm:text-2xl font-bold text-slate-900">Dịch Vụ & Giải Pháp Thi Công</h2>
+            </div>
+            <a href="service.html" class="text-amber-600 hover:underline text-xs sm:text-sm font-semibold">Xem tất cả dịch vụ →</a>
+          </div>
+          <div id="homeServicesContainer" class="space-y-4 md:space-y-0 md:grid md:grid-cols-3 md:gap-8">
+            <div class="col-span-full text-center py-8 text-slate-400 text-sm">Đang tải dịch vụ & sản phẩm...</div>
+          </div>
+        </div>
+      </section>
+
     </div>
 
     <!-- 2. VIEW: DANH SÁCH BÀI VIẾT (#/articles) -->
@@ -247,7 +285,7 @@
   </footer>
 
   <script>
-    let globalData = { categories: { articles: [], projects: [], resources: [], courses: [] }, articles: [], projects: [], resources: [] };
+    let globalData = { categories: { articles: [], projects: [], resources: [], courses: [] }, articles: [], projects: [], resources: [], services: [] };
     let currentResourceType = 'resource';
     let currentResourceCategory = 'all';
 
@@ -313,7 +351,7 @@
     }
 
     function updateMobileNavHighlight(hash) {
-      const navIds = ['mob-nav-home', 'mob-nav-articles', 'mob-nav-projects', 'mob-nav-resources'];
+      const navIds = ['mob-nav-home', 'mob-nav-articles', 'mob-nav-projects', 'mob-nav-resources', 'mob-nav-service'];
       navIds.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.className = "text-slate-300 hover:text-white py-1";
@@ -531,11 +569,10 @@
       renderResourcesList(filtered);
     }
 
-    // TẠO THẺ THÔNG TIN BÀI VIẾT CHUẨN VNEXPRESS (MOBILE DẠNG DÒNG STREAM + DESKTOP DẠNG LƯỚI CARD)
+    // RENDER THẺ BÀI VIẾT (BẤM VÀO VỊ TRÍ NÀO CŨNG CHUYỂN TRANG)
     function createArticleCardHTML(a, isHero = false) {
       if (isHero) {
-        // Bài viết Nổi Bật Đầu Tiên (Hero Card)
-        return '<a href="' + getArticleUrl(a) + '" class="block pb-5 border-b border-slate-200 md:border-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group mb-4 md:mb-0">' +
+        return '<a href="' + getArticleUrl(a) + '" class="block pb-5 border-b border-slate-200 md:border-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group mb-4 md:mb-0 cursor-pointer">' +
           (a.image ? '<div class="overflow-hidden h-48 sm:h-56 md:h-48 bg-slate-100 rounded-lg md:rounded-none mb-3 md:mb-0"><img src="' + a.image + '" alt="' + a.title + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>' : '') +
           '<div class="md:p-5">' +
             '<span class="text-[11px] font-bold text-amber-600 uppercase tracking-wider">' + (a.category || 'Tản mạn') + '</span>' +
@@ -549,8 +586,7 @@
         '</a>';
       }
 
-      // Bài viết Dạng Danh Sách Dòng Stream (Layout VnExpress trên Mobile)
-      return '<a href="' + getArticleUrl(a) + '" class="flex gap-3 sm:gap-4 py-3.5 border-b border-slate-200/80 md:border-0 md:py-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group md:flex-col md:justify-between">' +
+      return '<a href="' + getArticleUrl(a) + '" class="flex gap-3 sm:gap-4 py-3.5 border-b border-slate-200/80 md:border-0 md:py-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group md:flex-col md:justify-between cursor-pointer">' +
         '<div class="md:hidden flex-grow">' +
           '<span class="text-[10px] font-bold text-amber-600 uppercase tracking-wider block mb-0.5">' + (a.category || 'Tản mạn') + '</span>' +
           '<h3 class="font-bold text-sm text-slate-900 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + a.title + '</h3>' +
@@ -570,9 +606,10 @@
       '</a>';
     }
 
+    // RENDER THẺ CÔNG TRÌNH
     function createProjectCardHTML(p, isHero = false) {
       if (isHero) {
-        return '<a href="' + getProjectUrl(p) + '" class="block pb-5 border-b border-slate-200 md:border-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group mb-4 md:mb-0">' +
+        return '<a href="' + getProjectUrl(p) + '" class="block pb-5 border-b border-slate-200 md:border-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group mb-4 md:mb-0 cursor-pointer">' +
           (p.image ? '<div class="overflow-hidden h-48 sm:h-56 md:h-48 bg-slate-100 rounded-lg md:rounded-none mb-3 md:mb-0"><img src="' + p.image + '" alt="' + p.title + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>' : '') +
           '<div class="md:p-5">' +
             '<span class="text-[11px] font-bold text-amber-600 uppercase tracking-wider">' + (p.category || 'Công trình') + '</span>' +
@@ -586,7 +623,7 @@
         '</a>';
       }
 
-      return '<a href="' + getProjectUrl(p) + '" class="flex gap-3 sm:gap-4 py-3.5 border-b border-slate-200/80 md:border-0 md:py-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group md:flex-col md:justify-between">' +
+      return '<a href="' + getProjectUrl(p) + '" class="flex gap-3 sm:gap-4 py-3.5 border-b border-slate-200/80 md:border-0 md:py-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group md:flex-col md:justify-between cursor-pointer">' +
         '<div class="md:hidden flex-grow">' +
           '<span class="text-[10px] font-bold text-amber-600 uppercase tracking-wider block mb-0.5">' + (p.category || 'Công trình') + '</span>' +
           '<h3 class="font-bold text-sm text-slate-900 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + p.title + '</h3>' +
@@ -606,7 +643,104 @@
       '</a>';
     }
 
+    // RENDER THẺ TÀI LIỆU & KHÓA HỌC
+    function createResourceCardHTML(r, isHero = false) {
+      const url = getResourceUrl(r);
+      if (isHero) {
+        return '<a href="' + url + '" class="block pb-5 border-b border-slate-200 md:border-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group mb-4 md:mb-0 cursor-pointer">' +
+          (r.image ? '<div class="overflow-hidden h-48 sm:h-56 md:h-48 bg-slate-100 rounded-lg md:rounded-none mb-3 md:mb-0"><img src="' + r.image + '" alt="' + r.title + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>' : '') +
+          '<div class="md:p-5">' +
+            '<div class="flex items-center justify-between gap-2 mb-1">' +
+              '<span class="text-[11px] font-bold text-amber-600 uppercase tracking-wider">' + (r.category || 'Chung') + '</span>' +
+              '<span class="text-xs font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded">' + (r.fileType || (r.type === 'course' ? 'COURSE' : 'FILE')) + '</span>' +
+            '</div>' +
+            '<h3 class="font-extrabold text-lg sm:text-xl md:text-base text-slate-900 mt-1 mb-2 group-hover:text-amber-600 transition leading-snug">' + r.title + '</h3>' +
+            '<p class="text-slate-600 text-xs sm:text-sm mb-3 leading-relaxed line-clamp-3">' + (r.summary || r.description || '') + '</p>' +
+            '<div class="text-[11px] text-slate-400 flex items-center justify-between pt-2 border-t border-slate-100">' +
+              '<span>👤 ' + (r.author || 'Admin') + (r.fileSize ? ' • 💾 ' + r.fileSize : '') + '</span>' +
+              '<span class="text-amber-600 font-semibold group-hover:underline">Xem chi tiết →</span>' +
+            '</div>' +
+          '</div>' +
+        '</a>';
+      }
+
+      return '<a href="' + url + '" class="flex gap-3 sm:gap-4 py-3.5 border-b border-slate-200/80 md:border-0 md:py-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group md:flex-col md:justify-between cursor-pointer">' +
+        '<div class="md:hidden flex-grow">' +
+          '<div class="flex items-center gap-2 mb-1">' +
+            '<span class="text-[10px] font-bold text-amber-600 uppercase bg-amber-50 px-2 py-0.5 rounded border border-amber-200">' + (r.category || 'Chung') + '</span>' +
+            '<span class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">' + (r.fileType || (r.type === 'course' ? 'COURSE' : 'FILE')) + '</span>' +
+          '</div>' +
+          '<h3 class="font-bold text-sm text-slate-900 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + r.title + '</h3>' +
+          '<p class="text-slate-500 text-[11px] mt-1 line-clamp-2">' + (r.summary || r.description || '') + '</p>' +
+          '<span class="text-[10px] text-slate-400 mt-1.5 block">👤 ' + (r.author || 'Admin') + '</span>' +
+        '</div>' +
+        (r.image ? '<div class="w-28 h-20 sm:w-32 sm:h-22 md:w-full md:h-48 flex-shrink-0 bg-slate-100 rounded-lg md:rounded-none overflow-hidden"><img src="' + r.image + '" alt="' + r.title + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>' : '<div class="w-28 h-20 md:hidden bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center text-slate-400 text-xs font-bold">' + (r.type === 'course' ? '🎓' : '📄') + '</div>') +
+        '<div class="hidden md:block p-5">' +
+          '<div class="flex justify-between items-center mb-2">' +
+            '<span class="text-xs font-bold text-amber-600 uppercase tracking-wider bg-amber-50 px-2.5 py-1 rounded border border-amber-200">' + (r.category || 'Chung') + '</span>' +
+            '<span class="text-xs font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded">' + (r.fileType || (r.type === 'course' ? 'COURSE' : 'FILE')) + '</span>' +
+          '</div>' +
+          '<h3 class="font-bold text-base text-slate-900 mt-2 mb-2 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + r.title + '</h3>' +
+          '<p class="text-slate-600 text-xs mb-3 leading-relaxed line-clamp-2">' + (r.summary || r.description || '') + '</p>' +
+          '<div class="text-[11px] text-slate-400 flex items-center justify-between pt-2 border-t border-slate-100">' +
+            '<span>👤 ' + (r.author || 'Admin') + (r.fileSize ? ' • 💾 ' + r.fileSize : '') + '</span>' +
+            '<span class="text-amber-600 font-semibold group-hover:underline">Chi Tiết →</span>' +
+          '</div>' +
+        '</div>' +
+      '</a>';
+    }
+
+    // RENDER THẺ DỊCH VỤ DÙNG RIÊNG TRÊN TRANG CHỦ
+    function createHomeServiceCardHTML(s, isHero = false) {
+      const slug = createSlug(s.title) || 'dich-vu';
+      const url = 'service.html#/service/' + slug + '-' + s.id;
+
+      if (isHero) {
+        return '<a href="' + url + '" class="block pb-5 border-b border-slate-200 md:border-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group mb-4 md:mb-0 cursor-pointer">' +
+          (s.image ? '<div class="overflow-hidden h-48 sm:h-56 md:h-48 bg-slate-100 rounded-lg md:rounded-none mb-3 md:mb-0"><img src="' + s.image + '" alt="' + s.title + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>' : '') +
+          '<div class="md:p-5">' +
+            '<div class="flex items-center justify-between gap-2 mb-1">' +
+              '<span class="text-[11px] font-bold text-amber-600 uppercase tracking-wider">' + (s.category || 'Dịch vụ') + '</span>' +
+              '<span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">' + (s.price || 'Liên hệ') + '</span>' +
+            '</div>' +
+            '<h3 class="font-extrabold text-lg sm:text-xl md:text-base text-slate-900 mt-1 mb-2 group-hover:text-amber-600 transition leading-snug">' + s.title + '</h3>' +
+            '<p class="text-slate-600 text-xs sm:text-sm mb-3 leading-relaxed line-clamp-3">' + (s.summary || '') + '</p>' +
+            '<div class="text-[11px] text-slate-400 flex items-center justify-between pt-2 border-t border-slate-100">' +
+              '<span>🛠️ ' + (s.author || 'Xây Dựng & Cuộc Sống') + '</span>' +
+              '<span class="text-amber-600 font-semibold group-hover:underline">Xem dịch vụ →</span>' +
+            '</div>' +
+          '</div>' +
+        '</a>';
+      }
+
+      return '<a href="' + url + '" class="flex gap-3 sm:gap-4 py-3.5 border-b border-slate-200/80 md:border-0 md:py-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group md:flex-col md:justify-between cursor-pointer">' +
+        '<div class="md:hidden flex-grow">' +
+          '<div class="flex items-center gap-2 mb-0.5">' +
+            '<span class="text-[10px] font-bold text-amber-600 uppercase tracking-wider">' + (s.category || 'Dịch vụ') + '</span>' +
+            '<span class="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 px-1.5 py-0.2 rounded border border-emerald-200">' + (s.price || 'Liên hệ') + '</span>' +
+          '</div>' +
+          '<h3 class="font-bold text-sm text-slate-900 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + s.title + '</h3>' +
+          '<p class="text-slate-500 text-[11px] mt-1 line-clamp-2">' + (s.summary || '') + '</p>' +
+        '</div>' +
+        (s.image ? '<div class="w-28 h-20 sm:w-32 sm:h-22 md:w-full md:h-48 flex-shrink-0 bg-slate-100 rounded-lg md:rounded-none overflow-hidden"><img src="' + s.image + '" alt="' + s.title + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>' : '<div class="w-28 h-20 md:hidden bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center text-slate-400 text-xs font-bold">🛠️</div>') +
+        '<div class="hidden md:block p-5">' +
+          '<div class="flex items-center justify-between gap-2 mb-1">' +
+            '<span class="text-[11px] font-bold text-amber-600 uppercase tracking-wider">' + (s.category || 'Dịch vụ') + '</span>' +
+            '<span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">' + (s.price || 'Liên hệ') + '</span>' +
+          '</div>' +
+          '<h3 class="font-bold text-base text-slate-900 mt-1 mb-2 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + s.title + '</h3>' +
+          '<p class="text-slate-600 text-xs mb-3 leading-relaxed line-clamp-2">' + (s.summary || '') + '</p>' +
+          '<div class="text-[11px] text-slate-400 flex items-center justify-between pt-2 border-t border-slate-100">' +
+            '<span>🛠️ ' + (s.author || 'Xây Dựng & Cuộc Sống') + '</span>' +
+            '<span class="text-amber-600 font-semibold group-hover:underline">Chi tiết →</span>' +
+          '</div>' +
+        '</div>' +
+      '</a>';
+    }
+
+    // HÀM NẠP TẤT CẢ DỮ LIỆU LÊN TRANG CHỦ (ĐẦY ĐỦ 4 PHẦN TƯỜNG)
     function renderHomeData() {
+      // 1. Bài viết
       const homeArtContainer = document.getElementById("homeArticlesContainer");
       const articles = globalData.articles || [];
       if (!articles.length) {
@@ -619,6 +753,7 @@
         homeArtContainer.innerHTML = html;
       }
 
+      // 2. Công trình
       const homeProjContainer = document.getElementById("homeProjectsContainer");
       const projects = globalData.projects || [];
       if (!projects.length) {
@@ -629,6 +764,36 @@
           html += createProjectCardHTML(p, idx === 0);
         });
         homeProjContainer.innerHTML = html;
+      }
+
+      // 3. Tài liệu & Khóa học (Mới nạp vào tường)
+      const homeResContainer = document.getElementById("homeResourcesContainer");
+      if (homeResContainer) {
+        const resources = globalData.resources || [];
+        if (!resources.length) {
+          homeResContainer.innerHTML = '<p class="text-slate-400 col-span-full text-center py-6 text-sm">Chưa có tài liệu hay khóa học nào.</p>';
+        } else {
+          let html = '';
+          resources.slice(0, 5).forEach((r, idx) => {
+            html += createResourceCardHTML(r, idx === 0);
+          });
+          homeResContainer.innerHTML = html;
+        }
+      }
+
+      // 4. Dịch vụ & Sản phẩm (Mới nạp vào tường)
+      const homeSrvContainer = document.getElementById("homeServicesContainer");
+      if (homeSrvContainer) {
+        const services = globalData.services || [];
+        if (!services.length) {
+          homeSrvContainer.innerHTML = '<p class="text-slate-400 col-span-full text-center py-6 text-sm">Chưa có dịch vụ hay sản phẩm nào.</p>';
+        } else {
+          let html = '';
+          services.slice(0, 5).forEach((s, idx) => {
+            html += createHomeServiceCardHTML(s, idx === 0);
+          });
+          homeSrvContainer.innerHTML = html;
+        }
       }
     }
 
@@ -774,30 +939,11 @@
         return;
       }
 
-      container.innerHTML = resources.map(r => '<a href="' + getResourceUrl(r) + '" class="flex gap-3 sm:gap-4 py-3.5 border-b border-slate-200/80 md:border-0 md:py-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group md:flex-col md:justify-between">' +
-        '<div class="md:hidden flex-grow">' +
-          '<div class="flex items-center gap-2 mb-1">' +
-            '<span class="text-[10px] font-bold text-amber-600 uppercase bg-amber-50 px-2 py-0.5 rounded border border-amber-200">' + (r.category || 'Chung') + '</span>' +
-            '<span class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">' + (r.fileType || (r.type === 'course' ? 'COURSE' : 'FILE')) + '</span>' +
-          '</div>' +
-          '<h3 class="font-bold text-sm text-slate-900 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + r.title + '</h3>' +
-          '<p class="text-slate-500 text-[11px] mt-1 line-clamp-2">' + (r.summary || r.description || '') + '</p>' +
-          '<span class="text-[10px] text-slate-400 mt-1.5 block">👤 ' + (r.author || 'Admin') + '</span>' +
-        '</div>' +
-        (r.image ? '<div class="w-28 h-20 sm:w-32 sm:h-22 md:w-full md:h-48 flex-shrink-0 bg-slate-100 rounded-lg md:rounded-none overflow-hidden"><img src="' + r.image + '" alt="' + r.title + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>' : '<div class="w-28 h-20 md:hidden bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center text-slate-400 text-xs font-bold">' + (r.type === 'course' ? '🎓' : '📄') + '</div>') +
-        '<div class="hidden md:block p-5">' +
-          '<div class="flex justify-between items-center mb-2">' +
-            '<span class="text-xs font-bold text-amber-600 uppercase tracking-wider bg-amber-50 px-2.5 py-1 rounded border border-amber-200">' + (r.category || 'Chung') + '</span>' +
-            '<span class="text-xs font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded">' + (r.fileType || (r.type === 'course' ? 'COURSE' : 'FILE')) + '</span>' +
-          '</div>' +
-          '<h3 class="font-bold text-base text-slate-900 mt-2 mb-2 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + r.title + '</h3>' +
-          '<p class="text-slate-600 text-xs mb-3 leading-relaxed line-clamp-2">' + (r.summary || r.description || '') + '</p>' +
-          '<div class="text-[11px] text-slate-400 flex items-center justify-between pt-2 border-t border-slate-100">' +
-            '<span>👤 ' + (r.author || 'Admin') + (r.fileSize ? ' • 💾 ' + r.fileSize : '') + '</span>' +
-            '<span class="text-amber-600 font-semibold group-hover:underline">Chi Tiết →</span>' +
-          '</div>' +
-        '</div>' +
-      '</a>').join('');
+      let html = '';
+      resources.forEach((r, idx) => {
+        html += createResourceCardHTML(r, idx === 0);
+      });
+      container.innerHTML = html;
     }
 
     function renderResourceDetail(r) {
