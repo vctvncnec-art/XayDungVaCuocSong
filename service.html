@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dịch Vụ & Sản Phẩm - Xây Dựng & Cuộc Sống</title>
+  <meta name="description" content="Giải pháp thi công nhà phố trọn gói, tư vấn quản lý dự án và công cụ hỗ trợ xây dựng thực chiến.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M22 85V40L42 25V85H22Z' fill='%23F59E0B'/><path d='M42 85V15L62 28V85H42Z' fill='%23D97706'/><path d='M35 85C35 60 52 40 82 32C82 58 70 85 35 85Z' stroke='%2310B981' stroke-width='8' fill='none'/><path d='M48 85C52 68 66 55 80 44' stroke='%2310B981' stroke-width='6' stroke-linecap='round'/></svg>">
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -165,9 +166,9 @@
 
   </main>
 
-  <!-- MODAL ĐĂNG KÝ TƯ VẤN NHANH -->
+  <!-- MODAL ĐĂNG KÝ TƯ VẤN VỚI BẪY HONEYPOT VÀ CAPTCHA TÍNH TOÁN -->
   <div id="consultModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-    <div class="bg-white rounded-2xl p-5 sm:p-6 w-full max-w-md shadow-2xl border border-slate-200">
+    <div class="bg-white rounded-2xl p-5 sm:p-6 w-full max-w-md shadow-2xl border border-slate-200 relative">
       <div class="flex justify-between items-center mb-4 border-b pb-3">
         <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
           <span>📬</span> Đăng Ký Tư Vấn Kỹ Thuật
@@ -175,7 +176,12 @@
         <button onclick="closeConsultModal()" class="text-slate-400 hover:text-slate-600 font-bold text-xl">&times;</button>
       </div>
 
-      <form id="consultForm" class="space-y-3.5 text-xs sm:text-sm">
+      <form id="consultForm" class="space-y-3 text-xs sm:text-sm">
+        <!-- BẪY HONEYPOT CHỐNG BOT SPAM (Ẩn khỏi người dùng thật) -->
+        <div class="hidden opacity-0 h-0 w-0 pointer-events-none absolute" aria-hidden="true">
+          <input type="text" id="consultHoneypot" tabindex="-1" autocomplete="off" placeholder="Leave empty">
+        </div>
+
         <div>
           <label class="block font-bold text-slate-700 mb-1">Dịch vụ quan tâm</label>
           <input type="text" id="consultServiceTitle" readonly class="w-full p-2.5 bg-slate-100 border rounded-lg font-bold text-amber-700 outline-none">
@@ -190,14 +196,22 @@
         </div>
         <div>
           <label class="block font-bold text-slate-700 mb-1">Địa điểm công trình / Địa chỉ</label>
-          <input type="text" id="consultAddress" placeholder="VD: Quận 2, TPHCM..." class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none">
+          <input type="text" id="consultAddress" placeholder="VD: Nhơn Trạch, Đồng Nai..." class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none">
         </div>
         <div>
           <label class="block font-bold text-slate-700 mb-1">Ghi chú / Yêu cầu cụ thể</label>
-          <textarea id="consultNote" rows="3" placeholder="Mô tả quy mô, diện tích hoặc thắc mắc của bạn..." class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none resize-none"></textarea>
+          <textarea id="consultNote" rows="2" placeholder="Mô tả quy mô, diện tích hoặc thắc mắc của bạn..." class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none resize-none"></textarea>
         </div>
 
-        <button type="submit" id="consultSubmitBtn" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-extrabold py-3 rounded-xl transition text-xs sm:text-sm shadow">
+        <!-- CAPTCHA PHÉP TÍNH NHẸ CHỐNG SPAM -->
+        <div class="p-3 bg-amber-50 border border-amber-200 rounded-lg">
+          <label class="block font-bold text-slate-800 mb-1 flex items-center gap-1.5">
+            <span>🛡️</span> Xác thực an toàn: <span id="captchaQuestionText" class="text-amber-700 font-extrabold text-sm"></span>
+          </label>
+          <input type="number" id="captchaUserAnswer" required placeholder="Nhập kết quả số..." class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none text-xs font-bold">
+        </div>
+
+        <button type="submit" id="consultSubmitBtn" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-extrabold py-3 rounded-xl transition text-xs sm:text-sm shadow mt-2">
           🚀 Gửi Yêu Cầu Tư Vấn
         </button>
       </form>
@@ -223,9 +237,13 @@
   </footer>
 
   <script>
+    // CẤU HÌNH API BACKEND GOOGLE APPS SCRIPT
+    const API_URL = "https://script.google.com/macros/s/AKfycbxtApV-FdQx0O1j-FJGvbDo0UEeyjC3NV9f2O-46M3iBEpDOt3K9IXI_yvSnrkGxsOBBQ/exec";
+
     let globalData = { contact: {}, categories: {}, services: [] };
     let currentServiceType = 'townhouse';
     let currentServiceCategory = 'all';
+    let captchaExpectedResult = 0;
 
     function createSlug(text) {
       if (!text) return '';
@@ -239,12 +257,66 @@
         .replace(/([^0-9a-z-\s])/g, '')
         .replace(/(\s+)/g, '-')
         .replace(/-+/g, '-')
-        .replace(/^-+|-+$/g, '');
+        .replace(/^-+|-+\$/g, '');
     }
 
     function getServiceUrl(service) {
-      const slug = createSlug(service.title) || 'dich-vu';
+      const slug = service.slug || createSlug(service.title) || 'dich-vu';
       return '#/service/' + slug + '-' + service.id;
+    }
+
+    // HÀM CẬP NHẬT SEO METADATA ĐỘNG DÀNH CHO DỊCH VỤ
+    function applySeoMetadata(item, defaultTitle, defaultDesc) {
+      const siteName = " - Xây Dựng & Cuộc Sống";
+      let title = defaultTitle || "Dịch Vụ & Sản Phẩm - Xây Dựng & Cuộc Sống";
+      let desc = defaultDesc || "Giải pháp thi công nhà phố trọn gói, tư vấn quản lý dự án và công cụ hỗ trợ xây dựng thực chiến.";
+      let keywords = "";
+      let image = "logo.jpg";
+
+      if (item) {
+        title = (item.seoTitle || item.title || title) + siteName;
+        desc = item.metaDescription || item.summary || desc;
+        keywords = item.focusKeywords || "";
+        if (item.image) image = item.image;
+      }
+
+      document.title = title;
+
+      // Meta Description
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.name = "description";
+        document.head.appendChild(metaDesc);
+      }
+      metaDesc.content = desc;
+
+      // Meta Keywords
+      if (keywords) {
+        let metaKey = document.querySelector('meta[name="keywords"]');
+        if (!metaKey) {
+          metaKey = document.createElement('meta');
+          metaKey.name = "keywords";
+          document.head.appendChild(metaKey);
+        }
+        metaKey.content = keywords;
+      }
+
+      // Open Graph Tags (Zalo / Facebook)
+      setMetaTag('property', 'og:title', title);
+      setMetaTag('property', 'og:description', desc);
+      setMetaTag('property', 'og:image', image);
+      setMetaTag('property', 'og:url', window.location.href);
+    }
+
+    function setMetaTag(attrName, attrValue, content) {
+      let element = document.querySelector(`meta[${attrName}="${attrValue}"]`);
+      if (!element) {
+        element = document.createElement('meta');
+        element.setAttribute(attrName, attrValue);
+        document.head.appendChild(element);
+      }
+      element.setAttribute('content', content);
     }
 
     function fixYouTubeIframes(htmlContent) {
@@ -292,7 +364,7 @@
 
         breadcrumbBar.classList.remove("hidden");
         if (service) {
-          document.title = service.title + " - Xây Dựng & Cuộc Sống";
+          applySeoMetadata(service);
           breadcrumbList.innerHTML = '<a href="index.html#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> ' +
             '<a href="service.html" class="hover:text-amber-600">Dịch vụ</a> <span>/</span> ' +
             '<span class="text-amber-600 font-semibold">' + (service.category || 'Gói dịch vụ') + '</span> <span>/</span> ' +
@@ -304,7 +376,7 @@
           document.getElementById("serviceDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Dịch vụ không tồn tại. <a href="service.html" class="text-amber-600 font-bold underline">Quay lại danh sách</a></div>';
         }
       } else {
-        document.title = "Dịch Vụ & Sản Phẩm - Xây Dựng & Cuộc Sống";
+        applySeoMetadata(null, "Dịch Vụ & Sản Phẩm - Xây Dựng & Cuộc Sống", "Giải pháp thi công nhà phố trọn gói, tư vấn quản lý dự án và công cụ hỗ trợ xây dựng thực chiến.");
         document.getElementById("view-services").classList.remove("hidden");
         breadcrumbBar.classList.remove("hidden");
         breadcrumbList.innerHTML = '<a href="index.html#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> <span class="font-bold text-slate-800">Dịch Vụ & Sản Phẩm</span>';
@@ -460,8 +532,22 @@
       '</div>';
     }
 
+    // TẠO PHÉP TÍNH CAPTCHA NGẪU NHIÊN
+    function generateCaptcha() {
+      const num1 = Math.floor(Math.random() * 9) + 1;
+      const num2 = Math.floor(Math.random() * 9) + 1;
+      captchaExpectedResult = num1 + num2;
+      const questionEl = document.getElementById("captchaQuestionText");
+      if (questionEl) {
+        questionEl.innerText = `${num1} + ${num2} = ?`;
+      }
+      const answerInput = document.getElementById("captchaUserAnswer");
+      if (answerInput) answerInput.value = "";
+    }
+
     function openConsultModal(serviceTitle) {
       document.getElementById("consultServiceTitle").value = serviceTitle || 'Tư vấn kỹ thuật xây dựng';
+      generateCaptcha();
       document.getElementById("consultModal").classList.remove("hidden");
     }
 
@@ -470,19 +556,67 @@
       document.getElementById("consultForm").reset();
     }
 
-    document.getElementById("consultForm")?.addEventListener("submit", function(e) {
+    // XỬ LÝ GỬI FORM THẬT VỀ GOOGLE APPS SCRIPT BACKEND
+    document.getElementById("consultForm")?.addEventListener("submit", async function(e) {
       e.preventDefault();
-      const phone = document.getElementById("consultPhone").value.trim();
+      
+      const submitBtn = document.getElementById("consultSubmitBtn");
       const name = document.getElementById("consultName").value.trim();
+      const phone = document.getElementById("consultPhone").value.trim();
+      const address = document.getElementById("consultAddress").value.trim();
+      const note = document.getElementById("consultNote").value.trim();
       const serviceTitle = document.getElementById("consultServiceTitle").value;
+      const honeypotVal = document.getElementById("consultHoneypot").value;
+      const captchaUserAns = document.getElementById("captchaUserAnswer").value;
 
       if (!name || !phone) {
         alert("Vui lòng điền họ tên và số điện thoại!");
         return;
       }
 
-      alert("✅ Cảm ơn " + name + "! Yêu cầu tư vấn dịch vụ [" + serviceTitle + "] của bạn đã được tiếp nhận. Ban Kỹ Thuật sẽ liên hệ qua SĐT " + phone + " trong thời gian sớm nhất.");
-      closeConsultModal();
+      if (parseInt(captchaUserAns) !== captchaExpectedResult) {
+        alert("❌ Mã xác thực (phép tính) chưa đúng! Vui lòng tính lại.");
+        generateCaptcha();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = "⏳ Đang gửi yêu cầu về hệ thống...";
+
+      const payload = {
+        action: "submitConsultation",
+        name: name,
+        phone: phone,
+        address: address,
+        serviceTitle: serviceTitle,
+        note: note,
+        website_hp: honeypotVal,
+        captchaAnswer: captchaUserAns,
+        captchaExpected: captchaExpectedResult,
+        originDomain: window.location.hostname
+      };
+
+      try {
+        const res = await fetch(API_URL, {
+          method: "POST",
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (data.status === "success") {
+          alert("✅ " + data.message);
+          closeConsultModal();
+        } else {
+          alert("⚠️ " + (data.message || "Không thể gửi yêu cầu!"));
+          generateCaptcha();
+        }
+      } catch (err) {
+        alert("❌ Lỗi kết nối máy chủ! Vui lòng thử lại sau hoặc liên hệ Hotline.");
+        console.error("Lỗi gửi tư vấn:", err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "🚀 Gửi Yêu Cầu Tư Vấn";
+      }
     });
 
     window.addEventListener("hashchange", handleRouting);

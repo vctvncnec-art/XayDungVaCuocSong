@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Xây Dựng & Cuộc Sống - Portal</title>
+  <meta name="description" content="Góc nhìn thực chiến ngành xây dựng, chia sẻ hồ sơ kỹ thuật, tài liệu CAD/Revit, bảng tính Excel và khóa học thực tế.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M22 85V40L42 25V85H22Z' fill='%23F59E0B'/><path d='M42 85V15L62 28V85H42Z' fill='%23D97706'/><path d='M35 85C35 60 52 40 82 32C82 58 70 85 35 85Z' stroke='%2310B981' stroke-width='8' fill='none'/><path d='M48 85C52 68 66 55 80 44' stroke='%2310B981' stroke-width='6' stroke-linecap='round'/></svg>">
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -310,18 +311,72 @@
     }
 
     function getArticleUrl(article) {
-      const slug = createSlug(article.title) || 'bai-viet';
+      const slug = article.slug || createSlug(article.title) || 'bai-viet';
       return '#/article/' + slug + '-' + article.id;
     }
 
     function getProjectUrl(project) {
-      const slug = createSlug(project.title) || 'cong-trinh';
+      const slug = project.slug || createSlug(project.title) || 'cong-trinh';
       return '#/project/' + slug + '-' + project.id;
     }
 
     function getResourceUrl(resource) {
-      const slug = createSlug(resource.title) || 'tai-lieu';
+      const slug = resource.slug || createSlug(resource.title) || 'tai-lieu';
       return '#/resource/' + slug + '-' + resource.id;
+    }
+
+    // HÀM CẬP NHẬT SEO METADATA ĐỘNG DÀNH CHO CLIENT
+    function applySeoMetadata(item, defaultTitle, defaultDesc) {
+      const siteName = " - Xây Dựng & Cuộc Sống";
+      let title = defaultTitle || "Xây Dựng & Cuộc Sống - Portal";
+      let desc = defaultDesc || "Góc nhìn thực chiến ngành xây dựng, chia sẻ hồ sơ kỹ thuật, tài liệu CAD/Revit và khóa học thực tế.";
+      let keywords = "";
+      let image = "logo.jpg";
+
+      if (item) {
+        title = (item.seoTitle || item.title || title) + siteName;
+        desc = item.metaDescription || item.summary || item.description || desc;
+        keywords = item.focusKeywords || "";
+        if (item.image) image = item.image;
+      }
+
+      document.title = title;
+
+      // Meta Description
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.name = "description";
+        document.head.appendChild(metaDesc);
+      }
+      metaDesc.content = desc;
+
+      // Meta Keywords
+      if (keywords) {
+        let metaKey = document.querySelector('meta[name="keywords"]');
+        if (!metaKey) {
+          metaKey = document.createElement('meta');
+          metaKey.name = "keywords";
+          document.head.appendChild(metaKey);
+        }
+        metaKey.content = keywords;
+      }
+
+      // Open Graph Tags
+      setMetaTag('property', 'og:title', title);
+      setMetaTag('property', 'og:description', desc);
+      setMetaTag('property', 'og:image', image);
+      setMetaTag('property', 'og:url', window.location.href);
+    }
+
+    function setMetaTag(attrName, attrValue, content) {
+      let element = document.querySelector(`meta[${attrName}="${attrValue}"]`);
+      if (!element) {
+        element = document.createElement('meta');
+        element.setAttribute(attrName, attrValue);
+        document.head.appendChild(element);
+      }
+      element.setAttribute('content', content);
     }
 
     function fixYouTubeIframes(htmlContent) {
@@ -388,14 +443,14 @@
       updateMobileNavHighlight(hash);
 
       if (hash === "#/" || hash === "") {
-        document.title = "Xây Dựng & Cuộc Sống - Portal";
+        applySeoMetadata(null, "Xây Dựng & Cuộc Sống - Portal", "Góc nhìn thực chiến ngành xây dựng, chia sẻ hồ sơ kỹ thuật, tài liệu CAD/Revit và khóa học thực tế.");
         document.getElementById("view-home").classList.remove("hidden");
         document.getElementById("nav-home")?.classList.add("text-amber-400", "font-bold");
         breadcrumbBar.classList.add("hidden");
         renderHomeData();
       }
       else if (hash.startsWith("#/articles")) {
-        document.title = "Bài Viết & Góc Nhìn - Xây Dựng & Cuộc Sống";
+        applySeoMetadata(null, "Bài Viết & Góc Nhìn - Xây Dựng & Cuộc Sống", "Tổng hợp các bài viết về kỹ thuật thi công, tư duy quản lý và trải nghiệm cuộc sống làm nghề.");
         document.getElementById("view-articles").classList.remove("hidden");
         document.getElementById("nav-articles")?.classList.add("text-amber-400", "font-bold");
         breadcrumbBar.classList.remove("hidden");
@@ -411,7 +466,7 @@
 
         breadcrumbBar.classList.remove("hidden");
         if (article) {
-          document.title = article.title + " - Xây Dựng & Cuộc Sống";
+          applySeoMetadata(article);
           breadcrumbList.innerHTML = '<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> ' +
             '<a href="#/articles" class="hover:text-amber-600">Bài viết</a> <span>/</span> ' +
             '<span class="text-amber-600 font-semibold">' + (article.category || 'Tản mạn') + '</span> <span>/</span> ' +
@@ -424,7 +479,7 @@
         }
       }
       else if (hash.startsWith("#/projects")) {
-        document.title = "Hồ Sơ Dự Án & Công Trình - Xây Dựng & Cuộc Sống";
+        applySeoMetadata(null, "Hồ Sơ Dự Án & Công Trình - Xây Dựng & Cuộc Sống", "Hình ảnh thực tế các công trình dân dụng, biệt thự, nhà phố từ giai đoạn thiết kế đến hoàn thiện.");
         document.getElementById("view-projects").classList.remove("hidden");
         document.getElementById("nav-projects")?.classList.add("text-amber-400", "font-bold");
         breadcrumbBar.classList.remove("hidden");
@@ -440,7 +495,7 @@
 
         breadcrumbBar.classList.remove("hidden");
         if (project) {
-          document.title = project.title + " - Xây Dựng & Cuộc Sống";
+          applySeoMetadata(project);
           breadcrumbList.innerHTML = '<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> ' +
             '<a href="#/projects" class="hover:text-amber-600">Công trình</a> <span>/</span> ' +
             '<span class="text-amber-600 font-semibold">' + (project.category || 'Công trình') + '</span> <span>/</span> ' +
@@ -453,7 +508,7 @@
         }
       }
       else if (hash.startsWith("#/resources")) {
-        document.title = "Tài Liệu & Khóa Học - Xây Dựng & Cuộc Sống";
+        applySeoMetadata(null, "Thư Viện Tài Liệu & Khóa Học - Xây Dựng & Cuộc Sống", "Tổng hợp bản vẽ CAD, file mẫu Revit, bảng tính Excel chuyên ngành và các khóa học thực chiến.");
         document.getElementById("view-resources").classList.remove("hidden");
         document.getElementById("nav-resources")?.classList.add("text-amber-400", "font-bold");
         breadcrumbBar.classList.remove("hidden");
@@ -469,7 +524,7 @@
 
         breadcrumbBar.classList.remove("hidden");
         if (resItem) {
-          document.title = resItem.title + " - Xây Dựng & Cuộc Sống";
+          applySeoMetadata(resItem);
           const typeName = resItem.type === 'course' ? 'Khóa học' : 'Tài liệu';
           breadcrumbList.innerHTML = '<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> ' +
             '<a href="#/resources" class="hover:text-amber-600">' + typeName + '</a> <span>/</span> ' +
@@ -693,7 +748,7 @@
     }
 
     function createHomeServiceCardHTML(s, isHero = false) {
-      const slug = createSlug(s.title) || 'dich-vu';
+      const slug = s.slug || createSlug(s.title) || 'dich-vu';
       const url = 'service.html#/service/' + slug + '-' + s.id;
 
       if (isHero) {
