@@ -79,7 +79,7 @@
   <!-- HEADER TỔNG CHUẨN VNEXPRESS -->
   <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 md:py-4 flex justify-between items-center">
-      <a href="#/" class="text-base sm:text-lg md:text-xl font-extrabold tracking-tight flex items-center gap-2 sm:gap-3 hover:opacity-90 transition">
+      <a href="/" onclick="event.preventDefault(); navigateTo('/')" class="text-base sm:text-lg md:text-xl font-extrabold tracking-tight flex items-center gap-2 sm:gap-3 hover:opacity-90 transition">
         <svg class="w-7 h-7 sm:w-9 sm:h-9 flex-shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M22 85V40L42 25V85H22Z" fill="#F59E0B"/>
           <path d="M42 85V15L62 28V85H42Z" fill="#D97706"/>
@@ -95,10 +95,10 @@
       
       <!-- Menu Desktop -->
       <nav class="hidden md:flex gap-7 text-sm font-medium">
-        <a href="#/" id="nav-home" class="hover:text-amber-400 transition py-1">Trang Chủ</a>
-        <a href="#/projects" id="nav-projects" class="hover:text-amber-400 transition py-1">Công Trình</a>
-        <a href="#/articles" id="nav-articles" class="hover:text-amber-400 transition py-1">Bài Viết & Góc Nhìn</a>
-        <a href="#/resources" id="nav-resources" class="hover:text-amber-400 transition py-1">Tài Liệu & Khóa Học</a>
+        <a href="/" id="nav-home" onclick="event.preventDefault(); navigateTo('/')" class="hover:text-amber-400 transition py-1">Trang Chủ</a>
+        <a href="/projects" id="nav-projects" onclick="event.preventDefault(); navigateTo('/projects')" class="hover:text-amber-400 transition py-1">Công Trình</a>
+        <a href="/articles" id="nav-articles" onclick="event.preventDefault(); navigateTo('/articles')" class="hover:text-amber-400 transition py-1">Bài Viết & Góc Nhìn</a>
+        <a href="/resources" id="nav-resources" onclick="event.preventDefault(); navigateTo('/resources')" class="hover:text-amber-400 transition py-1">Tài Liệu & Khóa Học</a>
         <a href="service.html" class="hover:text-amber-400 transition py-1">Dịch Vụ & Sản Phẩm</a>
       </nav>
     </div>
@@ -106,10 +106,10 @@
     <!-- SUB-NAV CUỘN NGANG DÀNH RIÊNG CHO MOBILE & TABLET -->
     <div class="bg-slate-800 border-t border-slate-700/60 md:hidden overflow-x-auto no-scrollbar py-2 px-3">
       <div class="flex items-center gap-4 text-xs font-semibold whitespace-nowrap min-w-max">
-        <a href="#/" id="mob-nav-home" class="text-amber-400 py-1 border-b-2 border-amber-400">Trang Chủ</a>
-        <a href="#/articles" id="mob-nav-articles" class="text-slate-300 hover:text-white py-1">Bài Viết & Góc Nhìn</a>
-        <a href="#/projects" id="mob-nav-projects" class="text-slate-300 hover:text-white py-1">Công Trình</a>
-        <a href="#/resources" id="mob-nav-resources" class="text-slate-300 hover:text-white py-1">Tài Liệu & Khóa Học</a>
+        <a href="/" id="mob-nav-home" onclick="event.preventDefault(); navigateTo('/')" class="text-amber-400 py-1 border-b-2 border-amber-400">Trang Chủ</a>
+        <a href="/articles" id="mob-nav-articles" onclick="event.preventDefault(); navigateTo('/articles')" class="text-slate-300 hover:text-white py-1">Bài Viết & Góc Nhìn</a>
+        <a href="/projects" id="mob-nav-projects" onclick="event.preventDefault(); navigateTo('/projects')" class="text-slate-300 hover:text-white py-1">Công Trình</a>
+        <a href="/resources" id="mob-nav-resources" onclick="event.preventDefault(); navigateTo('/resources')" class="text-slate-300 hover:text-white py-1">Tài Liệu & Khóa Học</a>
         <a href="service.html" id="mob-nav-service" class="text-slate-300 hover:text-white py-1">Dịch Vụ & Sản Phẩm</a>
       </div>
     </div>
@@ -123,7 +123,7 @@
 
   <main class="flex-grow">
 
-    <!-- 1. VIEW: TRANG CHỦ (#/) -->
+    <!-- 1. VIEW: TRANG CHỦ -->
     <div id="view-home" class="page-view">
       
       <!-- HERO BANNER TỔNG HỢP VỚI ĐẦY ĐỦ 4 NÚT ĐIỀU HƯỚNG -->
@@ -134,9 +134,9 @@
           <p class="text-slate-300 text-xs sm:text-base mb-6 max-w-2xl mx-auto line-clamp-3 md:line-clamp-none">Chia sẻ hồ sơ kỹ thuật, tài liệu CAD/Revit, Ebook chuyên ngành chọn lọc và những khóa học thực tế phục vụ kỹ sư, kiến trúc sư.</p>
           
           <div class="flex flex-wrap justify-center gap-2.5 sm:gap-3 max-w-2xl mx-auto">
-            <a href="#/articles" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition shadow">Khám Phá Bài Viết</a>
-            <a href="#/projects" class="bg-slate-800 hover:bg-slate-700 text-white font-medium px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition border border-slate-700">Hồ Sơ Công Trình</a>
-            <a href="#/resources" class="bg-slate-800 hover:bg-slate-700 text-white font-medium px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition border border-slate-700">Tài Liệu & Khóa Học</a>
+            <a href="/articles" onclick="event.preventDefault(); navigateTo('/articles')" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition shadow">Khám Phá Bài Viết</a>
+            <a href="/projects" onclick="event.preventDefault(); navigateTo('/projects')" class="bg-slate-800 hover:bg-slate-700 text-white font-medium px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition border border-slate-700">Hồ Sơ Công Trình</a>
+            <a href="/resources" onclick="event.preventDefault(); navigateTo('/resources')" class="bg-slate-800 hover:bg-slate-700 text-white font-medium px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition border border-slate-700">Tài Liệu & Khóa Học</a>
             <a href="service.html" class="bg-amber-400/20 hover:bg-amber-400/30 text-amber-300 font-bold px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition border border-amber-400/30">Dịch Vụ & Sản Phẩm</a>
           </div>
         </div>
@@ -149,7 +149,7 @@
             <span class="w-1.5 h-5 bg-amber-500 rounded-full inline-block"></span>
             <h2 class="text-lg sm:text-2xl font-bold text-slate-900">Bài Viết Mới Nhất</h2>
           </div>
-          <a href="#/articles" class="text-amber-600 hover:underline text-xs sm:text-sm font-semibold">Xem tất cả →</a>
+          <a href="/articles" onclick="event.preventDefault(); navigateTo('/articles')" class="text-amber-600 hover:underline text-xs sm:text-sm font-semibold">Xem tất cả →</a>
         </div>
         <div id="homeArticlesContainer" class="space-y-4 md:space-y-0 md:grid md:grid-cols-3 md:gap-8">
           <div class="col-span-full text-center py-8 text-slate-400 text-sm">Đang tải bài viết...</div>
@@ -163,7 +163,7 @@
               <span class="w-1.5 h-5 bg-amber-500 rounded-full inline-block"></span>
               <h2 class="text-lg sm:text-2xl font-bold text-slate-900">Công Trình Nổi Bật</h2>
             </div>
-            <a href="#/projects" class="text-amber-600 hover:underline text-xs sm:text-sm font-semibold">Xem tất cả công trình →</a>
+            <a href="/projects" onclick="event.preventDefault(); navigateTo('/projects')" class="text-amber-600 hover:underline text-xs sm:text-sm font-semibold">Xem tất cả công trình →</a>
           </div>
           <div id="homeProjectsContainer" class="space-y-4 md:space-y-0 md:grid md:grid-cols-3 md:gap-8">
             <div class="col-span-full text-center py-8 text-slate-400 text-sm">Đang tải công trình...</div>
@@ -177,7 +177,7 @@
             <span class="w-1.5 h-5 bg-amber-500 rounded-full inline-block"></span>
             <h2 class="text-lg sm:text-2xl font-bold text-slate-900">Tài Liệu & Khóa Học Mới Nhất</h2>
           </div>
-          <a href="#/resources" class="text-amber-600 hover:underline text-xs sm:text-sm font-semibold">Xem tất cả thư viện →</a>
+          <a href="/resources" onclick="event.preventDefault(); navigateTo('/resources')" class="text-amber-600 hover:underline text-xs sm:text-sm font-semibold">Xem tất cả thư viện →</a>
         </div>
         <div id="homeResourcesContainer" class="space-y-4 md:space-y-0 md:grid md:grid-cols-3 md:gap-8">
           <div class="col-span-full text-center py-8 text-slate-400 text-sm">Đang tải tài liệu & khóa học...</div>
@@ -201,7 +201,7 @@
 
     </div>
 
-    <!-- 2. VIEW: DANH SÁCH BÀI VIẾT (#/articles) -->
+    <!-- 2. VIEW: DANH SÁCH BÀI VIẾT -->
     <div id="view-articles" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-10">
       <div class="mb-6 border-b border-slate-200 pb-4">
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Bài Viết & Góc Nhìn</h1>
@@ -215,13 +215,13 @@
       </div>
     </div>
 
-    <!-- 3. VIEW: CHI TIẾT BÀI VIẾT (#/article/slug-id) -->
+    <!-- 3. VIEW: CHI TIẾT BÀI VIẾT -->
     <div id="view-article-detail" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-10">
       <div id="articleDetailContent">
       </div>
     </div>
 
-    <!-- 4. VIEW: DANH SÁCH CÔNG TRÌNH (#/projects) -->
+    <!-- 4. VIEW: DANH SÁCH CÔNG TRÌNH -->
     <div id="view-projects" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-10">
       <div class="mb-6 border-b border-slate-200 pb-4">
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Hồ Sơ Dự Án & Công Trình</h1>
@@ -235,13 +235,13 @@
       </div>
     </div>
 
-    <!-- 5. VIEW: CHI TIẾT CÔNG TRÌNH (#/project/slug-id) -->
+    <!-- 5. VIEW: CHI TIẾT CÔNG TRÌNH -->
     <div id="view-project-detail" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-10">
       <div id="projectDetailContent">
       </div>
     </div>
 
-    <!-- 6. VIEW: DANH SÁCH TÀI LIỆU & KHÓA HỌC (#/resources) -->
+    <!-- 6. VIEW: DANH SÁCH TÀI LIỆU & KHÓA HỌC -->
     <div id="view-resources" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-10">
       <div class="mb-6 border-b border-slate-200 pb-4">
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Thư Viện Tài Liệu & Khóa Học</h1>
@@ -264,7 +264,7 @@
       </div>
     </div>
 
-    <!-- 7. VIEW: CHI TIẾT TÀI LIỆU / KHÓA HỌC (#/resource/slug-id) -->
+    <!-- 7. VIEW: CHI TIẾT TÀI LIỆU / KHÓA HỌC -->
     <div id="view-resource-detail" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-10">
       <div id="resourceDetailContent">
       </div>
@@ -276,7 +276,7 @@
   <footer class="bg-slate-900 text-slate-400 py-6 md:py-8 border-t border-slate-800 mt-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-xs sm:text-sm">
       <!-- Góc trái: Logo & Tên Portal -->
-      <a href="#/" class="flex items-center gap-3 hover:opacity-90 transition">
+      <a href="/" onclick="event.preventDefault(); navigateTo('/')" class="flex items-center gap-3 hover:opacity-90 transition">
         <img src="logo.jpg" alt="Logo Xây Dựng & Cuộc Sống" class="h-24 sm:h-26 w-auto object-contain rounded bg-white p-1 shadow">
         <span class="font-extrabold text-white uppercase tracking-wide text-xs sm:text-sm hidden sm:inline-block">
           <span class="text-amber-500">XÂY DỰNG</span> <span class="text-emerald-500 font-bold">&</span> <span class="text-amber-500">CUỘC SỐNG</span>
@@ -291,6 +291,15 @@
   </footer>
 
   <script>
+    // KHÔI PHỤC ĐƯỜNG DẪN TỪ FILE 404.HTML TRÊN GITHUB PAGES
+    (function() {
+      var redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      if (redirect && redirect !== location.href) {
+        history.replaceState(null, null, redirect);
+      }
+    })();
+
     let globalData = { categories: { articles: [], projects: [], resources: [], courses: [] }, articles: [], projects: [], resources: [], services: [] };
     let currentResourceType = 'resource';
     let currentResourceCategory = 'all';
@@ -310,19 +319,30 @@
         .replace(/^-+|-+$/g, '');
     }
 
+    function navigateTo(url) {
+      if (!url) return;
+      if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('service.html')) {
+        window.location.href = url;
+        return;
+      }
+      history.pushState(null, null, url);
+      handleRouting();
+    }
+
+    // URL CHUẨN SEO BỎ DẤU HASH # VÀ BỎ ID RÁC
     function getArticleUrl(article) {
       const slug = article.slug || createSlug(article.title) || 'bai-viet';
-      return '#/article/' + slug + '-' + article.id;
+      return '/article/' + slug;
     }
 
     function getProjectUrl(project) {
       const slug = project.slug || createSlug(project.title) || 'cong-trinh';
-      return '#/project/' + slug + '-' + project.id;
+      return '/project/' + slug;
     }
 
     function getResourceUrl(resource) {
       const slug = resource.slug || createSlug(resource.title) || 'tai-lieu';
-      return '#/resource/' + slug + '-' + resource.id;
+      return '/resource/' + slug;
     }
 
     // HÀM CẬP NHẬT SEO METADATA ĐỘNG DÀNH CHO CLIENT
@@ -410,132 +430,156 @@
       }
     }
 
-    function updateMobileNavHighlight(hash) {
+    function updateMobileNavHighlight(path) {
       const navIds = ['mob-nav-home', 'mob-nav-articles', 'mob-nav-projects', 'mob-nav-resources', 'mob-nav-service'];
       navIds.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.className = "text-slate-300 hover:text-white py-1";
       });
 
-      if (hash === "#/" || hash === "") {
+      if (path === "/" || path === "" || path === "/index.html") {
         const el = document.getElementById("mob-nav-home");
         if (el) el.className = "text-amber-400 font-bold py-1 border-b-2 border-amber-400";
-      } else if (hash.startsWith("#/articles") || hash.startsWith("#/article")) {
+      } else if (path.startsWith("/articles") || path.startsWith("/article")) {
         const el = document.getElementById("mob-nav-articles");
         if (el) el.className = "text-amber-400 font-bold py-1 border-b-2 border-amber-400";
-      } else if (hash.startsWith("#/projects") || hash.startsWith("#/project")) {
+      } else if (path.startsWith("/projects") || path.startsWith("/project")) {
         const el = document.getElementById("mob-nav-projects");
         if (el) el.className = "text-amber-400 font-bold py-1 border-b-2 border-amber-400";
-      } else if (hash.startsWith("#/resources") || hash.startsWith("#/resource")) {
+      } else if (path.startsWith("/resources") || path.startsWith("/resource")) {
         const el = document.getElementById("mob-nav-resources");
         if (el) el.className = "text-amber-400 font-bold py-1 border-b-2 border-amber-400";
       }
     }
 
     function handleRouting() {
-      const hash = window.location.hash || "#/";
+      let path = window.location.pathname;
+      if (path.length > 1 && path.endsWith('/')) {
+        path = path.slice(0, -1);
+      }
+
       const pageViews = document.querySelectorAll(".page-view");
       const breadcrumbBar = document.getElementById("breadcrumbBar");
       const breadcrumbList = document.getElementById("breadcrumbList");
 
       pageViews.forEach(view => view.classList.add("hidden"));
       document.querySelectorAll("nav a").forEach(a => a.classList.remove("text-amber-400", "font-bold"));
-      updateMobileNavHighlight(hash);
+      updateMobileNavHighlight(path);
 
-      if (hash === "#/" || hash === "") {
+      if (path === "/" || path === "" || path === "/index.html") {
         applySeoMetadata(null, "Xây Dựng & Cuộc Sống - Portal", "Góc nhìn thực chiến ngành xây dựng, chia sẻ hồ sơ kỹ thuật, tài liệu CAD/Revit và khóa học thực tế.");
         document.getElementById("view-home").classList.remove("hidden");
         document.getElementById("nav-home")?.classList.add("text-amber-400", "font-bold");
         breadcrumbBar.classList.add("hidden");
         renderHomeData();
       }
-      else if (hash.startsWith("#/articles")) {
+      else if (path.startsWith("/articles")) {
         applySeoMetadata(null, "Bài Viết & Góc Nhìn - Xây Dựng & Cuộc Sống", "Tổng hợp các bài viết về kỹ thuật thi công, tư duy quản lý và trải nghiệm cuộc sống làm nghề.");
         document.getElementById("view-articles").classList.remove("hidden");
         document.getElementById("nav-articles")?.classList.add("text-amber-400", "font-bold");
         breadcrumbBar.classList.remove("hidden");
-        breadcrumbList.innerHTML = '<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> <span class="font-bold text-slate-800">Bài viết & Góc nhìn</span>';
+        breadcrumbList.innerHTML = '<a href="/" onclick="event.preventDefault(); navigateTo(\'/\')" class="hover:text-amber-600">Trang chủ</a> <span>/</span> <span class="font-bold text-slate-800">Bài viết & Góc nhìn</span>';
         renderArticleCategoryTabs();
         renderArticlesList(globalData.articles || []);
       }
-      else if (hash.startsWith("#/article/")) {
+      else if (path.startsWith("/article/")) {
         document.getElementById("view-article-detail").classList.remove("hidden");
         document.getElementById("nav-articles")?.classList.add("text-amber-400", "font-bold");
         
-        const article = (globalData.articles || []).find(a => hash.includes(a.id));
+        const currentSlug = path.replace('/article/', '');
+
+        const article = (globalData.articles || []).find(a => {
+          const aSlug = a.slug || createSlug(a.title);
+          return aSlug === currentSlug || String(a.id) === currentSlug || path.includes(a.id);
+        });
 
         breadcrumbBar.classList.remove("hidden");
         if (article) {
           applySeoMetadata(article);
-          breadcrumbList.innerHTML = '<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> ' +
-            '<a href="#/articles" class="hover:text-amber-600">Bài viết</a> <span>/</span> ' +
+          breadcrumbList.innerHTML = '<a href="/" onclick="event.preventDefault(); navigateTo(\'/\')" class="hover:text-amber-600">Trang chủ</a> <span>/</span> ' +
+            '<a href="/articles" onclick="event.preventDefault(); navigateTo(\'/articles\')" class="hover:text-amber-600">Bài viết</a> <span>/</span> ' +
             '<span class="text-amber-600 font-semibold">' + (article.category || 'Tản mạn') + '</span> <span>/</span> ' +
             '<span class="font-bold text-slate-800 truncate max-w-[150px] sm:max-w-xs">' + article.title + '</span>';
           renderArticleDetail(article);
         } else {
           document.title = "Bài viết không tồn tại - Xây Dựng & Cuộc Sống";
-          breadcrumbList.innerHTML = '<a href="#/">Trang chủ</a> <span>/</span> <span>Bài viết không tồn tại</span>';
-          document.getElementById("articleDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Bài viết không tồn tại. <a href="#/articles" class="text-amber-600 font-bold underline">Quay lại danh sách</a></div>';
+          breadcrumbList.innerHTML = '<a href="/" onclick="event.preventDefault(); navigateTo(\'/\')">Trang chủ</a> <span>/</span> <span>Bài viết không tồn tại</span>';
+          document.getElementById("articleDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Bài viết không tồn tại. <a href="/articles" onclick="event.preventDefault(); navigateTo(\'/articles\')" class="text-amber-600 font-bold underline">Quay lại danh sách</a></div>';
         }
       }
-      else if (hash.startsWith("#/projects")) {
+      else if (path.startsWith("/projects")) {
         applySeoMetadata(null, "Hồ Sơ Dự Án & Công Trình - Xây Dựng & Cuộc Sống", "Hình ảnh thực tế các công trình dân dụng, biệt thự, nhà phố từ giai đoạn thiết kế đến hoàn thiện.");
         document.getElementById("view-projects").classList.remove("hidden");
         document.getElementById("nav-projects")?.classList.add("text-amber-400", "font-bold");
         breadcrumbBar.classList.remove("hidden");
-        breadcrumbList.innerHTML = '<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> <span class="font-bold text-slate-800">Công trình & Dự án</span>';
+        breadcrumbList.innerHTML = '<a href="/" onclick="event.preventDefault(); navigateTo(\'/\')" class="hover:text-amber-600">Trang chủ</a> <span>/</span> <span class="font-bold text-slate-800">Công trình & Dự án</span>';
         renderProjectCategoryTabs();
         renderProjectsList(globalData.projects || []);
       }
-      else if (hash.startsWith("#/project/")) {
+      else if (path.startsWith("/project/")) {
         document.getElementById("view-project-detail").classList.remove("hidden");
         document.getElementById("nav-projects")?.classList.add("text-amber-400", "font-bold");
 
-        const project = (globalData.projects || []).find(p => hash.includes(p.id));
+        const currentSlug = path.replace('/project/', '');
+
+        const project = (globalData.projects || []).find(p => {
+          const pSlug = p.slug || createSlug(p.title);
+          return pSlug === currentSlug || String(p.id) === currentSlug || path.includes(p.id);
+        });
 
         breadcrumbBar.classList.remove("hidden");
         if (project) {
           applySeoMetadata(project);
-          breadcrumbList.innerHTML = '<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> ' +
-            '<a href="#/projects" class="hover:text-amber-600">Công trình</a> <span>/</span> ' +
+          breadcrumbList.innerHTML = '<a href="/" onclick="event.preventDefault(); navigateTo(\'/\')" class="hover:text-amber-600">Trang chủ</a> <span>/</span> ' +
+            '<a href="/projects" onclick="event.preventDefault(); navigateTo(\'/projects\')" class="hover:text-amber-600">Công trình</a> <span>/</span> ' +
             '<span class="text-amber-600 font-semibold">' + (project.category || 'Công trình') + '</span> <span>/</span> ' +
             '<span class="font-bold text-slate-800 truncate max-w-[150px] sm:max-w-xs">' + project.title + '</span>';
           renderProjectDetail(project);
         } else {
           document.title = "Công trình không tồn tại - Xây Dựng & Cuộc Sống";
-          breadcrumbList.innerHTML = '<a href="#/">Trang chủ</a> <span>/</span> <span>Công trình không tồn tại</span>';
-          document.getElementById("projectDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Công trình không tồn tại. <a href="#/projects" class="text-amber-600 font-bold underline">Quay lại danh sách</a></div>';
+          breadcrumbList.innerHTML = '<a href="/" onclick="event.preventDefault(); navigateTo(\'/\')">Trang chủ</a> <span>/</span> <span>Công trình không tồn tại</span>';
+          document.getElementById("projectDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Công trình không tồn tại. <a href="/projects" onclick="event.preventDefault(); navigateTo(\'/projects\')" class="text-amber-600 font-bold underline">Quay lại danh sách</a></div>';
         }
       }
-      else if (hash.startsWith("#/resources")) {
+      else if (path.startsWith("/resources")) {
         applySeoMetadata(null, "Thư Viện Tài Liệu & Khóa Học - Xây Dựng & Cuộc Sống", "Tổng hợp bản vẽ CAD, file mẫu Revit, bảng tính Excel chuyên ngành và các khóa học thực chiến.");
         document.getElementById("view-resources").classList.remove("hidden");
         document.getElementById("nav-resources")?.classList.add("text-amber-400", "font-bold");
         breadcrumbBar.classList.remove("hidden");
-        breadcrumbList.innerHTML = '<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> <span class="font-bold text-slate-800">Thư viện Tài liệu & Khóa học</span>';
+        breadcrumbList.innerHTML = '<a href="/" onclick="event.preventDefault(); navigateTo(\'/\')" class="hover:text-amber-600">Trang chủ</a> <span>/</span> <span class="font-bold text-slate-800">Thư viện Tài liệu & Khóa học</span>';
         
         switchResourceTypeTab(currentResourceType);
       }
-      else if (hash.startsWith("#/resource/")) {
+      else if (path.startsWith("/resource/")) {
         document.getElementById("view-resource-detail").classList.remove("hidden");
         document.getElementById("nav-resources")?.classList.add("text-amber-400", "font-bold");
 
-        const resItem = (globalData.resources || []).find(r => hash.includes(r.id));
+        const currentSlug = path.replace('/resource/', '');
+
+        const resItem = (globalData.resources || []).find(r => {
+          const rSlug = r.slug || createSlug(r.title);
+          return rSlug === currentSlug || String(r.id) === currentSlug || path.includes(r.id);
+        });
 
         breadcrumbBar.classList.remove("hidden");
         if (resItem) {
           applySeoMetadata(resItem);
           const typeName = resItem.type === 'course' ? 'Khóa học' : 'Tài liệu';
-          breadcrumbList.innerHTML = '<a href="#/" class="hover:text-amber-600">Trang chủ</a> <span>/</span> ' +
-            '<a href="#/resources" class="hover:text-amber-600">' + typeName + '</a> <span>/</span> ' +
+          breadcrumbList.innerHTML = '<a href="/" onclick="event.preventDefault(); navigateTo(\'/\')" class="hover:text-amber-600">Trang chủ</a> <span>/</span> ' +
+            '<a href="/resources" onclick="event.preventDefault(); navigateTo(\'/resources\')" class="hover:text-amber-600">' + typeName + '</a> <span>/</span> ' +
             '<span class="text-amber-600 font-semibold">' + (resItem.category || 'Chung') + '</span> <span>/</span> ' +
             '<span class="font-bold text-slate-800 truncate max-w-[150px] sm:max-w-xs">' + resItem.title + '</span>';
           renderResourceDetail(resItem);
         } else {
           document.title = "Tài liệu không tồn tại - Xây Dựng & Cuộc Sống";
-          breadcrumbList.innerHTML = '<a href="#/">Trang chủ</a> <span>/</span> <span>Tài liệu không tồn tại</span>';
-          document.getElementById("resourceDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Bài đăng không tồn tại. <a href="#/resources" class="text-amber-600 font-bold underline">Quay lại thư viện</a></div>';
+          breadcrumbList.innerHTML = '<a href="/" onclick="event.preventDefault(); navigateTo(\'/\')">Trang chủ</a> <span>/</span> <span>Tài liệu không tồn tại</span>';
+          document.getElementById("resourceDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Bài đăng không tồn tại. <a href="/resources" onclick="event.preventDefault(); navigateTo(\'/resources\')" class="text-amber-600 font-bold underline">Quay lại thư viện</a></div>';
         }
+      } else {
+        document.getElementById("view-home").classList.remove("hidden");
+        document.getElementById("nav-home")?.classList.add("text-amber-400", "font-bold");
+        breadcrumbBar.classList.add("hidden");
+        renderHomeData();
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -630,8 +674,9 @@
     }
 
     function createArticleCardHTML(a, isHero = false) {
+      const url = getArticleUrl(a);
       if (isHero) {
-        return '<a href="' + getArticleUrl(a) + '" class="block pb-5 border-b border-slate-200 md:border-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group mb-4 md:mb-0 cursor-pointer">' +
+        return '<a href="' + url + '" onclick="event.preventDefault(); navigateTo(this.getAttribute(\'href\'))" class="block pb-5 border-b border-slate-200 md:border-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group mb-4 md:mb-0 cursor-pointer">' +
           (a.image ? '<div class="overflow-hidden h-48 sm:h-56 md:h-48 bg-slate-100 rounded-lg md:rounded-none mb-3 md:mb-0"><img src="' + a.image + '" alt="' + a.title + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>' : '') +
           '<div class="md:p-5">' +
             '<span class="text-[11px] font-bold text-amber-600 uppercase tracking-wider">' + (a.category || 'Tản mạn') + '</span>' +
@@ -645,7 +690,7 @@
         '</a>';
       }
 
-      return '<a href="' + getArticleUrl(a) + '" class="flex gap-3 sm:gap-4 py-3.5 border-b border-slate-200/80 md:border-0 md:py-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group md:flex-col md:justify-between cursor-pointer">' +
+      return '<a href="' + url + '" onclick="event.preventDefault(); navigateTo(this.getAttribute(\'href\'))" class="flex gap-3 sm:gap-4 py-3.5 border-b border-slate-200/80 md:border-0 md:py-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group md:flex-col md:justify-between cursor-pointer">' +
         '<div class="md:hidden flex-grow">' +
           '<span class="text-[10px] font-bold text-amber-600 uppercase tracking-wider block mb-0.5">' + (a.category || 'Tản mạn') + '</span>' +
           '<h3 class="font-bold text-sm text-slate-900 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + a.title + '</h3>' +
@@ -666,8 +711,9 @@
     }
 
     function createProjectCardHTML(p, isHero = false) {
+      const url = getProjectUrl(p);
       if (isHero) {
-        return '<a href="' + getProjectUrl(p) + '" class="block pb-5 border-b border-slate-200 md:border-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group mb-4 md:mb-0 cursor-pointer">' +
+        return '<a href="' + url + '" onclick="event.preventDefault(); navigateTo(this.getAttribute(\'href\'))" class="block pb-5 border-b border-slate-200 md:border-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group mb-4 md:mb-0 cursor-pointer">' +
           (p.image ? '<div class="overflow-hidden h-48 sm:h-56 md:h-48 bg-slate-100 rounded-lg md:rounded-none mb-3 md:mb-0"><img src="' + p.image + '" alt="' + p.title + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>' : '') +
           '<div class="md:p-5">' +
             '<span class="text-[11px] font-bold text-amber-600 uppercase tracking-wider">' + (p.category || 'Công trình') + '</span>' +
@@ -681,7 +727,7 @@
         '</a>';
       }
 
-      return '<a href="' + getProjectUrl(p) + '" class="flex gap-3 sm:gap-4 py-3.5 border-b border-slate-200/80 md:border-0 md:py-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group md:flex-col md:justify-between cursor-pointer">' +
+      return '<a href="' + url + '" onclick="event.preventDefault(); navigateTo(this.getAttribute(\'href\'))" class="flex gap-3 sm:gap-4 py-3.5 border-b border-slate-200/80 md:border-0 md:py-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group md:flex-col md:justify-between cursor-pointer">' +
         '<div class="md:hidden flex-grow">' +
           '<span class="text-[10px] font-bold text-amber-600 uppercase tracking-wider block mb-0.5">' + (p.category || 'Công trình') + '</span>' +
           '<h3 class="font-bold text-sm text-slate-900 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + p.title + '</h3>' +
@@ -704,7 +750,7 @@
     function createResourceCardHTML(r, isHero = false) {
       const url = getResourceUrl(r);
       if (isHero) {
-        return '<a href="' + url + '" class="block pb-5 border-b border-slate-200 md:border-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group mb-4 md:mb-0 cursor-pointer">' +
+        return '<a href="' + url + '" onclick="event.preventDefault(); navigateTo(this.getAttribute(\'href\'))" class="block pb-5 border-b border-slate-200 md:border-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group mb-4 md:mb-0 cursor-pointer">' +
           (r.image ? '<div class="overflow-hidden h-48 sm:h-56 md:h-48 bg-slate-100 rounded-lg md:rounded-none mb-3 md:mb-0"><img src="' + r.image + '" alt="' + r.title + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>' : '') +
           '<div class="md:p-5">' +
             '<div class="flex items-center justify-between gap-2 mb-1">' +
@@ -721,7 +767,7 @@
         '</a>';
       }
 
-      return '<a href="' + url + '" class="flex gap-3 sm:gap-4 py-3.5 border-b border-slate-200/80 md:border-0 md:py-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group md:flex-col md:justify-between cursor-pointer">' +
+      return '<a href="' + url + '" onclick="event.preventDefault(); navigateTo(this.getAttribute(\'href\'))" class="flex gap-3 sm:gap-4 py-3.5 border-b border-slate-200/80 md:border-0 md:py-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group md:flex-col md:justify-between cursor-pointer">' +
         '<div class="md:hidden flex-grow">' +
           '<div class="flex items-center gap-2 mb-1">' +
             '<span class="text-[10px] font-bold text-amber-600 uppercase bg-amber-50 px-2 py-0.5 rounded border border-amber-200">' + (r.category || 'Chung') + '</span>' +
@@ -878,7 +924,7 @@
         .filter(a => String(a.id) !== String(article.id))
         .slice(0, 5);
 
-      const relatedArticlesHTML = relatedArticles.map(a => '<a href="' + getArticleUrl(a) + '" class="flex gap-3 group items-start border-b border-slate-100 pb-3">' +
+      const relatedArticlesHTML = relatedArticles.map(a => '<a href="' + getArticleUrl(a) + '" onclick="event.preventDefault(); navigateTo(this.getAttribute(\'href\'))" class="flex gap-3 group items-start border-b border-slate-100 pb-3">' +
         (a.image ? '<img src="' + a.image + '" alt="' + a.title + '" class="w-20 h-14 sm:w-24 sm:h-16 object-cover rounded-lg flex-shrink-0 group-hover:opacity-90 transition">' : '<div class="w-20 h-14 bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center text-slate-400 text-xs font-bold">📄</div>') +
         '<div class="flex-grow">' +
           '<h4 class="text-xs sm:text-sm font-bold text-slate-800 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + a.title + '</h4>' +
@@ -899,7 +945,7 @@
             (article.summary ? '<div class="bg-amber-50/70 p-4 sm:p-5 rounded-xl border-l-4 border-amber-500 italic text-slate-700 text-sm sm:text-base mb-6 leading-relaxed font-medium">' + article.summary + '</div>' : '') +
             '<div class="article-body border-t border-slate-100 pt-5">' + (fixYouTubeIframes(article.content) || '<p class="text-slate-400">Nội dung chi tiết bài viết đang được cập nhật.</p>') + '</div>' +
             '<div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs sm:text-sm">' +
-              '<a href="#/articles" class="inline-flex items-center gap-1.5 font-bold text-slate-700 hover:text-amber-600 transition">← Danh sách bài viết</a>' +
+              '<a href="/articles" onclick="event.preventDefault(); navigateTo(\'/articles\')" class="inline-flex items-center gap-1.5 font-bold text-slate-700 hover:text-amber-600 transition">← Danh sách bài viết</a>' +
               '<button onclick="window.scrollTo({top:0, behavior:\'smooth\'})" class="text-xs text-slate-400 hover:text-slate-600">▲ Đầu trang</button>' +
             '</div>' +
           '</article>' +
@@ -908,7 +954,7 @@
           '<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm sticky top-20 space-y-3">' +
             '<div class="border-b border-slate-200 pb-2.5 flex items-center justify-between">' +
               '<h3 class="font-bold text-slate-900 text-sm sm:text-base uppercase tracking-wider flex items-center gap-2"><span class="w-1.5 h-4 bg-amber-500 rounded-full inline-block"></span> Xem Nhiều</h3>' +
-              '<a href="#/articles" class="text-xs text-amber-600 hover:underline font-semibold">Xem tất cả</a>' +
+              '<a href="/articles" onclick="event.preventDefault(); navigateTo(\'/articles\')" class="text-xs text-amber-600 hover:underline font-semibold">Xem tất cả</a>' +
             '</div>' +
             '<div class="space-y-3">' + (relatedArticlesHTML || '<p class="text-xs text-slate-400">Chưa có bài viết liên quan.</p>') + '</div>' +
           '</div>' +
@@ -946,7 +992,7 @@
         .filter(p => String(p.id) !== String(project.id))
         .slice(0, 5);
 
-      const relatedProjectsHTML = relatedProjects.map(p => '<a href="' + getProjectUrl(p) + '" class="flex gap-3 group items-start border-b border-slate-100 pb-3">' +
+      const relatedProjectsHTML = relatedProjects.map(p => '<a href="' + getProjectUrl(p) + '" onclick="event.preventDefault(); navigateTo(this.getAttribute(\'href\'))" class="flex gap-3 group items-start border-b border-slate-100 pb-3">' +
         (p.image ? '<img src="' + p.image + '" alt="' + p.title + '" class="w-20 h-14 sm:w-24 sm:h-16 object-cover rounded-lg flex-shrink-0 group-hover:opacity-90 transition">' : '<div class="w-20 h-14 bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center text-slate-400 text-xs font-bold">🏢</div>') +
         '<div class="flex-grow">' +
           '<h4 class="text-xs sm:text-sm font-bold text-slate-800 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + p.title + '</h4>' +
@@ -966,7 +1012,7 @@
             ((project.summary || project.description) ? '<div class="bg-amber-50/70 p-4 sm:p-5 rounded-xl border-l-4 border-amber-500 italic text-slate-700 text-sm sm:text-base mb-6 leading-relaxed font-medium">' + (project.summary || project.description) + '</div>' : '') +
             '<div class="article-body border-t border-slate-100 pt-5">' + (fixYouTubeIframes(project.content) || '<p class="text-slate-400">Nội dung chi tiết hồ sơ công trình đang được cập nhật.</p>') + '</div>' +
             '<div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs sm:text-sm">' +
-              '<a href="#/projects" class="inline-flex items-center gap-1.5 font-bold text-slate-700 hover:text-amber-600 transition">← Danh sách công trình</a>' +
+              '<a href="/projects" onclick="event.preventDefault(); navigateTo(\'/projects\')" class="inline-flex items-center gap-1.5 font-bold text-slate-700 hover:text-amber-600 transition">← Danh sách công trình</a>' +
               '<button onclick="window.scrollTo({top:0, behavior:\'smooth\'})" class="text-xs text-slate-400 hover:text-slate-600">▲ Đầu trang</button>' +
             '</div>' +
           '</article>' +
@@ -975,7 +1021,7 @@
           '<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm sticky top-20 space-y-3">' +
             '<div class="border-b border-slate-200 pb-2.5 flex items-center justify-between">' +
               '<h3 class="font-bold text-slate-900 text-sm sm:text-base uppercase tracking-wider flex items-center gap-2"><span class="w-1.5 h-4 bg-amber-500 rounded-full inline-block"></span> Công Trình Khác</h3>' +
-              '<a href="#/projects" class="text-xs text-amber-600 hover:underline font-semibold">Xem tất cả</a>' +
+              '<a href="/projects" onclick="event.preventDefault(); navigateTo(\'/projects\')" class="text-xs text-amber-600 hover:underline font-semibold">Xem tất cả</a>' +
             '</div>' +
             '<div class="space-y-3">' + (relatedProjectsHTML || '<p class="text-xs text-slate-400">Chưa có công trình liên quan.</p>') + '</div>' +
           '</div>' +
@@ -1005,7 +1051,7 @@
         .filter(item => String(item.id) !== String(r.id) && (item.type || 'resource') === (r.type || 'resource'))
         .slice(0, 5);
 
-      const relatedHTML = relatedResources.map(item => '<a href="' + getResourceUrl(item) + '" class="flex gap-3 group items-start border-b border-slate-100 pb-3">' +
+      const relatedHTML = relatedResources.map(item => '<a href="' + getResourceUrl(item) + '" onclick="event.preventDefault(); navigateTo(this.getAttribute(\'href\'))" class="flex gap-3 group items-start border-b border-slate-100 pb-3">' +
         (item.image ? '<img src="' + item.image + '" alt="' + item.title + '" class="w-20 h-14 sm:w-24 sm:h-16 object-cover rounded-lg flex-shrink-0 group-hover:opacity-90 transition">' : '<div class="w-20 h-14 bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center text-slate-400 text-xs font-bold">' + (item.type === 'course' ? '🎓' : '📄') + '</div>') +
         '<div class="flex-grow">' +
           '<h4 class="text-xs sm:text-sm font-bold text-slate-800 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + item.title + '</h4>' +
@@ -1044,7 +1090,7 @@
             summaryBox +
             '<div class="article-body border-t border-slate-100 pt-5">' + (fixYouTubeIframes(r.content) || '<p class="text-slate-400">Nội dung đề cương đang được cập nhật thêm.</p>') + '</div>' +
             '<div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs sm:text-sm">' +
-              '<a href="#/resources" class="inline-flex items-center gap-1.5 font-bold text-slate-700 hover:text-amber-600 transition">← Quay lại Thư viện</a>' +
+              '<a href="/resources" onclick="event.preventDefault(); navigateTo(\'/resources\')" class="inline-flex items-center gap-1.5 font-bold text-slate-700 hover:text-amber-600 transition">← Quay lại Thư viện</a>' +
               '<button onclick="window.scrollTo({top:0, behavior:\'smooth\'})" class="text-xs text-slate-400 hover:text-slate-600">▲ Đầu trang</button>' +
             '</div>' +
           '</article>' +
@@ -1053,7 +1099,7 @@
           '<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm sticky top-20 space-y-3">' +
             '<div class="border-b border-slate-200 pb-2.5 flex items-center justify-between">' +
               '<h3 class="font-bold text-slate-900 text-sm sm:text-base uppercase tracking-wider flex items-center gap-2"><span class="w-1.5 h-4 bg-amber-500 rounded-full inline-block"></span> Nội Dung Cùng Loại</h3>' +
-              '<a href="#/resources" class="text-xs text-amber-600 hover:underline font-semibold">Xem tất cả</a>' +
+              '<a href="/resources" onclick="event.preventDefault(); navigateTo(\'/resources\')" class="text-xs text-amber-600 hover:underline font-semibold">Xem tất cả</a>' +
             '</div>' +
             '<div class="space-y-3">' + (relatedHTML || '<p class="text-xs text-slate-400">Chưa có bài đăng cùng loại khác.</p>') + '</div>' +
           '</div>' +
@@ -1061,7 +1107,7 @@
       '</div>';
     }
 
-    window.addEventListener("hashchange", handleRouting);
+    window.addEventListener("popstate", handleRouting);
     window.onload = loadData;
   </script>
 </body>
