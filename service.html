@@ -587,7 +587,8 @@
         return;
       }
 
-      if (parseInt(captchaUserAns) !== captchaExpectedResult) {
+      // Đã sửa kiểm tra phép tính CAPTCHA an toàn
+      if (parseInt(captchaUserAns) !== (captchaNum1 + captchaNum2)) {
         alert("❌ Mã xác thực (phép tính) chưa đúng! Vui lòng tính lại.");
         generateCaptcha();
         return;
