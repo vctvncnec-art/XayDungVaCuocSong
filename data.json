@@ -26,20 +26,6 @@
   },
   "articles": [
     {
-      "id": "ART_1791191293905",
-      "title": "giấc ngủ ngon",
-      "category": "Trải nghiệm cuộc sống",
-      "summary": "",
-      "content": "<p>Giảm thời lượng giấc ngủ sâu, gây bệnh mạn tính\nGiấc ngủ sâu, còn gọi là giấc ngủ sóng chậm, là giai đoạn phục hồi thể chất quan trọng của chu kỳ giấc ngủ. Đáng chú ý, giấc ngủ sâu tập trung chủ yếu vào nửa đầu của đêm, nghĩa là bạn càng đi ngủ muộn thì thời lượng giấc ngủ sâu càng ít.\n•        \n \nThời điểm tồi tệ nhất cho giấc ngủ là mấy giờ?© BÌNH MINH\n\nNgủ đủ giấc nhưng thức dậy vẫn đau đầu: Vì sao?ĐỌC NGAY\nNhững người thường xuyên không có đủ giấc ngủ sâu dễ thức dậy với cảm giác chưa được nghỉ ngơi đầy đủ, bất kể họ đã ngủ bao lâu. \nTheo thời gian, sự thiếu hụt này có thể liên quan đến suy giảm chức năng nhận thức và khả năng phục hồi thể chất kém hơn.\nNghiên cứu cho thấy tình trạng lệch nhịp sinh học mạn tính có thể dẫn đến nguy cơ cao hơn mắc các bệnh lý lâu dài. \n\nNhững người thức hoặc ngủ vào những giờ bất thường có nguy cơ cao hơn mắc nhiều bệnh lý mạn tính, chẳng hạn như bệnh tim mạch, tiểu đường type 2, béo phì, sa sút trí tuệ và trầm cảm. Việc thường xuyên đi ngủ muộn cũng có thể dẫn đến sự phát triển của các rối loạn giấc ngủ mạn tính.\n<img src=\"https://lh3.googleusercontent.com/d/1aGGfF5G0pxLsBdtGqKruprvvwxuBdTc6\">\n5 cách mang lại giấc ngủ ngon\nĐể giúp duy trì chất lượng giấc ngủ và sức khỏe lâu dài, có thể cân nhắc những thói quen sau:\n\n- Duy trì lịch ngủ và thức nhất quán: Đi ngủ và thức dậy vào cùng một thời điểm mỗi ngày, kể cả cuối tuần.\n\n- Giảm độ sáng của đèn và tránh sử dụng màn hình ít nhất một đến hai giờ trước khi đi ngủ: Giảm tiếp xúc với ánh sáng vào buổi tối báo hiệu cho não rằng đã đến lúc thư giãn và hỗ trợ quá trình sản xuất melatonin.\n\n- Tiếp xúc với ánh sáng tự nhiên vào ban ngày, đặc biệt là vào buổi sáng: Ánh sáng buổi sáng là một trong những tín hiệu mạnh nhất mà nhịp sinh học tiếp nhận, đồng thời giúp tạo nền tảng cho giấc ngủ tốt hơn vào đêm hôm đó.\n\n- Tránh caffeine sau 3h chiều và không sử dụng rượu để hỗ trợ giấc ngủ: Caffeine có thời gian bán thải từ 5 - 6 giờ. Rượu có thể giúp bạn đi vào giấc ngủ nhanh hơn nhưng lại làm giảm chất lượng giấc ngủ khi được chuyển hóa trong suốt đêm.\n\n- Giữ phòng ngủ mát: Môi trường ngủ mát hơn hỗ trợ quá trình hạ nhiệt độ cơ thể, giúp dễ đi vào giấc ngủ hơn.</p>",
-      "image": "https://lh3.googleusercontent.com/d/18P0Iqs6oYGqrJNwhOMo0n_hhCnXaAiK7",
-      "date": "2026-10-06 00:00:00",
-      "status": "published",
-      "seoTitle": "",
-      "slug": "",
-      "metaDescription": "",
-      "focusKeywords": ""
-    },
-    {
       "id": "ART_1791882358416",
       "title": "Xây nhà cần bắt đầu từ đâu? Hướng dẫn từ A–Z cho người mới",
       "category": "Cẩm nang xây nhà",
@@ -54,44 +40,8 @@
       "focusKeywords": "kinh nghiệm xây nhà"
     }
   ],
-  "projects": [
-    {
-      "id": "PROJ_1791281859155",
-      "title": "nha pho 1",
-      "category": "Nhà phố & Biệt thự",
-      "summary": "",
-      "content": "<p><img src=\"https://lh3.googleusercontent.com/d/17QoNhgTJxZBM1-trvdb-Uhu-cE6sQs_N\"></p><p>123123</p><p><img src=\"\"></p>",
-      "image": "",
-      "location": "dong nai",
-      "year": "2026",
-      "date": "2026-10-06 00:00:00",
-      "status": "published",
-      "seoTitle": "",
-      "slug": "",
-      "metaDescription": "",
-      "focusKeywords": ""
-    }
-  ],
-  "resources": [
-    {
-      "id": "RES_1791520695176",
-      "title": "ban ve 2",
-      "type": "resource",
-      "category": "bản vẽ cad",
-      "author": "Admin Xây Dựng",
-      "image": "https://lh3.googleusercontent.com/d/1uzyD4YIV54CXxWR5S65y-4zHNwjuX8HE",
-      "summary": "",
-      "content": "<p>tài liệu 1</p>",
-      "fileUrl": "https://drive.google.com/file/d/12WM1IiCnqwwhD5sH-EGmI4czFcakYGpJ/view?usp=drive_link",
-      "fileType": "cad",
-      "fileSize": "15mb",
-      "date": "2026-10-09 00:00:00",
-      "seoTitle": "",
-      "slug": "",
-      "metaDescription": "",
-      "focusKeywords": ""
-    }
-  ],
+  "projects": [],
+  "resources": [],
   "services": [
     {
       "id": "SRV_1791512881864",
@@ -103,49 +53,12 @@
       "image": "https://lh3.googleusercontent.com/d/1Rx6VPg2K0xZS5LK6zzSwSjSz-ADIa2st",
       "summary": "",
       "content": "<p>sản phẩm 1</p><p>https://lh3.googleusercontent.com/d/1Rx6VPg2K0xZS5LK6zzSwSjSz-ADIa2st</p>",
-      "date": "2026-10-09 00:00:00",
+      "date": "2026-10-16 00:00:00",
       "seoTitle": "",
-      "slug": "",
+      "slug": "thi-cong-nha-pho-nhon-trach-dong-nai",
       "metaDescription": "",
-      "focusKeywords": ""
-    },
-    {
-      "id": "SRV_1791514095527",
-      "title": "123",
-      "type": "townhouse",
-      "category": "Thiết kế nhà phố",
-      "price": "Liên hệ",
-      "author": "Admin Xây Dựng",
-      "image": "",
-      "summary": "",
-      "content": "<p>123</p>",
-      "date": "2026-10-09 00:00:00",
-      "seoTitle": "",
-      "slug": "",
-      "metaDescription": "",
-      "focusKeywords": ""
-    }
-  ],
-  "consultations": [
-    {
-      "id": "LEAD_1791516540043",
-      "name": "anh A",
-      "phone": "123",
-      "address": "nhơn trạch",
-      "serviceTitle": "123",
-      "note": "1 tầng",
-      "date": "2026-10-09 10:29:00",
-      "status": "Notified"
-    },
-    {
-      "id": "LEAD_1791517282758",
-      "name": "khach 2",
-      "phone": "2222",
-      "address": "bà rịa",
-      "serviceTitle": "Thi công nhà phố Nhơn Trạch - Đồng Nai",
-      "note": "",
-      "date": "2026-10-09 10:41:22",
-      "status": "Notified"
+      "focusKeywords": "",
+      "status": "published"
     }
   ]
 }

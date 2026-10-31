@@ -243,7 +243,16 @@
     let globalData = { contact: {}, categories: {}, services: [] };
     let currentServiceType = 'townhouse';
     let currentServiceCategory = 'all';
-    let captchaExpectedResult = 0;
+    let captchaNum1 = 0, captchaNum2 = 0;
+
+    // HÀM KIỂM TRA MỤC CÓ ĐƯỢC PHÉP HIỂN THỊ CÔNG KHAI KHÔNG (LỌC BỎ CÁC MỤC BỊ ẨN)
+    function isItemVisible(item) {
+      if (!item) return false;
+      const st = String(item.status || '').toLowerCase().trim();
+      const hd = String(item.hidden || '').toLowerCase().trim();
+      if (st === 'hidden' || hd === 'true' || item.hidden === true) return false;
+      return true;
+    }
 
     function createSlug(text) {
       if (!text) return '';
@@ -339,7 +348,12 @@
         if (res.ok) {
           const staticData = await res.json();
           if (staticData) {
-            globalData = staticData;
+            // LỌC BỎ CÁC DỊCH VỤ / SẢN PHẨM BỊ ẨN KHI NẠP DỮ LIỆU BAN ĐẦU
+            globalData = {
+              contact: staticData.contact || {},
+              categories: staticData.categories || {},
+              services: (staticData.services || []).filter(isItemVisible)
+            };
             handleRouting();
             return;
           }
@@ -373,7 +387,7 @@
         } else {
           document.title = "Dịch vụ không tồn tại - Xây Dựng & Cuộc Sống";
           breadcrumbList.innerHTML = '<a href="index.html#/">Trang chủ</a> <span>/</span> <span>Dịch vụ không tồn tại</span>';
-          document.getElementById("serviceDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Dịch vụ không tồn tại. <a href="service.html" class="text-amber-600 font-bold underline">Quay lại danh sách</a></div>';
+          document.getElementById("serviceDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Dịch vụ không tồn tại hoặc đã bị ẩn. <a href="service.html" class="text-amber-600 font-bold underline">Quay lại danh sách</a></div>';
         }
       } else {
         applySeoMetadata(null, "Dịch Vụ & Sản Phẩm - Xây Dựng & Cuộc Sống", "Giải pháp thi công nhà phố trọn gói, tư vấn quản lý dự án và công cụ hỗ trợ xây dựng thực chiến.");
@@ -534,12 +548,11 @@
 
     // TẠO PHÉP TÍNH CAPTCHA NGẪU NHIÊN
     function generateCaptcha() {
-      const num1 = Math.floor(Math.random() * 9) + 1;
-      const num2 = Math.floor(Math.random() * 9) + 1;
-      captchaExpectedResult = num1 + num2;
+      captchaNum1 = Math.floor(Math.random() * 9) + 1;
+      captchaNum2 = Math.floor(Math.random() * 9) + 1;
       const questionEl = document.getElementById("captchaQuestionText");
       if (questionEl) {
-        questionEl.innerText = `${num1} + ${num2} = ?`;
+        questionEl.innerText = `${captchaNum1} + ${captchaNum2} = ?`;
       }
       const answerInput = document.getElementById("captchaUserAnswer");
       if (answerInput) answerInput.value = "";
@@ -591,8 +604,9 @@
         serviceTitle: serviceTitle,
         note: note,
         website_hp: honeypotVal,
+        captchaNum1: captchaNum1,
+        captchaNum2: captchaNum2,
         captchaAnswer: captchaUserAns,
-        captchaExpected: captchaExpectedResult,
         originDomain: window.location.hostname
       };
 

@@ -99,7 +99,7 @@
         <a href="/projects" id="nav-projects" onclick="event.preventDefault(); navigateTo('/projects')" class="hover:text-amber-400 transition py-1">Công Trình</a>
         <a href="/articles" id="nav-articles" onclick="event.preventDefault(); navigateTo('/articles')" class="hover:text-amber-400 transition py-1">Bài Viết & Góc Nhìn</a>
         <a href="/resources" id="nav-resources" onclick="event.preventDefault(); navigateTo('/resources')" class="hover:text-amber-400 transition py-1">Tài Liệu & Khóa Học</a>
-        <a href="service.html" class="hover:text-amber-400 transition py-1">Dịch Vụ & Sản Phẩm</a>
+        <a href="/service.html" id="nav-service" class="hover:text-amber-400 transition py-1">Dịch Vụ & Sản Phẩm</a>
       </nav>
     </div>
 
@@ -110,7 +110,7 @@
         <a href="/articles" id="mob-nav-articles" onclick="event.preventDefault(); navigateTo('/articles')" class="text-slate-300 hover:text-white py-1">Bài Viết & Góc Nhìn</a>
         <a href="/projects" id="mob-nav-projects" onclick="event.preventDefault(); navigateTo('/projects')" class="text-slate-300 hover:text-white py-1">Công Trình</a>
         <a href="/resources" id="mob-nav-resources" onclick="event.preventDefault(); navigateTo('/resources')" class="text-slate-300 hover:text-white py-1">Tài Liệu & Khóa Học</a>
-        <a href="service.html" id="mob-nav-service" class="text-slate-300 hover:text-white py-1">Dịch Vụ & Sản Phẩm</a>
+        <a href="/service.html" id="mob-nav-service" class="text-slate-300 hover:text-white py-1">Dịch Vụ & Sản Phẩm</a>
       </div>
     </div>
   </header>
@@ -137,7 +137,7 @@
             <a href="/articles" onclick="event.preventDefault(); navigateTo('/articles')" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition shadow">Khám Phá Bài Viết</a>
             <a href="/projects" onclick="event.preventDefault(); navigateTo('/projects')" class="bg-slate-800 hover:bg-slate-700 text-white font-medium px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition border border-slate-700">Hồ Sơ Công Trình</a>
             <a href="/resources" onclick="event.preventDefault(); navigateTo('/resources')" class="bg-slate-800 hover:bg-slate-700 text-white font-medium px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition border border-slate-700">Tài Liệu & Khóa Học</a>
-            <a href="service.html" class="bg-amber-400/20 hover:bg-amber-400/30 text-amber-300 font-bold px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition border border-amber-400/30">Dịch Vụ & Sản Phẩm</a>
+            <a href="/service.html" class="bg-amber-400/20 hover:bg-amber-400/30 text-amber-300 font-bold px-3.5 py-2.5 rounded-lg text-xs sm:text-sm transition border border-amber-400/30">Dịch Vụ & Sản Phẩm</a>
           </div>
         </div>
       </section>
@@ -191,7 +191,7 @@
               <span class="w-1.5 h-5 bg-amber-500 rounded-full inline-block"></span>
               <h2 class="text-lg sm:text-2xl font-bold text-slate-900">Dịch Vụ & Giải Pháp Thi Công</h2>
             </div>
-            <a href="service.html" class="text-amber-600 hover:underline text-xs sm:text-sm font-semibold">Xem tất cả dịch vụ →</a>
+            <a href="/service.html" class="text-amber-600 hover:underline text-xs sm:text-sm font-semibold">Xem tất cả dịch vụ →</a>
           </div>
           <div id="homeServicesContainer" class="space-y-4 md:space-y-0 md:grid md:grid-cols-3 md:gap-8">
             <div class="col-span-full text-center py-8 text-slate-400 text-sm">Đang tải dịch vụ & sản phẩm...</div>
@@ -291,7 +291,15 @@
   </footer>
 
   <script>
-    // KHÔI PHỤC ĐƯỜNG DẪN TỪ FILE 404.HTML TRÊN GITHUB PAGES
+    function formatDateSafe(dateStr) {
+      if (!dateStr) return '2026';
+      // Chuyển "2026-10-16 00:00:00" thành "2026-10-16T00:00:00" chuẩn ISO tương thích iOS/Safari
+      const formattedStr = String(dateStr).replace(' ', 'T');
+      const d = new Date(formattedStr);
+      return isNaN(d.getTime()) ? dateStr : d.toLocaleDateString('vi-VN');
+    }
+
+    // KHÔI PHỤC ĐƯỜNG DẪN TỪ FILE 404.HTML TRÊN GITHUB PAGES / VERCEL
     (function() {
       var redirect = sessionStorage.redirect;
       delete sessionStorage.redirect;
@@ -303,6 +311,15 @@
     let globalData = { categories: { articles: [], projects: [], resources: [], courses: [] }, articles: [], projects: [], resources: [], services: [] };
     let currentResourceType = 'resource';
     let currentResourceCategory = 'all';
+
+    // HÀM KIỂM TRA MỤC CÓ ĐƯỢC PHÉP HIỂN THỊ CÔNG KHAI KHÔNG (LỌC BỎ CÁC MỤC BỊ ẨN)
+    function isItemVisible(item) {
+      if (!item) return false;
+      const st = String(item.status || '').toLowerCase().trim();
+      const hd = String(item.hidden || '').toLowerCase().trim();
+      if (st === 'hidden' || hd === 'true' || item.hidden === true) return false;
+      return true;
+    }
 
     function createSlug(text) {
       if (!text) return '';
@@ -321,7 +338,7 @@
 
     function navigateTo(url) {
       if (!url) return;
-      if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('service.html')) {
+      if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('service.html') || url.startsWith('/service.html')) {
         window.location.href = url;
         return;
       }
@@ -419,7 +436,14 @@
         if (res.ok) {
           const staticData = await res.json();
           if (staticData) {
-            globalData = staticData;
+            // LỌC BỎ CÁC BÀI ĐĂNG BỊ ẨN KHI NẠP DỮ LIỆU BAN ĐẦU
+            globalData = {
+              categories: staticData.categories || { articles: [], projects: [], resources: [], courses: [] },
+              articles: (staticData.articles || []).filter(isItemVisible),
+              projects: (staticData.projects || []).filter(isItemVisible),
+              resources: (staticData.resources || []).filter(isItemVisible),
+              services: (staticData.services || []).filter(isItemVisible)
+            };
             handleRouting();
             return;
           }
@@ -454,6 +478,13 @@
 
     function handleRouting() {
       let path = window.location.pathname;
+      const hash = window.location.hash;
+
+      // Xử lý chuyển hướng từ service.html truyền sang dạng Hash (index.html#/projects)
+      if (hash && hash.startsWith('#/')) {
+        path = hash.replace('#', '');
+      }
+
       if (path.length > 1 && path.endsWith('/')) {
         path = path.slice(0, -1);
       }
@@ -504,7 +535,7 @@
         } else {
           document.title = "Bài viết không tồn tại - Xây Dựng & Cuộc Sống";
           breadcrumbList.innerHTML = '<a href="/" onclick="event.preventDefault(); navigateTo(\'/\')">Trang chủ</a> <span>/</span> <span>Bài viết không tồn tại</span>';
-          document.getElementById("articleDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Bài viết không tồn tại. <a href="/articles" onclick="event.preventDefault(); navigateTo(\'/articles\')" class="text-amber-600 font-bold underline">Quay lại danh sách</a></div>';
+          document.getElementById("articleDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Bài viết không tồn tại hoặc đã bị ẩn. <a href="/articles" onclick="event.preventDefault(); navigateTo(\'/articles\')" class="text-amber-600 font-bold underline">Quay lại danh sách</a></div>';
         }
       }
       else if (path.startsWith("/projects")) {
@@ -538,7 +569,7 @@
         } else {
           document.title = "Công trình không tồn tại - Xây Dựng & Cuộc Sống";
           breadcrumbList.innerHTML = '<a href="/" onclick="event.preventDefault(); navigateTo(\'/\')">Trang chủ</a> <span>/</span> <span>Công trình không tồn tại</span>';
-          document.getElementById("projectDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Công trình không tồn tại. <a href="/projects" onclick="event.preventDefault(); navigateTo(\'/projects\')" class="text-amber-600 font-bold underline">Quay lại danh sách</a></div>';
+          document.getElementById("projectDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Công trình không tồn tại hoặc đã bị ẩn. <a href="/projects" onclick="event.preventDefault(); navigateTo(\'/projects\')" class="text-amber-600 font-bold underline">Quay lại danh sách</a></div>';
         }
       }
       else if (path.startsWith("/resources")) {
@@ -573,7 +604,7 @@
         } else {
           document.title = "Tài liệu không tồn tại - Xây Dựng & Cuộc Sống";
           breadcrumbList.innerHTML = '<a href="/" onclick="event.preventDefault(); navigateTo(\'/\')">Trang chủ</a> <span>/</span> <span>Tài liệu không tồn tại</span>';
-          document.getElementById("resourceDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Bài đăng không tồn tại. <a href="/resources" onclick="event.preventDefault(); navigateTo(\'/resources\')" class="text-amber-600 font-bold underline">Quay lại thư viện</a></div>';
+          document.getElementById("resourceDetailContent").innerHTML = '<div class="text-center py-20 text-slate-500">Bài đăng không tồn tại hoặc đã bị ẩn. <a href="/resources" onclick="event.preventDefault(); navigateTo(\'/resources\')" class="text-amber-600 font-bold underline">Quay lại thư viện</a></div>';
         }
       } else {
         document.getElementById("view-home").classList.remove("hidden");
@@ -584,6 +615,10 @@
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // Sự kiện lắng nghe chuyển trang
+    window.addEventListener("popstate", handleRouting);
+    window.addEventListener("hashchange", handleRouting);
 
     function renderArticleCategoryTabs() {
       const container = document.getElementById("articleCategoryTabs");
@@ -675,6 +710,8 @@
 
     function createArticleCardHTML(a, isHero = false) {
       const url = getArticleUrl(a);
+      const displayDate = formatDateSafe(a.date);
+
       if (isHero) {
         return '<a href="' + url + '" onclick="event.preventDefault(); navigateTo(this.getAttribute(\'href\'))" class="block pb-5 border-b border-slate-200 md:border-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group mb-4 md:mb-0 cursor-pointer">' +
           (a.image ? '<div class="overflow-hidden h-48 sm:h-56 md:h-48 bg-slate-100 rounded-lg md:rounded-none mb-3 md:mb-0"><img src="' + a.image + '" alt="' + a.title + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>' : '') +
@@ -683,7 +720,7 @@
             '<h3 class="font-extrabold text-lg sm:text-xl md:text-base text-slate-900 mt-1 mb-2 group-hover:text-amber-600 transition leading-snug">' + a.title + '</h3>' +
             '<p class="text-slate-600 text-xs sm:text-sm mb-3 leading-relaxed line-clamp-3">' + (a.summary || '') + '</p>' +
             '<div class="text-[11px] text-slate-400 flex items-center justify-between pt-2 border-t border-slate-100">' +
-              '<span>📅 ' + (a.date ? new Date(a.date).toLocaleDateString('vi-VN') : '2026') + '</span>' +
+              '<span>📅 ' + displayDate + '</span>' +
               '<span class="text-amber-600 font-semibold group-hover:underline">Xem tiếp →</span>' +
             '</div>' +
           '</div>' +
@@ -695,7 +732,7 @@
           '<span class="text-[10px] font-bold text-amber-600 uppercase tracking-wider block mb-0.5">' + (a.category || 'Tản mạn') + '</span>' +
           '<h3 class="font-bold text-sm text-slate-900 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + a.title + '</h3>' +
           '<p class="text-slate-500 text-[11px] mt-1 line-clamp-2">' + (a.summary || '') + '</p>' +
-          '<span class="text-[10px] text-slate-400 mt-1.5 block">📅 ' + (a.date ? new Date(a.date).toLocaleDateString('vi-VN') : '2026') + '</span>' +
+          '<span class="text-[10px] text-slate-400 mt-1.5 block">📅 ' + displayDate + '</span>' +
         '</div>' +
         (a.image ? '<div class="w-28 h-20 sm:w-32 sm:h-22 md:w-full md:h-48 flex-shrink-0 bg-slate-100 rounded-lg md:rounded-none overflow-hidden"><img src="' + a.image + '" alt="' + a.title + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>' : '<div class="w-28 h-20 md:hidden bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center text-slate-400 text-xs font-bold">📄</div>') +
         '<div class="hidden md:block p-5">' +
@@ -703,7 +740,7 @@
           '<h3 class="font-bold text-base text-slate-900 mt-1 mb-2 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + a.title + '</h3>' +
           '<p class="text-slate-600 text-xs mb-3 leading-relaxed line-clamp-2">' + (a.summary || '') + '</p>' +
           '<div class="text-[11px] text-slate-400 flex items-center justify-between pt-2 border-t border-slate-100">' +
-            '<span>📅 ' + (a.date ? new Date(a.date).toLocaleDateString('vi-VN') : '2026') + '</span>' +
+            '<span>📅 ' + displayDate + '</span>' +
             '<span class="text-amber-600 font-semibold group-hover:underline">Đọc tiếp →</span>' +
           '</div>' +
         '</div>' +
@@ -795,7 +832,7 @@
 
     function createHomeServiceCardHTML(s, isHero = false) {
       const slug = s.slug || createSlug(s.title) || 'dich-vu';
-      const url = 'service.html#/service/' + slug + '-' + s.id;
+      const url = '/service.html#/service/' + slug + '-' + s.id;
 
       if (isHero) {
         return '<a href="' + url + '" class="block pb-5 border-b border-slate-200 md:border-0 md:bg-white md:rounded-xl md:border md:shadow-sm md:overflow-hidden md:hover:border-amber-500 transition group mb-4 md:mb-0 cursor-pointer">' +
@@ -928,7 +965,7 @@
         (a.image ? '<img src="' + a.image + '" alt="' + a.title + '" class="w-20 h-14 sm:w-24 sm:h-16 object-cover rounded-lg flex-shrink-0 group-hover:opacity-90 transition">' : '<div class="w-20 h-14 bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center text-slate-400 text-xs font-bold">📄</div>') +
         '<div class="flex-grow">' +
           '<h4 class="text-xs sm:text-sm font-bold text-slate-800 group-hover:text-amber-600 transition leading-snug line-clamp-2">' + a.title + '</h4>' +
-          '<span class="text-[10px] text-slate-400 mt-1 block">📅 ' + (a.date ? new Date(a.date).toLocaleDateString('vi-VN') : '2026') + '</span>' +
+          '<span class="text-[10px] text-slate-400 mt-1 block">📅 ' + formatDateSafe(a.date) + '</span>' +
         '</div>' +
       '</a>').join('');
 
@@ -938,7 +975,7 @@
             '<div class="mb-3"><span class="text-[11px] font-bold text-amber-600 uppercase tracking-wider bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200">' + (article.category || 'Tản mạn') + '</span></div>' +
             '<h1 class="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 mb-3 leading-tight">' + article.title + '</h1>' +
             '<div class="text-xs text-slate-400 mb-5 flex items-center gap-3 border-b border-slate-100 pb-3">' +
-              '<span>📅 ' + (article.date ? new Date(article.date).toLocaleDateString('vi-VN') : '2026') + '</span>' +
+              '<span>📅 ' + formatDateSafe(article.date) + '</span>' +
               '<span>•</span>' +
               '<span class="text-emerald-600 font-semibold">Tác giả: ' + (article.author || 'Admin Xây Dựng') + '</span>' +
             '</div>' +
@@ -1107,7 +1144,6 @@
       '</div>';
     }
 
-    window.addEventListener("popstate", handleRouting);
     window.onload = loadData;
   </script>
 </body>
