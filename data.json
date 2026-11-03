@@ -56,23 +56,5 @@
   ],
   "projects": [],
   "resources": [],
-  "services": [
-    {
-      "id": "SRV_1791512881864",
-      "title": "Thi công nhà phố Nhơn Trạch - Đồng Nai",
-      "type": "townhouse",
-      "category": "Thiết kế nhà phố",
-      "price": "Liên hệ 0908552125",
-      "author": "Xây dựng và cuộc sống",
-      "image": "https://lh3.googleusercontent.com/d/1Rx6VPg2K0xZS5LK6zzSwSjSz-ADIa2st",
-      "summary": "",
-      "content": "<p>sản phẩm 1</p><p>https://lh3.googleusercontent.com/d/1Rx6VPg2K0xZS5LK6zzSwSjSz-ADIa2st</p>",
-      "date": "2026-10-16 00:00:00",
-      "seoTitle": "",
-      "slug": "thi-cong-nha-pho-nhon-trach-dong-nai",
-      "metaDescription": "",
-      "focusKeywords": "",
-      "status": "published"
-    }
-  ]
+  "services": []
 }
