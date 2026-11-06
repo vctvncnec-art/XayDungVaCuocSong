@@ -17,7 +17,8 @@
     "projects": [
       "Nhà phố & Biệt thự",
       "Công trình công nghiệp",
-      "Hạ tầng & Dự án"
+      "Hạ tầng & Dự án",
+      "Hạ Tầng Nhơn Trạch - Đồng Nai"
     ],
     "resources": [
       "bản vẽ cad"
@@ -54,7 +55,24 @@
       "focusKeywords": "kinh nghiệm xây nhà, xây dựng nhà phố"
     }
   ],
-  "projects": [],
+  "projects": [
+    {
+      "id": "PROJ_1793952819781",
+      "title": "Hạ tầng Nhơn Trạch cất cánh: Các đại lộ kết nối Sân bay Long Thành và cao tốc liên vùng",
+      "category": "Hạ Tầng Nhơn Trạch - Đồng Nai",
+      "summary": "Hạ tầng giao thông tại Nhơn Trạch đang đón sóng đầu tư mạnh mẽ với hàng loạt dự án đại lộ, cao tốc và nút giao trọng điểm, tạo nên mạng lưới kết nối hoàn hảo giữa Sân bay Quốc tế Long Thành, TP.HCM và các vùng kinh tế động lực phía Nam.",
+      "content": "<p><img src=\"https://lh3.googleusercontent.com/d/1YSTEX8jnPBzZii5TC99S8rpjdGsxcrvQ\"></p><p>Hình ảnh kết nối giao thông.</p><p><br></p><p>🚀<strong> Hai đại lộ \"huyết mạch\" quy mô 8–10 làn xe</strong></p><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Đại lộ ĐT.25C (Nguyễn Ái Quốc):</strong> Được thiết kế với quy mô 8 làn xe hiện đại. Tuyến đường này đóng vai trò là trục kinh tế đối ngoại chiến lược, kết nối trực tiếp đường Vành đai 3 TP.HCM với tuyến T1 để dẫn thẳng vào Sân bay Quốc tế Long Thành.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Đường ĐT.25B (Tôn Đức Thắng):</strong> Được đầu tư nâng cấp, mở rộng lên quy mô từ 8 đến 10 làn xe. Đây là trục kết nối huyết mạch giữa Quốc lộ 51, trung tâm huyện Nhơn Trạch với đường Vành đai 3 TP.HCM.</li></ol><p><br></p><p>🔄 <strong>Các nút giao phân luồng giao thông thông minh</strong></p><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Nút giao ĐT.25C &amp; Nút giao Hùng Vương (ĐT.19):</strong> Được ví như những \"mạch nối\" giao thông quan trọng bậc nhất khu vực. Sự phối hợp của hai nút giao này giúp phân luồng xe hiệu quả, tách biệt hoàn toàn lưu lượng xe khách di chuyển về phía sân bay với các dòng xe tải, xe container hướng về các khu công nghiệp và cảng biển.</li></ol><p><br></p><p>🌐 <strong>Hành lang liên vùng và bước ngoặt kinh tế biển</strong></p><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Cao tốc Bến Lức – Long Thành:</strong> Chạy xuyên qua phía Nam Nhơn Trạch, hình thành nên hành lang Đông – Tây chiến lược giúp nối liền các tỉnh miền Tây Nam Bộ với vùng Đông Nam Bộ.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Cầu Phước An:</strong> Dự án đang được thi công gấp rút với mục tiêu thông xe kỹ thuật vào <strong>cuối năm 2026</strong>. Sau khi hoàn thành, cầu Phước An sẽ chính thức nối liền Nhơn Trạch với cụm cảng nước sâu Cái Mép – Thị Vải, mở toang cánh cửa logistics ra quốc tế.</li></ol><p><br></p>",
+      "image": "https://lh3.googleusercontent.com/d/1J8nYx0cg2_bSbDtDnp_1BTQ38UmKZZCv",
+      "location": "Xã Vĩnh Thanh- Đồng Nai",
+      "year": "Đang triển khai",
+      "date": "2026-11-06 00:00:00",
+      "status": "published",
+      "seoTitle": "",
+      "slug": "ha-tang-nhon-trach-cat-canh-cac-dai-lo-ket-noi-san-bay-long-thanh-va-cao-toc-lien-vung",
+      "metaDescription": "",
+      "focusKeywords": ""
+    }
+  ],
   "resources": [],
   "services": []
 }
